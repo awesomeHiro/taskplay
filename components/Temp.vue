@@ -1,52 +1,19 @@
 <template>
-  <v-row align="center">
-    <v-row justify="space-around">
-      <v-switch v-model="disabled" class="ma-2" label="Disabled"></v-switch>
-      <v-switch v-model="dense" class="ma-2" label="Dense"></v-switch>
-      <v-switch v-model="twoLine" class="ma-2" label="Two-line"></v-switch>
-      <v-switch v-model="threeLine" class="ma-2" label="Three-line"></v-switch>
-      <v-switch v-model="shaped" class="ma-2" label="Shaped"></v-switch>
-      <v-switch v-model="flat" class="ma-2" label="Flat"></v-switch>
-      <v-switch v-model="subheader" class="ma-2" label="Subheader"></v-switch>
-      <v-switch v-model="inactive" class="ma-2" label="Inactive"></v-switch>
-      <v-switch v-model="subGroup" class="ma-2" label="Sub-group"></v-switch>
-      <v-switch v-model="nav" class="ma-2" label="Nav"></v-switch>
-      <v-switch v-model="avatar" class="ma-2" label="Avatar"></v-switch>
-      <v-switch v-model="rounded" class="ma-2" label="Rounded"></v-switch>
-    </v-row>
-    <v-card class="mx-auto" max-width="400" tile>
-      <v-list
-        :disabled="disabled"
-        :dense="dense"
-        :two-line="twoLine"
-        :three-line="threeLine"
-        :shaped="shaped"
-        :flat="flat"
-        :subheader="subheader"
-        :sub-group="subGroup"
-        :nav="nav"
-        :avatar="avatar"
-        :rounded="rounded"
-      >
-        <v-subheader>REPORTS</v-subheader>
-        <v-list-item-group v-model="item" color="primary">
-          <v-list-item v-for="(item, i) in items" :key="i" :inactive="inactive">
-            <v-list-item-avatar v-if="avatar">
-              <v-img :src="item.avatar"></v-img>
-            </v-list-item-avatar>
-            <v-list-item-content>
-              <v-list-item-title v-html="item.title"></v-list-item-title>
-              <v-list-item-subtitle
-                v-if="twoLine || threeLine"
-                v-html="item.subtitle"
-              ></v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-card>
-  </v-row>
-</template>
+  <v-row no-gutters>
+    <v-col class="ma-0 pa-0">
+      <v-tabs class="ma-0 pa-0" center-active dark show-arrows>
+        <v-tab>One</v-tab>
+        <v-tab>Two</v-tab>
+        <v-tab>Three</v-tab>
+        <v-tab>Four</v-tab>
+        <v-tab>Five</v-tab>
+        <v-tab>Six</v-tab>
+        <v-tab>Seven</v-tab>
+        <v-tab>Eight</v-tab>
+      </v-tabs>
+    </v-col>
+  </v-row></template
+>
 
 <script>
 export default {

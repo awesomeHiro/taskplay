@@ -1,12 +1,6 @@
 <template>
   <v-container>
-    <v-row no-gutters>
-      <v-col>
-        <div>
-          <comp />
-        </div>
-      </v-col>
-    </v-row>
+    <comp />
   </v-container>
 </template>
 
