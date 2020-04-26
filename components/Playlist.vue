@@ -4,10 +4,10 @@
       <v-col>
         <v-card max-width="500" class="mx-auto">
           <v-list two-line>
-            <v-list-item-group v-model="selected" active-class="pink--text">
-              <template v-for="(item, index) in items">
-                <v-list-item :key="item.project">
-                  <template v-slot:default="{ active }">
+            <v-list-item-group v-model="selected" active-class="green--text">
+              <template v-for="(t, index) in tasks">
+                <v-list-item :key="t.taskname">
+                  <template>
                     <v-col cols="auto">
                       <div class="drag-bar">
                         <v-icon>
@@ -16,44 +16,56 @@
                       </div>
                     </v-col>
                     <v-col cols="auto">
-                      <div class="section project">
-                        B
+                      <div class="section">
+                        {{ t.section }}
                       </div>
                     </v-col>
                     <v-list-item-content>
                       <v-list-item-title
-                        v-text="item.taskname"
+                        v-text="t.repeat ? t.taskname + ' ↺' : t.taskname"
                       ></v-list-item-title>
                       <v-list-item-subtitle
-                        class="text--primary"
-                        v-text="item.project"
+                        v-text="t.project"
                       ></v-list-item-subtitle>
                       <v-list-item-subtitle
-                        v-text="item.startend"
+                        v-text="t.start + ' - ' + t.end"
                       ></v-list-item-subtitle>
                     </v-list-item-content>
-                    <v-col cols="auto">
-                      <div class="repeat">
-                        <v-icon>
-                          repeat
-                        </v-icon>
-                      </div>
-                    </v-col>
+                    <v-col cols="auto"> </v-col>
                     <v-list-item-estimate>
-                      <div>
-                        {{ item.estimate + ' min' }}
+                      <div class="grey--text">
+                        {{ t.estimate + ' min' }}
                       </div>
-                      <div v-if="!active">
-                        {{ item.result + ' min' }}
+                      <div v-if="t.result" class="white--text">
+                        {{ t.result + ' min' }}
                       </div>
-                      <div v-else-if="!!result">
-                        {{ item.result + ' min' }}
+                      <div v-if="t.result">
+                        <div
+                          v-if="t.result - t.estimate > 0"
+                          class="pink--text"
+                        >
+                          {{
+                            t.result - t.estimate > 0
+                              ? '+' + (t.result - t.estimate)
+                              : t.result - t.estimate
+                          }}
+                        </div>
+                        <div
+                          v-if="t.result - t.estimate <= 0"
+                          class="blue--text"
+                        >
+                          {{
+                            t.result - t.estimate > 0
+                              ? '+' + (t.result - t.estimate)
+                              : t.result - t.estimate
+                          }}
+                        </div>
                       </div>
                     </v-list-item-estimate>
                   </template>
                 </v-list-item>
                 <v-divider
-                  v-if="index + 1 < items.length"
+                  v-if="index + 1 < tasks.length"
                   :key="index"
                 ></v-divider>
               </template>
@@ -68,44 +80,63 @@
 export default {
   data: () => ({
     selected: [2],
-    items: [
+    tasks: [
       {
         estimate: '15',
+        repeat: true,
         result: '21',
+        section: 'A',
         taskname: 'Eat lunch',
-        project: 'Ali Connors',
-        startend: '13:02 - 13:23'
+        project: 'Everyday',
+        start: '13:02',
+        end: '13:23'
       },
       {
         estimate: '20',
-        result: '19',
-        taskname: 'Summer BBQ',
-        project: 'me, Scrott, Jennifer',
-        startend: '13:23 - 13:41'
+        repeat: '↺',
+        result: '20',
+        section: 'A',
+        taskname: 'Clean teeth',
+        project: 'Everyday',
+        start: '13:23',
+        end: '13:41'
       },
       {
         estimate: '30',
+        repeat: '↺',
         result: '',
-
-        taskname: 'Oui oui',
-        project: 'Sandra Adams',
-        startend: '13:41 - '
+        section: 'B',
+        taskname: 'Go office',
+        project: 'Transport',
+        start: '13:41',
+        end: ''
       },
       {
         estimate: '20',
+        repeat: '',
         result: '',
-        taskname: 'Birthday gift',
-        project: 'Trevor Hansen',
-        startend: ''
+        section: 'B',
+        taskname: 'Check schedule',
+        project: 'Work',
+        start: '',
+        end: ''
       },
       {
         estimate: '10',
+        repeat: false,
         result: '',
-        taskname: 'Recipe to try',
-        project: 'Britta Holt',
-        startend: ''
+        section: 'C',
+        taskname: 'Contact the Product owner',
+        project: 'Work',
+        start: '',
+        end: ''
       }
     ]
-  })
+  }),
+  computed: {
+    taskDisplay: () => {
+      return 'a'
+    }
+  }
 }
 </script>
