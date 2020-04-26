@@ -1,19 +1,23 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <div class="text-center">
-        <playlist />
-      </div>
-    </v-flex>
-  </v-layout>
+  <v-container>
+    <v-row no-gutters>
+      <v-col>
+        <div>
+          <comp />
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import Playlist from '~/components/Playlist.vue'
+// import Comp from '~/components/Progress.vue'
+import Comp from '~/components/Playlist.vue'
+// import Comp from '~/components/Temp.vue'
 
 export default {
   components: {
-    Playlist
+    Comp
   }
 }
 </script>
