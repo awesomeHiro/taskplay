@@ -365,9 +365,9 @@ export default {
       return new Date().toLocaleTimeString()
     },
     listSections() {
-      return this.tasks.reduce((total, task) => {
-        return [...total, task.section]
-      }, [])
+      return this.tasks
+        .reduce((total, task) => [...total, task.section], [])
+        .filter((x, i, a) => a.indexOf(x) === i)
     }
   }
 }
