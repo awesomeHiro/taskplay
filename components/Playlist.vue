@@ -34,63 +34,71 @@
         <v-divider></v-divider>
         <v-list two-line>
           <v-list-item-group v-model="selected" active-class="green--text">
-            <template v-for="(t, index) in tasks">
-              <v-list-item :key="t.text + index">
-                <template>
-                  <v-col cols="auto">
-                    <div class="drag-bar">
-                      <v-icon>
-                        drag_handle
-                      </v-icon>
-                    </div>
-                  </v-col>
-                  <v-col cols="auto">
-                    <div class="section">
-                      {{ t.section }}
-                    </div>
-                  </v-col>
-                  <v-list-item-content>
-                    <v-list-item-title
-                      v-text="t.repeat ? t.taskname + ' ↺' : t.taskname"
-                    ></v-list-item-title>
-                    <v-list-item-subtitle
-                      v-text="t.project"
-                    ></v-list-item-subtitle>
-                    <v-list-item-subtitle
-                      v-text="t.start + ' - ' + t.end"
-                    ></v-list-item-subtitle>
-                  </v-list-item-content>
-                  <v-col cols="auto"> </v-col>
-                  <div>
-                    <div class="grey--text">
-                      {{ t.estimate + ' min' }}
-                    </div>
-                    <div v-if="t.result" class="white--text">
-                      {{ t.result + ' min' }}
-                    </div>
-                    <div v-if="t.result">
-                      <div v-if="t.result - t.estimate > 0" class="pink--text">
-                        {{
-                          t.result - t.estimate > 0
-                            ? '+' + (t.result - t.estimate)
-                            : t.result - t.estimate
-                        }}
+            <template v-for="section in listSections">
+              <template v-for="(t, index) in getTasksBySection(section)">
+                <v-list-item :key="t.text + index">
+                  <template>
+                    <v-col cols="auto">
+                      <div class="drag-bar">
+                        <v-icon>
+                          drag_handle
+                        </v-icon>
                       </div>
-                      <div v-if="t.result - t.estimate <= 0" class="blue--text">
-                        {{
-                          t.result - t.estimate > 0
-                            ? '+' + (t.result - t.estimate)
-                            : t.result - t.estimate
-                        }}
+                    </v-col>
+                    <v-col cols="auto">
+                      <div class="section">
+                        {{ t.section }}
+                      </div>
+                    </v-col>
+                    <v-list-item-content>
+                      <v-list-item-title
+                        v-text="t.repeat ? t.taskname + ' ↺' : t.taskname"
+                      ></v-list-item-title>
+                      <v-list-item-subtitle
+                        v-text="t.project"
+                      ></v-list-item-subtitle>
+                      <v-list-item-subtitle
+                        v-text="t.start + ' - ' + t.end"
+                      ></v-list-item-subtitle>
+                    </v-list-item-content>
+                    <v-col cols="auto"> </v-col>
+                    <div>
+                      <div class="grey--text">
+                        {{ t.estimate + ' min' }}
+                      </div>
+                      <div v-if="t.result" class="white--text">
+                        {{ t.result + ' min' }}
+                      </div>
+                      <div v-if="t.result">
+                        <div
+                          v-if="t.result - t.estimate > 0"
+                          class="pink--text"
+                        >
+                          {{
+                            t.result - t.estimate > 0
+                              ? '+' + (t.result - t.estimate)
+                              : t.result - t.estimate
+                          }}
+                        </div>
+                        <div
+                          v-if="t.result - t.estimate <= 0"
+                          class="blue--text"
+                        >
+                          {{
+                            t.result - t.estimate > 0
+                              ? '+' + (t.result - t.estimate)
+                              : t.result - t.estimate
+                          }}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </template>
-              </v-list-item>
-              <v-divider
-                v-if="index + 1 < tasks.length"
-                :key="index"
-              ></v-divider>
+                  </template>
+                </v-list-item>
+                <v-divider
+                  v-if="index + 1 < tasks.length"
+                  :key="index"
+                ></v-divider>
+              </template>
             </template>
           </v-list-item-group>
         </v-list>
@@ -101,7 +109,6 @@
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-fab-transition>
-    {{ listSections }}
   </v-row>
 </template>
 <style>
@@ -368,6 +375,11 @@ export default {
       return this.tasks
         .reduce((total, task) => [...total, task.section], [])
         .filter((x, i, a) => a.indexOf(x) === i)
+    }
+  },
+  methods: {
+    getTasksBySection(section) {
+      return this.tasks.filter((task) => task.section === section)
     }
   }
 }
