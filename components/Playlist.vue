@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-card max-width="500" class="mx-auto">
+      <div>{{ id }}</div>
       <div class="text-center">April</div>
       <v-divider></v-divider>
       <daytab />
@@ -17,17 +18,22 @@
   </div>
 </template>
 <script>
+import { nanoid } from 'nanoid'
 import TimeSummary from '~/components/TimeSummary.vue'
 import Daytab from '~/components/Daytab.vue'
 import Tasklist from '~/components/Tasklist.vue'
 import Clock from '~/components/Clock.vue'
-
 export default {
   components: {
     TimeSummary,
     Daytab,
     Tasklist,
     Clock
+  },
+  data() {
+    return {
+      id: nanoid()
+    }
   }
 }
 </script>
