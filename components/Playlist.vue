@@ -1,6 +1,6 @@
 <template>
   <v-row align="center" justify="center" no-gutters>
-    <v-col>
+    <v-col align="center" justify="center">
       <v-card max-width="500px">
         <div>{{ id }}</div>
         <div class="text-center">April</div>
