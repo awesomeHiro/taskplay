@@ -19,7 +19,7 @@
               </v-col>
               <v-list-item-content>
                 <v-list-item-title
-                  v-text="t.repeat ? t.taskname + ' ↺' : t.taskname"
+                  v-text="t.repeat ? t.name + ' ↺' : t.name"
                 ></v-list-item-title>
                 <v-list-item-subtitle v-text="t.project"></v-list-item-subtitle>
                 <v-list-item-subtitle
@@ -35,17 +35,11 @@
                   {{ t.result + ' min' }}
                 </div>
                 <div v-if="t.result">
-                  <div v-if="t.result - t.estimate > 0" class="pink--text">
+                  <!-- eslint-disable-next-line prettier/prettier -->
+                  <div :class="t.result - t.estimate <= 0 ? 'success--text' : 'error--text'">
                     {{
                       t.result - t.estimate > 0
-                        ? '+' + (t.result - t.estimate)
-                        : t.result - t.estimate
-                    }}
-                  </div>
-                  <div v-if="t.result - t.estimate <= 0" class="blue--text">
-                    {{
-                      t.result - t.estimate > 0
-                        ? '+' + (t.result - t.estimate)
+                        ? '+' + t.result - t.estimate
                         : t.result - t.estimate
                     }}
                   </div>
@@ -60,219 +54,19 @@
 </template>
 <script>
 export default {
-  data: () => ({
-    selected: [2],
-    tasks: [
-      {
-        estimate: '15',
-        repeat: true,
-        result: '21',
-        section: 'A',
-        taskname: 'Eat lunch',
-        project: 'Everyday',
-        start: '13:02',
-        end: '13:23'
-      },
-      {
-        estimate: '20',
-        repeat: '↺',
-        result: '20',
-        section: 'A',
-        taskname: 'Clean teeth',
-        project: 'Everyday',
-        start: '13:23',
-        end: '13:41'
-      },
-      {
-        estimate: '30',
-        repeat: '↺',
-        result: '',
-        section: 'B',
-        taskname: 'Go office',
-        project: 'Transport',
-        start: '13:41',
-        end: ''
-      },
-      {
-        estimate: '20',
-        repeat: '',
-        result: '',
-        section: 'B',
-        taskname: 'Check schedule',
-        project: 'Work',
-        start: '',
-        end: ''
-      },
-      {
-        estimate: '10',
-        repeat: false,
-        result: '',
-        section: 'C',
-        taskname: 'Contact the Product owner',
-        project: 'Work',
-        start: '',
-        end: ''
-      },
-      {
-        estimate: '15',
-        repeat: true,
-        result: '21',
-        section: 'A',
-        taskname: 'Eat lunch',
-        project: 'Everyday',
-        start: '13:02',
-        end: '13:23'
-      },
-      {
-        estimate: '20',
-        repeat: '↺',
-        result: '20',
-        section: 'A',
-        taskname: 'Clean teeth',
-        project: 'Everyday',
-        start: '13:23',
-        end: '13:41'
-      },
-      {
-        estimate: '30',
-        repeat: '↺',
-        result: '',
-        section: 'B',
-        taskname: 'Go office',
-        project: 'Transport',
-        start: '13:41',
-        end: ''
-      },
-      {
-        estimate: '20',
-        repeat: '',
-        result: '',
-        section: 'B',
-        taskname: 'Check schedule',
-        project: 'Work',
-        start: '',
-        end: ''
-      },
-      {
-        estimate: '10',
-        repeat: false,
-        result: '',
-        section: 'C',
-        taskname: 'Contact the Product owner',
-        project: 'Work',
-        start: '',
-        end: ''
-      },
-      {
-        estimate: '15',
-        repeat: true,
-        result: '21',
-        section: 'A',
-        taskname: 'Eat lunch',
-        project: 'Everyday',
-        start: '13:02',
-        end: '13:23'
-      },
-      {
-        estimate: '20',
-        repeat: '↺',
-        result: '20',
-        section: 'A',
-        taskname: 'Clean teeth',
-        project: 'Everyday',
-        start: '13:23',
-        end: '13:41'
-      },
-      {
-        estimate: '30',
-        repeat: '↺',
-        result: '',
-        section: 'B',
-        taskname: 'Go office',
-        project: 'Transport',
-        start: '13:41',
-        end: ''
-      },
-      {
-        estimate: '20',
-        repeat: '',
-        result: '',
-        section: 'B',
-        taskname: 'Check schedule',
-        project: 'Work',
-        start: '',
-        end: ''
-      },
-      {
-        estimate: '10',
-        repeat: false,
-        result: '',
-        section: 'C',
-        taskname: 'Contact the Product owner',
-        project: 'Work',
-        start: '',
-        end: ''
-      },
-      {
-        estimate: '15',
-        repeat: true,
-        result: '21',
-        section: 'A',
-        taskname: 'Eat lunch',
-        project: 'Everyday',
-        start: '13:02',
-        end: '13:23'
-      },
-      {
-        estimate: '20',
-        repeat: '↺',
-        result: '20',
-        section: 'A',
-        taskname: 'Clean teeth',
-        project: 'Everyday',
-        start: '13:23',
-        end: '13:41'
-      },
-      {
-        estimate: '30',
-        repeat: '↺',
-        result: '',
-        section: 'B',
-        taskname: 'Go office',
-        project: 'Transport',
-        start: '13:41',
-        end: ''
-      },
-      {
-        estimate: '20',
-        repeat: '',
-        result: '',
-        section: 'B',
-        taskname: 'Check schedule',
-        project: 'Work',
-        start: '',
-        end: ''
-      },
-      {
-        estimate: '10',
-        repeat: false,
-        result: '',
-        section: 'C',
-        taskname: 'Contact the Product owner',
-        project: 'Work',
-        start: '',
-        end: ''
-      }
-    ]
-  }),
+  data() {
+    return {
+      selected: [2],
+      tasks: this.$store.state.tasks.list
+      // tasks: []
+    }
+  },
   computed: {
-    createdAtDisplay() {
-      return new Date().toLocaleTimeString()
-    },
     listSections() {
       return this.tasks
         .reduce((total, task) => [...total, task.section], [])
         .filter((x, i, a) => a.indexOf(x) === i)
+        .sort()
     }
   },
   methods: {

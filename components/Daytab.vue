@@ -1,5 +1,5 @@
 <template>
-  <v-tabs center-active dark show-arrows>
+  <v-tabs center-active show-arrows>
     <v-tab v-for="d in days" :key="d.date">
       <div>{{ d.day }}<br />{{ d.date }}</div>
     </v-tab>
