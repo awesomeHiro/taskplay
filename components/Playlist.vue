@@ -1,21 +1,23 @@
 <template>
-  <div>
-    <v-card max-width="500" class="mx-auto">
-      <div>{{ id }}</div>
-      <div class="text-center">April</div>
-      <v-divider></v-divider>
-      <daytab />
-      <v-divider></v-divider>
-      <time-summary></time-summary>
-      <v-divider></v-divider>
-      <clock />
-      <v-divider></v-divider>
-      <Tasklist />
-    </v-card>
-    <v-btn color="pink" dark fixed bottom right fab>
-      <v-icon>mdi-plus</v-icon>
-    </v-btn>
-  </div>
+  <v-row align="center" justify="center" no-gutters>
+    <v-col>
+      <v-card max-width="500px">
+        <div>{{ id }}</div>
+        <div class="text-center">April</div>
+        <v-divider></v-divider>
+        <daytab />
+        <v-divider></v-divider>
+        <time-summary></time-summary>
+        <v-divider></v-divider>
+        <clock />
+        <v-divider></v-divider>
+        <Tasklist />
+        <v-btn color="pink" dark fixed bottom right fab>
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </v-card></v-col
+    >
+  </v-row>
 </template>
 <script>
 import { nanoid } from 'nanoid'
