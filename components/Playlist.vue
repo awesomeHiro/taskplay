@@ -1,7 +1,7 @@
 <template>
-  <v-row align="center" justify="center" no-gutters>
+  <v-row align="center" justify="center" class="caption" no-gutters>
     <v-col align="center" justify="center">
-      <v-card max-width="500px">
+      <v-card max-width="600px">
         <div>{{ id }}</div>
         <div class="text-center">April</div>
         <v-divider></v-divider>
