@@ -1,20 +1,18 @@
 <template>
   <v-list two-line>
-    <v-list-item-group v-model="selected" active-class="green--text">
-      <template v-for="section in listSections">
-        <template v-for="(t, index) in getTasksBySection(section)">
-          <v-list-item :key="t.text + index">
+    <v-list-item-group v-model="selected" active-class="blue--text">
+      <div v-for="section in listSections" :key="section">
+        <div class="text-center caption" style="text-align: center;">
+          {{ section }}
+        </div>
+        <div v-for="t in getTasksBySection(section)" :key="t.id">
+          <v-list-item>
             <template>
               <v-col cols="auto">
                 <div class="drag-bar">
                   <v-icon>
                     drag_handle
                   </v-icon>
-                </div>
-              </v-col>
-              <v-col cols="auto">
-                <div class="section">
-                  {{ t.section }}
                 </div>
               </v-col>
               <v-list-item-content>
@@ -28,15 +26,16 @@
               </v-list-item-content>
               <v-col cols="auto"> </v-col>
               <div>
-                <div class="grey--text">
+                <div class="accent--text">
                   {{ t.estimate + ' min' }}
                 </div>
-                <div v-if="t.result" class="white--text">
+                <div v-if="t.result">
                   {{ t.result + ' min' }}
                 </div>
                 <div v-if="t.result">
                   <!-- eslint-disable-next-line prettier/prettier -->
                   <div :class="t.result - t.estimate <= 0 ? 'success--text' : 'error--text'">
+                    >
                     {{
                       t.result - t.estimate > 0
                         ? '+' + t.result - t.estimate
@@ -47,13 +46,21 @@
               </div>
             </template>
           </v-list-item>
-        </template>
-      </template>
+        </div>
+        <time-summary></time-summary>
+
+        <v-divider></v-divider>
+      </div>
     </v-list-item-group>
   </v-list>
 </template>
 <script>
+import TimeSummary from '~/components/TimeSummary.vue'
+
 export default {
+  components: {
+    TimeSummary
+  },
   data() {
     return {
       selected: [2],
