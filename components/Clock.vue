@@ -1,11 +1,13 @@
 <template>
-  <div id="timer">
-    <div class="timer">
-      <div class="time">
-        {{ time }}
+  <v-container pa-1>
+    <div id="timer">
+      <div class="timer">
+        <div class="time">
+          {{ time }}
+        </div>
       </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
