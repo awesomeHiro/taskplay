@@ -1,7 +1,7 @@
 <template>
   <v-tabs center-active show-arrows>
     <v-tab v-for="d in days" :key="d.date">
-      <div>{{ d.day }}<br />{{ d.date }}</div>
+      <div class="caption">{{ d.day }}<br />{{ d.date }}</div>
     </v-tab>
   </v-tabs>
 </template>

@@ -13,21 +13,20 @@ export default {
   name: 'Timer',
   data() {
     return {
-      time: '',
-      date: ''
+      time: '99:99:99',
+      interval: ''
     }
   },
-  computed: {
-    formatTime() {
-      const cd = new Date()
-      return cd.getSeconds()
-    }
+  beforeCreate() {
+    this.interval = setInterval(() => {
+      this.updateTime()
+    }, 1)
   },
   created() {
-    setInterval(() => {
+    clearInterval(this.interval)
+    this.interval = setInterval(() => {
       this.updateTime()
     }, 1000)
-    this.timerOn = true // timerがOFFであることを状態として保持
   },
 
   methods: {
@@ -39,14 +38,6 @@ export default {
         this.zeroPadding(cd.getMinutes(), 2) +
         ':' +
         this.zeroPadding(cd.getSeconds(), 2)
-      this.date =
-        this.zeroPadding(cd.getFullYear(), 4) +
-        '-' +
-        this.zeroPadding(cd.getMonth() + 1, 2) +
-        '-' +
-        this.zeroPadding(cd.getDate(), 2) +
-        ' ' +
-        week[cd.getDay()]
     },
     zeroPadding(num, digit) {
       let zero = ''
@@ -57,7 +48,6 @@ export default {
     }
   }
 }
-const week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 </script>
 
 <style scoped>
