@@ -28,7 +28,6 @@ export default {
       this.updateTime()
     }, 1000)
   },
-
   methods: {
     updateTime() {
       const cd = new Date()
