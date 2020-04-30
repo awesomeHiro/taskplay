@@ -13,17 +13,20 @@ export default {
   name: 'Timer',
   data() {
     return {
-      time: '99:99:99',
-      interval: ''
+      time: '00:00:00'
     }
   },
   beforeCreate() {
-    this.interval = setInterval(() => {
-      this.updateTime()
-    }, 1)
+    const cd = new Date()
+    this.time =
+      // eslint-disable-next-line prettier/prettier
+      cd.getHours().toString().padStart(2, 0) +':' +
+      // eslint-disable-next-line prettier/prettier
+      cd.getMinutes().toString().padStart(2, 0) + ':' +
+      // eslint-disable-next-line prettier/prettier
+      cd.getSeconds().toString().padStart(2, 0)
   },
   created() {
-    clearInterval(this.interval)
     this.interval = setInterval(() => {
       this.updateTime()
     }, 1000)
@@ -32,18 +35,12 @@ export default {
     updateTime() {
       const cd = new Date()
       this.time =
-        this.zeroPadding(cd.getHours(), 2) +
-        ':' +
-        this.zeroPadding(cd.getMinutes(), 2) +
-        ':' +
-        this.zeroPadding(cd.getSeconds(), 2)
-    },
-    zeroPadding(num, digit) {
-      let zero = ''
-      for (let i = 0; i < digit; i++) {
-        zero += '0'
-      }
-      return (zero + num).slice(-digit)
+        // eslint-disable-next-line prettier/prettier
+      cd.getHours().toString().padStart(2, 0) +':' +
+        // eslint-disable-next-line prettier/prettier
+      cd.getMinutes().toString().padStart(2, 0) + ':' +
+        // eslint-disable-next-line prettier/prettier
+      cd.getSeconds().toString().padStart(2, 0)
     }
   }
 }
