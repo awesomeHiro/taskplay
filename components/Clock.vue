@@ -16,17 +16,8 @@ export default {
       time: '00:00:00'
     }
   },
-  beforeCreate() {
-    const cd = new Date()
-    this.time =
-      // eslint-disable-next-line prettier/prettier
-      cd.getHours().toString().padStart(2, 0) +':' +
-      // eslint-disable-next-line prettier/prettier
-      cd.getMinutes().toString().padStart(2, 0) + ':' +
-      // eslint-disable-next-line prettier/prettier
-      cd.getSeconds().toString().padStart(2, 0)
-  },
   created() {
+    this.updateTime()
     this.interval = setInterval(() => {
       this.updateTime()
     }, 1000)
@@ -34,13 +25,9 @@ export default {
   methods: {
     updateTime() {
       const cd = new Date()
+      const f = (time) => time.toString().padStart(2, 0)
       this.time =
-        // eslint-disable-next-line prettier/prettier
-      cd.getHours().toString().padStart(2, 0) +':' +
-        // eslint-disable-next-line prettier/prettier
-      cd.getMinutes().toString().padStart(2, 0) + ':' +
-        // eslint-disable-next-line prettier/prettier
-      cd.getSeconds().toString().padStart(2, 0)
+        f(cd.getHours()) + ':' + f(cd.getMinutes()) + ':' + f(cd.getSeconds())
     }
   }
 }
