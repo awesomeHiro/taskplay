@@ -19,7 +19,7 @@
   </v-row>
 </template>
 <script>
-import { nanoid } from 'nanoid'
+// import { nanoid } from 'nanoid'
 import TimeSummary from '~/components/TimeSummary.vue'
 import Daytab from '~/components/Daytab.vue'
 import Tasklist from '~/components/Tasklist.vue'
@@ -29,12 +29,7 @@ export default {
     TimeSummary,
     Daytab,
     Tasklist,
-    Clock
+    Clock,
   },
-  data() {
-    return {
-      id: nanoid()
-    }
-  }
 }
 </script>

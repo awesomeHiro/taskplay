@@ -19,19 +19,19 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-chart-bubble',
           title: 'Settings',
-          to: '/settings'
-        }
+          to: '/settings',
+        },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Taskplay'
+      title: 'Taskplay',
     }
-  }
+  },
 }
 </script>

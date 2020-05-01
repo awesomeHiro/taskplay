@@ -15,7 +15,7 @@ export default {
   name: 'Timer',
   data() {
     return {
-      time: '00:00:00'
+      time: '00:00:00',
     }
   },
   created() {
@@ -27,11 +27,11 @@ export default {
   methods: {
     updateTime() {
       const cd = new Date()
-      const f = (time) => time.toString().padStart(2, 0)
+      const f = time => time.toString().padStart(2, 0)
       this.time =
         f(cd.getHours()) + ':' + f(cd.getMinutes()) + ':' + f(cd.getSeconds())
-    }
-  }
+    },
+  },
 }
 </script>
 
