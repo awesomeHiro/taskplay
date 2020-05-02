@@ -1,21 +1,20 @@
 export const state = () => ({
-  list
+  today,
 })
 
 export const mutations = {
   addTask(state, newTask) {
-    state.tasks.push(newTask)
-  }
+    state.tasks.today.push(newTask)
+  },
 }
 
 export const actions = {
   addTask({ commit }) {
-    const isSignedIn = true
-    commit('addTask', isSignedIn)
-  }
+    commit('addTask', commit)
+  },
 }
 
-const list = [
+const today = [
   {
     id: '8F2B4F16',
     done: 'TRUE',
@@ -27,7 +26,7 @@ const list = [
     project: 'Work',
     start: '6:03',
     end: '6:24',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'F652540A',
@@ -40,7 +39,7 @@ const list = [
     project: 'Rest',
     start: '6:24',
     end: '7:01',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'DDFE5DCA',
@@ -53,7 +52,7 @@ const list = [
     project: 'Create App',
     start: '7:01',
     end: '7:20',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '8E60E509',
@@ -66,7 +65,7 @@ const list = [
     project: 'Create App',
     start: '7:20',
     end: '7:34',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '910C105D',
@@ -79,7 +78,7 @@ const list = [
     project: 'Transport',
     start: '7:34',
     end: '7:46',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'FC0C6C81',
@@ -92,7 +91,7 @@ const list = [
     project: 'Grooming',
     start: '7:46',
     end: '8:07',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '2B813602',
@@ -105,7 +104,7 @@ const list = [
     project: 'Grooming',
     start: '8:07',
     end: '8:26',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'C0377239',
@@ -118,7 +117,7 @@ const list = [
     project: 'Household',
     start: '8:26',
     end: '8:54',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '58D3A6F0',
@@ -131,7 +130,7 @@ const list = [
     project: 'Rest',
     start: '8:54',
     end: '9:35',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '1925FBD2',
@@ -144,7 +143,7 @@ const list = [
     project: 'Rest',
     start: '9:35',
     end: '10:00',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '5F456254',
@@ -157,7 +156,7 @@ const list = [
     project: 'Rest',
     start: '10:00',
     end: '10:09',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'D3033E5C',
@@ -170,7 +169,7 @@ const list = [
     project: 'Work',
     start: '10:09',
     end: '10:28',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'F51368F6',
@@ -183,7 +182,7 @@ const list = [
     project: 'Create App',
     start: '10:28',
     end: '10:49',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '5E085E52',
@@ -196,7 +195,7 @@ const list = [
     project: 'Grooming',
     start: '10:49',
     end: '11:21',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'C76B8F70',
@@ -209,7 +208,7 @@ const list = [
     project: 'Sleep',
     start: '11:21',
     end: '11:44',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '2D1B2926',
@@ -222,7 +221,7 @@ const list = [
     project: 'Transport',
     start: '11:44',
     end: '12:10',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'C234D3AF',
@@ -235,7 +234,7 @@ const list = [
     project: 'Eating',
     start: '12:10',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '7BC5E536',
@@ -248,7 +247,7 @@ const list = [
     project: 'Create App',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '0E69F54C',
@@ -261,7 +260,7 @@ const list = [
     project: 'Work',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '44D7A446',
@@ -274,7 +273,7 @@ const list = [
     project: 'Grooming',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'F27E571B',
@@ -287,7 +286,7 @@ const list = [
     project: 'Hobby',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '6E0EB566',
@@ -300,7 +299,7 @@ const list = [
     project: 'Hobby',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'B1416B5C',
@@ -313,7 +312,7 @@ const list = [
     project: 'Household',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'DF251D02',
@@ -326,7 +325,7 @@ const list = [
     project: 'Grooming',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '203532BB',
@@ -339,7 +338,7 @@ const list = [
     project: 'Work',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '6DB13996',
@@ -352,7 +351,7 @@ const list = [
     project: 'Create App',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'AA908CBD',
@@ -365,7 +364,7 @@ const list = [
     project: 'Learn English',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'A9CAF361',
@@ -378,7 +377,7 @@ const list = [
     project: 'Transport',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '8A6E6238',
@@ -391,7 +390,7 @@ const list = [
     project: 'Household',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'BB8821B1',
@@ -404,7 +403,7 @@ const list = [
     project: 'Create App',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '2A36EC08',
@@ -417,7 +416,7 @@ const list = [
     project: 'Create App',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '9D6903BB',
@@ -430,7 +429,7 @@ const list = [
     project: 'Create App',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '5D60996C',
@@ -443,7 +442,7 @@ const list = [
     project: 'Hobby',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '2DF7F46D',
@@ -456,7 +455,7 @@ const list = [
     project: 'Hobby',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'B57A59DF',
@@ -469,7 +468,7 @@ const list = [
     project: 'Household',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: '516DBE17',
@@ -482,7 +481,7 @@ const list = [
     project: 'Rest',
     start: '',
     end: '',
-    date: '2020-04-30'
+    date: '2020-04-30',
   },
   {
     id: 'EF49517B',
@@ -495,6 +494,6 @@ const list = [
     project: 'Rest',
     start: '',
     end: '',
-    date: '2020-04-30'
-  }
+    date: '2020-04-30',
+  },
 ]

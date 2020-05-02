@@ -9,7 +9,7 @@ import Comp from '~/components/Playlist.vue'
 
 export default {
   components: {
-    Comp
-  }
+    Comp,
+  },
 }
 </script>

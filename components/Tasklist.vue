@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       selected: [2],
-      tasks: this.$store.state.tasks.list
+      tasks: this.$store.state.tasks.today,
     }
   },
   computed: {
@@ -77,12 +77,12 @@ export default {
         .reduce((total, task) => [...total, task.section], [])
         .filter((x, i, a) => a.indexOf(x) === i)
         .sort()
-    }
+    },
   },
   methods: {
     getTasksBySection(section) {
-      return this.tasks.filter((task) => task.section === section)
-    }
-  }
+      return this.tasks.filter(task => task.section === section)
+    },
+  },
 }
 </script>
