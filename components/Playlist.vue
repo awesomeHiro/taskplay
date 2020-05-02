@@ -19,7 +19,6 @@
   </v-row>
 </template>
 <script>
-// import { nanoid } from 'nanoid'
 import TimeSummary from '~/components/TimeSummary.vue'
 import Daytab from '~/components/Daytab.vue'
 import Tasklist from '~/components/Tasklist.vue'

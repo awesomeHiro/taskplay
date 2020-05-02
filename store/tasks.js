@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 import today from './tasks.json'
 
 export const state = () => ({
@@ -11,7 +12,23 @@ export const mutations = {
 }
 
 export const actions = {
-  addTask({ commit }) {
-    commit('addTask', commit)
+  addTask({ context }, input) {
+    const id = { id: nanoid() }
+    const newTask = { ...defaultTask, ...id, ...input }
+    context.commit('addTask', newTask)
   },
+}
+
+const defaultTask = {
+  id: '',
+  done: 'FALSE',
+  repeat: '',
+  estimate: 0,
+  result: 0,
+  section: '',
+  name: '',
+  project: '',
+  start: '',
+  end: '',
+  date: '',
 }
