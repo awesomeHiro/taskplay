@@ -10,6 +10,6 @@
 export default {
   data() {
     return { hello: 'Hello, World!' }
-  }
+  },
 }
 </script>
