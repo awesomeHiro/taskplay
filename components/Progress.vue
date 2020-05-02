@@ -20,8 +20,8 @@ export default {
     return {
       start: '07:32',
       end: '17:43',
-      valueDeterminate: 50
+      valueDeterminate: 50,
     }
-  }
+  },
 }
 </script>

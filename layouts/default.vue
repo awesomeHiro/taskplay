@@ -1,7 +1,7 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-content>
-      <v-container>
+      <v-container fluid style="margin: 0px; padding: 0px; width: 100%">
         <nuxt />
       </v-container>
     </v-content>
@@ -19,19 +19,19 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-chart-bubble',
           title: 'Settings',
-          to: '/settings'
-        }
+          to: '/settings',
+        },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Taskplay'
+      title: 'Taskplay',
     }
-  }
+  },
 }
 </script>

@@ -1,11 +1,13 @@
 <template>
-  <div id="timer">
-    <div class="timer">
-      <div class="time">
-        {{ time }}
+  <v-container pa-1>
+    <div id="timer">
+      <div class="timer">
+        <div class="time">
+          {{ time }}
+        </div>
       </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -13,51 +15,24 @@ export default {
   name: 'Timer',
   data() {
     return {
-      time: '',
-      date: ''
-    }
-  },
-  computed: {
-    formatTime() {
-      const cd = new Date()
-      return cd.getSeconds()
+      time: '00:00:00',
     }
   },
   created() {
-    setInterval(() => {
+    this.updateTime()
+    this.interval = setInterval(() => {
       this.updateTime()
     }, 1000)
-    this.timerOn = true // timerがOFFであることを状態として保持
   },
-
   methods: {
     updateTime() {
       const cd = new Date()
+      const f = time => time.toString().padStart(2, 0)
       this.time =
-        this.zeroPadding(cd.getHours(), 2) +
-        ':' +
-        this.zeroPadding(cd.getMinutes(), 2) +
-        ':' +
-        this.zeroPadding(cd.getSeconds(), 2)
-      this.date =
-        this.zeroPadding(cd.getFullYear(), 4) +
-        '-' +
-        this.zeroPadding(cd.getMonth() + 1, 2) +
-        '-' +
-        this.zeroPadding(cd.getDate(), 2) +
-        ' ' +
-        week[cd.getDay()]
+        f(cd.getHours()) + ':' + f(cd.getMinutes()) + ':' + f(cd.getSeconds())
     },
-    zeroPadding(num, digit) {
-      let zero = ''
-      for (let i = 0; i < digit; i++) {
-        zero += '0'
-      }
-      return (zero + num).slice(-digit)
-    }
-  }
+  },
 }
-const week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 </script>
 
 <style scoped>

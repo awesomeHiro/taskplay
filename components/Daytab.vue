@@ -1,7 +1,7 @@
 <template>
-  <v-tabs center-active dark show-arrows>
+  <v-tabs center-active show-arrows>
     <v-tab v-for="d in days" :key="d.date">
-      <div>{{ d.day }}<br />{{ d.date }}</div>
+      <div class="caption">{{ d.day }}<br />{{ d.date }}</div>
     </v-tab>
   </v-tabs>
 </template>
@@ -12,39 +12,39 @@ export default {
       {
         month: '4',
         date: '27',
-        day: 'Mon'
+        day: 'Mon',
       },
       {
         month: '4',
         date: '28',
-        day: 'Tue'
+        day: 'Tue',
       },
       {
         month: '4',
         date: '29',
-        day: 'Wed'
+        day: 'Wed',
       },
       {
         month: '4',
         date: '30',
-        day: 'Thu'
+        day: 'Thu',
       },
       {
         month: '5',
         date: '1',
-        day: 'Fri'
+        day: 'Fri',
       },
       {
         month: '5',
         date: '2',
-        day: 'Sat'
+        day: 'Sat',
       },
       {
         month: '5',
         date: '3',
-        day: 'Sun'
-      }
-    ]
-  })
+        day: 'Sun',
+      },
+    ],
+  }),
 }
 </script>
