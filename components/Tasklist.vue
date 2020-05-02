@@ -20,8 +20,8 @@
                   </span>
                 </div>
               </v-col>
-              <v-col cols="7" class="text-left">
-                <v-list-item-content>
+              <v-col cols="7" class="text-left pa-0">
+                <v-list-item-content class="pa-0">
                   <v-list-item-title
                     class="subtitle-2"
                     v-text="t.repeat ? t.name + ' ↺' : t.name"
