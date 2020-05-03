@@ -6,21 +6,21 @@ export const state = () => ({
 })
 
 export const mutations = {
-  addTask(state, payload) {
-    state.tasks.today.push(payload)
+  add(state, payload) {
+    state.today.push(payload)
   },
 }
 
 export const actions = {
-  addTask({ commit }, payload) {
+  add({ commit }, payload) {
     const id = {
       id: nanoid(),
-      section: '8',
+      section: '3',
       name: nanoid(),
       project: nanoid(),
     }
     const newTask = { ...defaultTask, ...id, ...payload }
-    commit('addTask', newTask)
+    commit('add', newTask)
   },
 }
 
