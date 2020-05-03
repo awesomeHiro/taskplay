@@ -11,12 +11,13 @@
         <clock />
         <v-divider></v-divider>
         <Tasklist />
-        <AddButton /> </v-card
+        <AddButton /><MenuButton /> </v-card
     ></v-col>
   </v-row>
 </template>
 <script>
 import AddButton from '~/components/AddButton.vue'
+import MenuButton from '~/components/MenuButton.vue'
 import TimeSummary from '~/components/TimeSummary.vue'
 import Daytab from '~/components/Daytab.vue'
 import Tasklist from '~/components/Tasklist.vue'
@@ -24,6 +25,7 @@ import Clock from '~/components/Clock.vue'
 export default {
   components: {
     AddButton,
+    MenuButton,
     TimeSummary,
     Daytab,
     Tasklist,
