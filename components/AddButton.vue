@@ -7,7 +7,7 @@
 export default {
   methods: {
     log() {
-      console.log(this.$store.dispatch('tasks/add'))
+      this.$store.dispatch('tasks/add')
     },
   },
 }
