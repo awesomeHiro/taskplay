@@ -31,7 +31,6 @@
                   ></v-list-item-subtitle>
                 </v-list-item-content>
               </v-col>
-              <!-- <v-divider vertical> </v-divider> -->
               <v-col cols="1" class="pa-0 ma-0">
                 <div>
                   {{ t.estimate }}
