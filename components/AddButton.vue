@@ -1,48 +1,92 @@
 <template>
   <div class="text-center">
-    <v-bottom-sheet v-model="sheet">
+    <v-bottom-sheet v-model="sheet" inset>
       <template v-slot:activator="{ on }">
         <v-btn color="pink" fixed bottom right v-on="on">
           <v-icon>mdi-plus</v-icon>
         </v-btn>
       </template>
-      <v-list>
-        <v-list-item
-          v-for="tile in tiles"
-          :key="tile.title"
-          @click="sheet = false"
-        >
-          <v-list-item-avatar>
-            <v-avatar size="32px" tile>
-              <img
-                :src="
-                  `https://cdn.vuetifyjs.com/images/bottom-sheets/${tile.img}`
-                "
-                :alt="tile.title"
-              />
-            </v-avatar>
-          </v-list-item-avatar>
-          <v-list-item-title>{{ tile.title }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
+      <v-card class="mx-auto" max-width="374">
+        <v-card-text>
+          <v-chip-group
+            v-model="project"
+            active-class="deep-purple accent-4 white--text"
+            column
+          >
+            <v-chip v-for="p in projects" :key="p.id" class="pa-2">
+              {{ p.name }}
+            </v-chip>
+          </v-chip-group>
+          <v-divider></v-divider>
+
+          <v-chip-group
+            v-model="selection"
+            active-class="deep-purple accent-4 white--text"
+          >
+            <v-chip v-for="s in sections" :key="s" class="pa-2">
+              {{ s }}
+            </v-chip>
+          </v-chip-group>
+        </v-card-text>
+        <v-divider></v-divider>
+        <v-card-text class="pa-0">
+          <v-row>
+            <v-col cols="2">
+              <div class="text-right">{{ time }}</div></v-col
+            >
+            <v-col class="pr-4">
+              <div class="text-center">
+                <v-btn
+                  v-for="m in addMins"
+                  :key="m"
+                  class="mx-2"
+                  fab
+                  x-small
+                  color="primary"
+                  @click="addtime(parseInt(m))"
+                >
+                  {{ m }}
+                </v-btn>
+              </div>
+            </v-col>
+          </v-row>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-text-field label="Name your task" :rules="rules"></v-text-field>
+          <v-btn color="deep-purple lighten-2" text @click="addTask">
+            Add
+          </v-btn>
+        </v-card-actions>
+      </v-card>
     </v-bottom-sheet>
   </div>
 </template>
 <script>
 export default {
-  data: () => ({
-    sheet: false,
-    tiles: [
-      { img: 'keep.png', title: 'Sections' },
-      { img: 'inbox.png', title: 'Sets' },
-      { img: 'hangouts.png', title: 'Routines' },
-      { img: 'messenger.png', title: 'Projects' },
-      { img: 'google.png', title: 'Settings' },
-    ],
-  }),
+  data() {
+    return {
+      sheet: true,
+      selection: 0,
+      project: 0,
+      time: 1,
+      addMins: ['-1', '+1', '+3', '+5'],
+      sections: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+      projects: this.$store.state.projects.projects,
+      rules: [
+        value => !!value || 'Required.',
+        value => (value && value.length >= 3) || 'Min 3 characters',
+      ],
+    }
+  },
   methods: {
-    add() {
-      this.$store.dispatch('tasks/add')
+    addtime(amount) {
+      this.time += amount
+    },
+    addTask() {
+      this.$store.dispatch('tasks/add', { section: '2' })
+      this.sheet = false
+      alert('added')
     },
   },
 }
