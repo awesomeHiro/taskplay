@@ -85,7 +85,7 @@
             <v-col cols="auto" class="pa-0 ma-0 text-center">
               <v-text-field
                 autofocus
-                label="Name your task"
+                label="What's next?"
                 :rules="rules"
               ></v-text-field>
             </v-col>
@@ -116,7 +116,7 @@ export default {
       projects: this.$store.state.projects.projects,
       rules: [
         value => !!value || 'Required.',
-        value => (value && value.length >= 3) || 'Min 3 characters',
+        value => (value && value.length >= 1) || 'Min 1 characters',
       ],
     }
   },
