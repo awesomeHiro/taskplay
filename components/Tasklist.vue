@@ -1,7 +1,7 @@
 <template>
   <v-list two-line dense>
     <v-list-item-group v-model="selected" active-class="blue--text">
-      <v-list-item v-for="(t, i) in sortedTasks" :key="t.id" class="pl-0 pr-0">
+      <v-list-item v-for="(t, i) in tasks" :key="t.id" class="pl-0 pr-0">
         <v-col cols="1" class="pa-0 ma-0">
           <div class="drag-bar pa-0 ma-0" @click="alert('drag')">
             <v-icon>
@@ -26,7 +26,7 @@
           </v-list-item-content>
         </v-col>
         <v-col cols="1" class="pa-0 ma-0">
-          <div :class="t.result ? 'accent--text' : ''">
+          <div class="accent--text">
             {{ t.estimate }}
           </div>
           <div v-if="t.result">
@@ -45,11 +45,14 @@
           </div>
         </v-col>
         <v-col cols="1" class="ma-0 pa-0">
-          <div :class="t.result && i ? 'accent--text' : ''">
+          <div v-if="!i">
             {{ t.start }}
           </div>
           <div v-if="t.result">
             {{ t.end }}
+          </div>
+          <div v-if="i && !t.result" class="accent--text">
+            {{ totalEstToFinish[i] }}
           </div>
         </v-col>
       </v-list-item>
@@ -62,19 +65,40 @@ export default {
   data() {
     return {
       selected: [2],
+      tasks: this.$store.state.tasks.today,
+      leftEsts: [],
     }
   },
   computed: {
-    sortedTasks() {
-      return [...this.$store.state.tasks.today].sort((a, b) =>
-        a.section >= b.section ? 1 : -1,
-      )
+    totalEstToFinish() {
+      const totalEsts = []
+      let totalEst = 0
+      let lastDone = 0
+      this.tasks.forEach((x, i) => {
+        if (x.result) {
+          totalEsts.push(0)
+          lastDone = i
+        } else {
+          totalEst += x.estimate
+          totalEsts.push(
+            min2string(string2min(this.tasks[lastDone].end) + totalEst),
+          )
+        }
+      })
+      return totalEsts
     },
   },
   methods: {
     alert(s) {
       alert(s)
     },
+    sortTasks() {
+      this.tasks.sort((a, b) => (a.section >= b.section ? 1 : -1))
+    },
   },
 }
+const pad = n => n.toString().padStart(2, 0)
+const min2string = min => `${pad(Math.floor(min / 60))}:${pad(min % 60)}`
+const string2min = str =>
+  parseInt(str.split(':')[0]) * 60 + parseInt(str.split(':')[1])
 </script>
