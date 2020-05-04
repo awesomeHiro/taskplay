@@ -3,6 +3,7 @@
     <v-bottom-sheet v-model="sheet" max-width="600px">
       <v-card class="mx-auto">
         <v-divider></v-divider>
+
         <v-list-item>
           <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
             <v-col cols="auto" class="pa-0 ma-0 text-center">
@@ -40,26 +41,30 @@
         </v-list-item>
 
         <v-divider></v-divider>
-        <v-list-item>
-          <v-list-item-subtitle class="text-center subtitle-1">
-            {{ time }} min
-          </v-list-item-subtitle>
-          <v-list-item>
-            <template v-for="m in addMins">
-              <div :key="m">
-                <v-btn
-                  class="mx-2"
-                  x-small
-                  fab
-                  color="primary"
-                  @click="addtime(parseInt(m))"
-                >
-                  {{ m }}
-                </v-btn>
-              </div>
-            </template>
-          </v-list-item>
-        </v-list-item>
+        <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
+          <v-col cols="auto" class="pa-0 ma-0 text-center">
+            <v-list-item>
+              <v-list-item-subtitle class="text-center subtitle-1">
+                {{ time }} min
+              </v-list-item-subtitle>
+              <v-list-item>
+                <template v-for="m in addMins">
+                  <div :key="m">
+                    <v-btn
+                      class="mx-2"
+                      x-small
+                      fab
+                      color="primary"
+                      @click="addtime(parseInt(m))"
+                    >
+                      {{ m }}
+                    </v-btn>
+                  </div>
+                </template>
+              </v-list-item>
+            </v-list-item>
+          </v-col>
+        </v-row>
 
         <v-divider></v-divider>
         <v-list-item>
@@ -74,6 +79,7 @@
         </v-list-item>
         <v-card-actions> </v-card-actions>
       </v-card>
+
       <template v-slot:activator="{ on }">
         <v-btn color="pink" fab fixed bottom right v-on="on">
           <v-icon>mdi-plus</v-icon>
