@@ -1,64 +1,76 @@
 <template>
-  <div class="text-center">
-    <v-bottom-sheet v-model="sheet" inset>
-      <template v-slot:activator="{ on }">
-        <v-btn color="pink" fixed bottom right v-on="on">
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
-      </template>
-      <v-card class="mx-auto" max-width="374">
-        <v-card-text>
+  <div>
+    <v-bottom-sheet v-model="sheet" max-width="600px">
+      <v-card class="mx-auto">
+        <v-list-item>
+          <v-list-item-subtitle>23 km/h</v-list-item-subtitle>
+          <v-list-item-icon>
+            <v-icon>mdi-send</v-icon>
+          </v-list-item-icon>
+        </v-list-item>
+
+        <v-divider></v-divider>
+        <v-list-item>
           <v-chip-group
             v-model="project"
-            active-class="deep-purple accent-4 white--text"
+            active-class="primary white--text"
             column
           >
-            <v-chip v-for="p in projects" :key="p.id" class="pa-2">
+            <v-chip v-for="p in projects" :key="p.id" small class="pa-2">
               {{ p.name }}
             </v-chip>
           </v-chip-group>
-          <v-divider></v-divider>
+        </v-list-item>
 
-          <v-chip-group
-            v-model="selection"
-            active-class="deep-purple accent-4 white--text"
-          >
-            <v-chip v-for="s in sections" :key="s" class="pa-2">
+        <v-divider></v-divider>
+        <v-list-item>
+          <v-chip-group v-model="selection" active-class="primary white--text">
+            <v-chip v-for="s in sections" :key="s" small class="pa-2">
               {{ s }}
             </v-chip>
           </v-chip-group>
-        </v-card-text>
+        </v-list-item>
+
         <v-divider></v-divider>
-        <v-card-text class="pa-0">
-          <v-row>
-            <v-col cols="2">
-              <div class="text-right">{{ time }}</div></v-col
-            >
-            <v-col class="pr-4">
-              <div class="text-center">
+        <v-list-item>
+          <v-list-item-subtitle class="text-center subtitle-1">
+            {{ time }} min
+          </v-list-item-subtitle>
+          <v-list-item>
+            <template v-for="m in addMins">
+              <div :key="m">
                 <v-btn
-                  v-for="m in addMins"
-                  :key="m"
                   class="mx-2"
-                  fab
                   x-small
+                  fab
                   color="primary"
                   @click="addtime(parseInt(m))"
                 >
                   {{ m }}
                 </v-btn>
               </div>
-            </v-col>
-          </v-row>
-        </v-card-text>
+            </template>
+          </v-list-item>
+        </v-list-item>
 
-        <v-card-actions>
-          <v-text-field label="Name your task" :rules="rules"></v-text-field>
-          <v-btn color="deep-purple lighten-2" text @click="addTask">
-            Add
-          </v-btn>
-        </v-card-actions>
+        <v-divider></v-divider>
+        <v-list-item>
+          <v-list-item-subtitle
+            ><v-text-field label="Name your task" :rules="rules"></v-text-field
+          ></v-list-item-subtitle>
+          <v-list-item-icon>
+            <v-btn fab @click="addTask">
+              <v-icon>mdi-send</v-icon>
+            </v-btn>
+          </v-list-item-icon>
+        </v-list-item>
+        <v-card-actions> </v-card-actions>
       </v-card>
+      <template v-slot:activator="{ on }">
+        <v-btn color="pink" fab fixed bottom right v-on="on">
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </template>
     </v-bottom-sheet>
   </div>
 </template>
@@ -66,6 +78,21 @@
 export default {
   data() {
     return {
+      labels: ['SU', 'MO', 'TU', 'WED', 'TH', 'FR', 'SA'],
+      forecast: [
+        {
+          day: 'Tuesday',
+          icon: 'mdi-white-balance-sunny',
+          temp: '24\xB0/12\xB0',
+        },
+        {
+          day: 'Wednesday',
+          icon: 'mdi-white-balance-sunny',
+          temp: '22\xB0/14\xB0',
+        },
+        { day: 'Thursday', icon: 'mdi-cloud', temp: '25\xB0/15\xB0' },
+      ],
+
       sheet: true,
       selection: 0,
       project: 0,
