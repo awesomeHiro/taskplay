@@ -1,8 +1,30 @@
 <template>
   <div>
     <v-bottom-sheet v-model="sheet" max-width="600px">
+      <template v-slot:activator="{ on }">
+        <v-btn color="pink" fab fixed bottom right v-on="on">
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </template>
       <v-card class="mx-auto">
         <v-divider></v-divider>
+
+        <v-list-item class="pa2">
+          <v-row align="center" justify="center" no-gutters>
+            <v-col cols="auto" class=" text-center">
+              <v-text-field
+                ref="taskname"
+                autofocus
+                hide-details
+                filled
+                solo
+                dense
+                placeholder="What's next?"
+                :rules="rules"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-list-item>
 
         <v-list-item>
           <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
@@ -13,7 +35,13 @@
                 column
               >
                 <div class="text-center">
-                  <v-chip v-for="p in projects" :key="p.id" small class="pa-2">
+                  <v-chip
+                    v-for="p in projects"
+                    :key="p.id"
+                    small
+                    class="pa-2"
+                    @click="$refs.taskname.focus()"
+                  >
                     {{ p.name }}
                   </v-chip>
                 </div>
@@ -31,7 +59,13 @@
                 class="text-center"
                 column
               >
-                <v-chip v-for="s in sections" :key="s" small class="pa-2">
+                <v-chip
+                  v-for="s in sections"
+                  :key="s"
+                  small
+                  class="pa-2"
+                  @click="$refs.taskname.focus()"
+                >
                   {{ s }}
                 </v-chip>
               </v-chip-group>
@@ -79,26 +113,7 @@
             </v-list-item>
           </v-col>
         </v-row>
-
-        <v-list-item>
-          <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
-            <v-col cols="auto" class="pa-0 ma-0 text-center">
-              <v-text-field
-                autofocus
-                label="Name your task"
-                :rules="rules"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-        </v-list-item>
-        <v-card-actions> </v-card-actions>
       </v-card>
-
-      <template v-slot:activator="{ on }">
-        <v-btn color="pink" fab fixed bottom right v-on="on">
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
-      </template>
     </v-bottom-sheet>
   </div>
 </template>
@@ -114,15 +129,13 @@ export default {
       addMins: ['+1', '+3', '+6'],
       sections: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
       projects: this.$store.state.projects.projects,
-      rules: [
-        value => !!value || 'Required.',
-        value => (value && value.length >= 3) || 'Min 3 characters',
-      ],
+      rules: [value => !!value],
     }
   },
   methods: {
     addtime(amount) {
       this.time += amount
+      this.$refs.taskname.focus()
     },
     addTask() {
       this.$store.dispatch('tasks/add', { section: '2' })
