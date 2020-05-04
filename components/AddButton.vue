@@ -22,7 +22,6 @@
           </v-row>
         </v-list-item>
 
-        <v-divider></v-divider>
         <v-list-item>
           <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
             <v-col cols="auto" class="pa-0 ma-0 text-center">
@@ -40,12 +39,27 @@
           </v-row>
         </v-list-item>
 
-        <v-divider></v-divider>
         <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
           <v-col cols="auto" class="pa-0 ma-0 text-center">
             <v-list-item>
+              <v-list-item>
+                <template v-for="m in minusMins">
+                  <div :key="m">
+                    <v-btn
+                      class="mx-2"
+                      x-small
+                      fab
+                      color="primary"
+                      @click="addtime(parseInt(m))"
+                    >
+                      {{ m }}
+                    </v-btn>
+                  </div>
+                </template>
+              </v-list-item>
+
               <v-list-item-subtitle class="text-center subtitle-1">
-                {{ time }} min
+                {{ time.toString().padStart(2, 0) }} min
               </v-list-item-subtitle>
               <v-list-item>
                 <template v-for="m in addMins">
@@ -66,11 +80,11 @@
           </v-col>
         </v-row>
 
-        <v-divider></v-divider>
         <v-list-item>
           <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
             <v-col cols="auto" class="pa-0 ma-0 text-center">
               <v-text-field
+                autofocus
                 label="Name your task"
                 :rules="rules"
               ></v-text-field>
@@ -96,7 +110,8 @@ export default {
       section: 0,
       project: 0,
       time: 1,
-      addMins: ['-1', '+1', '+3', '+5'],
+      minusMins: ['-3'],
+      addMins: ['+1', '+3', '+6'],
       sections: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
       projects: this.$store.state.projects.projects,
       rules: [
