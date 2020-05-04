@@ -27,7 +27,7 @@
         </v-list-item>
 
         <v-list-item>
-          <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
+          <v-row class="pa-0 ma-0" align="center" justify="center">
             <v-col cols="auto" class="pa-0 ma-0 text-center">
               <v-chip-group
                 v-model="project"
