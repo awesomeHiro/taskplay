@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-bottom-sheet v-model="sheet">
+    <v-bottom-sheet v-model="sheet" max-width="600px">
       <template v-slot:activator="{ on }">
         <v-btn fixed bottom left v-on="on">
           <v-icon>mdi-menu</v-icon>

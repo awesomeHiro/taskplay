@@ -2,33 +2,41 @@
   <div>
     <v-bottom-sheet v-model="sheet" max-width="600px">
       <v-card class="mx-auto">
+        <v-divider></v-divider>
         <v-list-item>
-          <v-list-item-subtitle>23 km/h</v-list-item-subtitle>
-          <v-list-item-icon>
-            <v-icon>mdi-send</v-icon>
-          </v-list-item-icon>
+          <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
+            <v-col cols="auto" class="pa-0 ma-0 text-center">
+              <v-chip-group
+                v-model="project"
+                active-class="primary white--text"
+                column
+              >
+                <div class="text-center">
+                  <v-chip v-for="p in projects" :key="p.id" small class="pa-2">
+                    {{ p.name }}
+                  </v-chip>
+                </div>
+              </v-chip-group>
+            </v-col>
+          </v-row>
         </v-list-item>
 
         <v-divider></v-divider>
         <v-list-item>
-          <v-chip-group
-            v-model="project"
-            active-class="primary white--text"
-            column
-          >
-            <v-chip v-for="p in projects" :key="p.id" small class="pa-2">
-              {{ p.name }}
-            </v-chip>
-          </v-chip-group>
-        </v-list-item>
-
-        <v-divider></v-divider>
-        <v-list-item>
-          <v-chip-group v-model="selection" active-class="primary white--text">
-            <v-chip v-for="s in sections" :key="s" small class="pa-2">
-              {{ s }}
-            </v-chip>
-          </v-chip-group>
+          <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
+            <v-col cols="auto" class="pa-0 ma-0 text-center">
+              <v-chip-group
+                v-model="section"
+                active-class="primary white--text"
+                class="text-center"
+                column
+              >
+                <v-chip v-for="s in sections" :key="s" small class="pa-2">
+                  {{ s }}
+                </v-chip>
+              </v-chip-group>
+            </v-col>
+          </v-row>
         </v-list-item>
 
         <v-divider></v-divider>
@@ -55,14 +63,14 @@
 
         <v-divider></v-divider>
         <v-list-item>
-          <v-list-item-subtitle
-            ><v-text-field label="Name your task" :rules="rules"></v-text-field
-          ></v-list-item-subtitle>
-          <v-list-item-icon>
-            <v-btn fab @click="addTask">
-              <v-icon>mdi-send</v-icon>
-            </v-btn>
-          </v-list-item-icon>
+          <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
+            <v-col cols="auto" class="pa-0 ma-0 text-center">
+              <v-text-field
+                label="Name your task"
+                :rules="rules"
+              ></v-text-field>
+            </v-col>
+          </v-row>
         </v-list-item>
         <v-card-actions> </v-card-actions>
       </v-card>
@@ -78,23 +86,8 @@
 export default {
   data() {
     return {
-      labels: ['SU', 'MO', 'TU', 'WED', 'TH', 'FR', 'SA'],
-      forecast: [
-        {
-          day: 'Tuesday',
-          icon: 'mdi-white-balance-sunny',
-          temp: '24\xB0/12\xB0',
-        },
-        {
-          day: 'Wednesday',
-          icon: 'mdi-white-balance-sunny',
-          temp: '22\xB0/14\xB0',
-        },
-        { day: 'Thursday', icon: 'mdi-cloud', temp: '25\xB0/15\xB0' },
-      ],
-
       sheet: true,
-      selection: 0,
+      section: 0,
       project: 0,
       time: 1,
       addMins: ['-1', '+1', '+3', '+5'],
