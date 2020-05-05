@@ -18,9 +18,11 @@
                 hide-details
                 filled
                 solo
+                flat
                 dense
                 placeholder="What's next?"
                 :rules="rules"
+                @keydown.enter="addTask()"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -127,7 +129,7 @@ export default {
       time: 1,
       minusMins: ['-3'],
       addMins: ['+1', '+3', '+6'],
-      sections: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+      sections: ['A', 'B', 'C', 'D', 'E', 'F'],
       projects: this.$store.state.projects.projects,
       rules: [value => !!value],
     }
@@ -140,7 +142,6 @@ export default {
     addTask() {
       this.$store.dispatch('tasks/add', { section: '2' })
       this.sheet = false
-      alert('added')
     },
   },
 }

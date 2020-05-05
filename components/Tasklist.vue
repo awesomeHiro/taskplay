@@ -26,7 +26,7 @@
           </v-list-item-content>
         </v-col>
         <v-col cols="1" class="pa-0 ma-0">
-          <div class="accent--text">
+          <div class="subtle--text">
             {{ t.estimate }}
           </div>
           <div v-if="t.result">
@@ -51,7 +51,7 @@
           <div v-if="t.result">
             {{ t.end }}
           </div>
-          <div v-if="i && !t.result" class="accent--text">
+          <div v-if="i && !t.result" class="subtle--text">
             {{ totalEstToFinish[i] }}
           </div>
         </v-col>

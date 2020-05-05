@@ -11,8 +11,10 @@
         <clock />
         <v-divider></v-divider>
         <Tasklist />
-        <AddButton /><MenuButton /> </v-card
-    ></v-col>
+        <MenuButton />
+        <AddButton />
+      </v-card>
+    </v-col>
   </v-row>
 </template>
 <script>
