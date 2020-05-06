@@ -14,13 +14,16 @@
             <v-col cols="auto" class=" text-center">
               <v-text-field
                 ref="taskname"
+                v-model="taskname"
                 autofocus
                 hide-details
                 filled
                 solo
+                flat
                 dense
                 placeholder="What's next?"
-                :rules="rules"
+                :rules="nameRules"
+                @keydown.enter="addTask()"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -30,7 +33,7 @@
           <v-row class="pa-0 ma-0" align="center" justify="center">
             <v-col cols="auto" class="pa-0 ma-0 text-center">
               <v-chip-group
-                v-model="project"
+                v-model="projectSelect"
                 active-class="primary white--text"
                 column
               >
@@ -54,7 +57,7 @@
           <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
             <v-col cols="auto" class="pa-0 ma-0 text-center">
               <v-chip-group
-                v-model="section"
+                v-model="sectionSelect"
                 active-class="primary white--text"
                 class="text-center"
                 column
@@ -72,47 +75,55 @@
             </v-col>
           </v-row>
         </v-list-item>
+        <v-list-item class="pa2">
+          <v-row align="center" justify="center" no-gutters>
+            <v-col cols="auto" class=" text-center">
+              <v-text-field
+                ref="time"
+                v-model="inputTime"
+                hide-details
+                filled
+                solo
+                flat
+                dense
+                type="number"
+                :rules="timeRules"
+              ></v-text-field>
+              min
+            </v-col>
+          </v-row>
+        </v-list-item>
+        <v-list-item>
+          <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
+            <v-col cols="auto" class="pa-0 ma-0 text-center">
+              {{ time.toString().padStart(2, 0) }} min
+            </v-col>
+          </v-row>
+        </v-list-item>
 
-        <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
-          <v-col cols="auto" class="pa-0 ma-0 text-center">
-            <v-list-item>
-              <v-list-item>
-                <template v-for="m in minusMins">
-                  <div :key="m">
-                    <v-btn
-                      class="mx-2"
-                      x-small
-                      fab
-                      color="primary"
-                      @click="addtime(parseInt(m))"
-                    >
-                      {{ m }}
-                    </v-btn>
-                  </div>
-                </template>
-              </v-list-item>
-
-              <v-list-item-subtitle class="text-center subtitle-1">
-                {{ time.toString().padStart(2, 0) }} min
-              </v-list-item-subtitle>
-              <v-list-item>
-                <template v-for="m in addMins">
-                  <div :key="m">
-                    <v-btn
-                      class="mx-2"
-                      x-small
-                      fab
-                      color="primary"
-                      @click="addtime(parseInt(m))"
-                    >
-                      {{ m }}
-                    </v-btn>
-                  </div>
-                </template>
-              </v-list-item>
-            </v-list-item>
-          </v-col>
-        </v-row>
+        <v-list-item>
+          <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
+            <v-col cols="auto" class="pa-0 ma-0 text-center">
+              <v-chip-group
+                v-model="raughTimeSelect"
+                active-class="primary white--text"
+                class="text-center"
+                multiple
+                column
+              >
+                <v-chip
+                  v-for="(t, i) in raughTimes"
+                  :key="i"
+                  small
+                  class="pa-2"
+                  @click="$refs.taskname.focus()"
+                >
+                  {{ t }}
+                </v-chip>
+              </v-chip-group>
+            </v-col>
+          </v-row>
+        </v-list-item>
       </v-card>
     </v-bottom-sheet>
   </div>
@@ -121,16 +132,24 @@
 export default {
   data() {
     return {
+      taskname: '',
+      nameRules: [name => !!name],
       sheet: true,
-      section: 0,
-      project: 0,
-      time: 1,
-      minusMins: ['-3'],
-      addMins: ['+1', '+3', '+6'],
-      sections: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],
+      sections: ['A', 'B', 'C', 'D', 'E', 'F'],
+      sectionSelect: 0,
       projects: this.$store.state.projects.projects,
-      rules: [value => !!value],
+      projectSelect: 0,
+      inputTime: 0,
+      raughTime: 0,
+      raughTimes: [1, 1, 2, 3, 5, 8, 13, 21, 34],
+      raughTimeSelect: [],
+      timeRules: [time => time > 0],
     }
+  },
+  computed: {
+    time() {
+      return this.raughTime + this.inputTime
+    },
   },
   methods: {
     addtime(amount) {
@@ -140,7 +159,6 @@ export default {
     addTask() {
       this.$store.dispatch('tasks/add', { section: '2' })
       this.sheet = false
-      alert('added')
     },
   },
 }
