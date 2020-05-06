@@ -1,0 +1,37 @@
+[
+  {
+    "id": "6DD68EB6",
+    "name": "A",
+    "start": "00:00",
+    "description": "Night2"
+  },
+  {
+    "id": "E02254B0",
+    "name": "B",
+    "start": "04:00",
+    "description": "Morning1"
+  },
+  {
+    "id": "5D0DA5CD",
+    "name": "C",
+    "start": "08:00",
+    "description": "Morning2"
+  },
+  {
+    "id": "2E544A93",
+    "name": "D",
+    "start": "12:00",
+    "description": "Evening1"
+  },
+  {
+    "id": "028EACE2",
+    "name": "E",
+    "start": "16:00",
+    "description": "Evening2"
+  },
+  { "id": "DFE59BAA",
+    "name": "F",
+    "start": "20:00",
+    "description": "Night1"
+  }
+]

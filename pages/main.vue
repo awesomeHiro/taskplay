@@ -2,6 +2,8 @@
   <v-row align="center" justify="center" class="caption" no-gutters>
     <v-col align="center" justify="center">
       <v-card max-width="600px">
+        <v-divider></v-divider>
+
         <div class="text-center">April</div>
         <v-divider></v-divider>
         <daytab />
