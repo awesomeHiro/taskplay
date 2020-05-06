@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid'
 import today from './tasks.json'
+import { genSortToken } from '~/plugins/genSortToken'
 
 export const state = () => ({
   today,
@@ -13,27 +14,27 @@ export const mutations = {
 
 export const actions = {
   add({ commit }, payload) {
-    const id = {
+    const initials = {
       id: nanoid(),
-      section: '3',
-      name: nanoid(),
-      project: nanoid(),
+      sortToken: genSortToken(),
+      created: new Date(),
+      updated: new Date(),
     }
-    const newTask = { ...defaultTask, ...id, ...payload }
+    const newTask = { ...taskTemplate, ...initials, ...payload }
     commit('add', newTask)
   },
 }
 
-const defaultTask = {
+const taskTemplate = {
   id: '',
-  done: 'FALSE',
-  repeat: '',
-  estimate: 0,
-  result: 0,
-  section: '',
   name: '',
+  repeat: '',
+  section: '',
   project: '',
+  estimate: 0,
   start: '',
   end: '',
   date: '',
+  created: '',
+  updated: '',
 }
