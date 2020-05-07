@@ -24,6 +24,20 @@
                 :rules="nameRules"
                 @keydown.enter="addTask()"
               ></v-text-field>
+              <input type="tel" />
+              <v-text-field
+                ref="taskname"
+                v-model="taskname"
+                autofocus
+                hide-details
+                solo
+                flat
+                dense
+                type="tel"
+                placeholder="What's next?"
+                :rules="nameRules"
+                @keydown.enter="addTask()"
+              ></v-text-field>
             </v-col>
           </v-row>
         </v-list-item>
