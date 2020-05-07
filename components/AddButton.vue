@@ -11,7 +11,7 @@
 
         <v-list-item class="pa2">
           <v-row align="center" justify="center" no-gutters>
-            <v-col cols="auto" class=" text-center">
+            <v-col cols="6" class=" text-center">
               <v-text-field
                 ref="taskname"
                 v-model="taskname"
@@ -20,22 +20,23 @@
                 solo
                 flat
                 dense
-                placeholder="What's next?"
+                placeholder="Name ?"
                 :rules="nameRules"
-                @keydown.enter="addTask()"
+                @focus="focusedRef = 'taskname'"
               ></v-text-field>
-              <input type="tel" />
+            </v-col>
+            <v-col cols="4" class=" text-center">
               <v-text-field
-                ref="taskname"
-                v-model="taskname"
-                autofocus
+                ref="estimate"
+                v-model="estimate"
                 hide-details
                 solo
                 flat
                 dense
                 type="tel"
-                placeholder="What's next?"
-                :rules="nameRules"
+                placeholder="Estimate ?"
+                :rules="timeRules"
+                @focus="focusedRef = 'estimate'"
                 @keydown.enter="addTask()"
               ></v-text-field>
             </v-col>
@@ -56,7 +57,7 @@
                     :key="p.id"
                     small
                     class="pa-2"
-                    @click="$refs.taskname.focus()"
+                    @click="focusPrevInput()"
                   >
                     {{ p.name }}
                   </v-chip>
@@ -80,30 +81,11 @@
                   :key="s.id"
                   small
                   class="pa-2"
-                  @click="$refs.taskname.focus()"
+                  @click="focusPrevInput()"
                 >
                   {{ s.name }}
                 </v-chip>
               </v-chip-group>
-            </v-col>
-          </v-row>
-        </v-list-item>
-        <v-list-item class="pa2">
-          <v-row align="center" justify="center" no-gutters>
-            <v-col cols="2" class="pa-0 ma-0 text-center">
-              <span :class="estimate > 0 ? 'success--text' : 'error--text'">
-                {{ estimate }}
-              </span>
-            </v-col>
-            <v-col class="pa-0 ma-0 text-center">
-              <span v-for="t in addTimes" :key="t">
-                <v-btn x-small @click="addtime(parseInt(t))">
-                  {{ t }}
-                </v-btn>
-              </span>
-              <v-btn x-small class="mx-1 " @click="cleartime()">
-                X
-              </v-btn>
             </v-col>
           </v-row>
         </v-list-item>
@@ -117,14 +99,14 @@ export default {
   data() {
     return {
       taskname: '',
+      focusedRef: 'taskname',
       nameRules: [value => !!value],
       sheet: true,
       sections: this.$store.state.sections.sections,
       sectionSelect: 0,
       projects: this.$store.state.projects.projects,
       projectSelect: 0,
-      estimate: 0,
-      addTimes: ['-3', '-1', '+1', '+2', '+5', '+10', '+100'],
+      estimate: '0',
       timeRules: [value => value > 0 && value < 999],
     }
   },
@@ -143,6 +125,16 @@ export default {
     this.sectionSelect = this.sections.findIndex(x => x === this.currentSection)
   },
   methods: {
+    focusEstimate() {
+      this.focusedRef = 'estimate'
+    },
+    focusPrevInput() {
+      if (this.focusedRef === 'estimate') {
+        this.$refs.estimate.focus()
+      } else {
+        this.$refs.taskname.focus()
+      }
+    },
     addTask() {
       const payload = {
         sortToken: genSortToken(),
