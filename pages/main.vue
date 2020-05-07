@@ -4,7 +4,7 @@
       <v-card max-width="600px">
         <v-divider></v-divider>
 
-        <div class="text-center">April</div>
+        <div class="text-center barely--text">April</div>
         <v-divider></v-divider>
         <daytab />
         <v-divider></v-divider>
