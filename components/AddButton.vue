@@ -20,20 +20,24 @@
                 solo
                 flat
                 dense
+                type="text"
+                maxlength="40"
                 placeholder="Name ?"
                 :rules="nameRules"
                 @focus="focusedRef = 'taskname'"
+                @keydown.enter="$refs.estimate.focus()"
               ></v-text-field>
             </v-col>
             <v-col cols="4" class=" text-center">
               <v-text-field
                 ref="estimate"
                 v-model="estimate"
-                hide-details
                 solo
+                hide-details
                 flat
                 dense
                 type="tel"
+                maxlength="3"
                 placeholder="Estimate ?"
                 :rules="timeRules"
                 @focus="focusedRef = 'estimate'"
@@ -106,7 +110,7 @@ export default {
       sectionSelect: 0,
       projects: this.$store.state.projects.projects,
       projectSelect: 0,
-      estimate: '0',
+      estimate: '',
       timeRules: [value => value > 0 && value < 999],
     }
   },
@@ -145,15 +149,6 @@ export default {
       }
       this.$store.dispatch('tasks/add', payload)
       this.sheet = false
-    },
-    addtime(amount) {
-      this.estimate += amount
-      if (this.estimate > 999) this.estimate = 999
-      this.$refs.taskname.focus()
-    },
-    cleartime() {
-      this.estimate = 0
-      this.$refs.taskname.focus()
     },
   },
 }
