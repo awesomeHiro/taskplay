@@ -4,13 +4,13 @@
       <v-list-item v-for="(t, i) in tasks" :key="t.id" class="pl-0 pr-0">
         <v-col cols="1" class="pa-0 ma-0">
           <div class="drag-bar pa-0 ma-0" @click="alert('drag')">
-            <v-icon>
+            <v-icon color="barely">
               drag_handle
             </v-icon>
           </div>
         </v-col>
         <v-col cols="1" class="pa-0 ma-0">
-          <div class="drag-bar pa-0 ma-0">
+          <div class="drag-bar pa-0 ma-0 subtle--text">
             <span>
               {{ t.section }}
             </span>
@@ -22,11 +22,14 @@
               class="subtitle-2"
               v-text="t.repeat ? t.name + ' ↺' : t.name"
             ></v-list-item-title>
-            <v-list-item-subtitle v-text="t.project"></v-list-item-subtitle>
+            <v-list-item-subtitle
+              class="barely--text"
+              v-text="t.project"
+            ></v-list-item-subtitle>
           </v-list-item-content>
         </v-col>
         <v-col cols="1" class="pa-0 ma-0">
-          <div class="subtle--text">
+          <div class="barely--text">
             {{ t.estimate }}
           </div>
           <div v-if="t.result">
@@ -51,7 +54,7 @@
           <div v-if="t.result">
             {{ t.end }}
           </div>
-          <div v-if="i && !t.result" class="subtle--text">
+          <div v-if="i && !t.result" class="barely--text">
             {{ totalEstToFinish[i] }}
           </div>
         </v-col>

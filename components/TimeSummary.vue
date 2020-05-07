@@ -1,23 +1,27 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <div class="text-center caption">
-          Total<br /><v-divider />{{ estimate }}
+    <v-row align="center" justify="center" class="caption" no-gutters>
+      <v-col align="center" justify="center">
+        <div class="text-center overline subtle--text">
+          Total<br /><v-divider class="mx-2" />{{ estimate }}
         </div>
       </v-col>
       <v-col>
-        <div class="text-center caption">Done<br /><v-divider />{{ done }}</div>
+        <div class="text-center overline subtle--text">
+          Done<br /><v-divider class="mx-2" />{{ done }}
+        </div>
       </v-col>
       <v-col>
-        <div class="text-center caption">
-          Est Gap<br /><v-divider />
+        <div class="text-center overline subtle--text">
+          Est Gap<br /><v-divider class="mx-2" />
           <div v-if="0 >= estGap" class="success--text">{{ estGap }}</div>
           <div v-else class="error--text">+{{ estGap }}</div>
         </div>
       </v-col>
       <v-col>
-        <div class="text-center caption">Left<br /><v-divider />{{ left }}</div>
+        <div class="text-center overline subtle--text">
+          Left<br /><v-divider class="mx-2" />{{ left }}
+        </div>
       </v-col>
     </v-row>
   </v-container>

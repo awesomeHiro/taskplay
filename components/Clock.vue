@@ -2,7 +2,7 @@
   <v-container pa-1>
     <div id="timer">
       <div class="timer">
-        <div class="time">
+        <div class="time subtle--text">
           {{ time }}
         </div>
       </div>
