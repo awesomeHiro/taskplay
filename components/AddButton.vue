@@ -2,9 +2,21 @@
   <div>
     <v-bottom-sheet v-model="sheet" max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="pink" fab fixed bottom right v-on="on">
+        <!-- <v-btn color="pink" fab small right v-on="on">
           <v-icon>mdi-plus</v-icon>
-        </v-btn>
+        </v-btn> -->
+        <v-text-field
+          hide-details
+          solo
+          flat
+          dense
+          type="text"
+          maxlength="40"
+          placeholder="Name ?"
+          :rules="nameRules"
+          v-on="on"
+          @focus="focusedRef = 'taskname'"
+        ></v-text-field>
       </template>
       <v-card class="mx-auto">
         <v-divider></v-divider>
@@ -71,7 +83,7 @@
           </v-row>
         </v-list-item>
 
-        <v-list-item>
+        <v-list-item v-if="!sectioned">
           <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
             <v-col cols="auto" class="pa-0 ma-0 text-center">
               <v-chip-group
@@ -100,6 +112,17 @@
 <script>
 import { genSortToken } from '~/plugins/genSortToken'
 export default {
+  props: {
+    section: {
+      type: Object,
+      default: () => {},
+    },
+    sectioned: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
   data() {
     return {
       taskname: '',
@@ -107,7 +130,6 @@ export default {
       nameRules: [value => !!value],
       sheet: false,
       sections: this.$store.state.sections.sections,
-      sectionSelect: 0,
       projects: this.$store.state.projects.projects,
       projectSelect: 0,
       estimate: '',

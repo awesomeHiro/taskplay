@@ -5,7 +5,9 @@
         <v-row align="center" justify="center" class="caption" no-gutters>
           <v-col><v-divider clsss="ma-2"/></v-col>
           <v-col cols="auto">
-            <div class="subtle--text">{{ s.name }} {{ s.desc }}</div>
+            <div class="subtle--text">
+              {{ s.name }} {{ s.start }} - {{ s.desc }}
+            </div>
           </v-col>
           <v-col><v-divider clsss="ma-2"/></v-col>
         </v-row>
@@ -75,17 +77,21 @@
             </div>
           </v-col>
         </v-list-item>
+        <v-row align="center" justify="center" no-gutters>
+          <add-button :section="s" :sectioned="true" />
+        </v-row>
       </div>
-      <v-list-item> </v-list-item>
     </v-list-item-group>
   </v-list>
 </template>
 <script>
 import TimeSummary from '~/components/TimeSummary.vue'
+import AddButton from '~/components/AddButton.vue'
 
 export default {
   components: {
     TimeSummary,
+    AddButton,
   },
   data() {
     return {
