@@ -2,12 +2,12 @@
   <v-row align="center" justify="center" class="caption" no-gutters>
     <v-col align="center" justify="center">
       <v-card id="main" max-width="600px">
-        <v-divider></v-divider>
-        <div class="text-center barely--text">April</div>
-        <v-divider></v-divider>
+        <v-divider />
+        <v-divider />
         <daytab />
-        <v-divider></v-divider>
-        <time-summary></time-summary>
+        <v-divider />
+        <div class="text-center subtle--text">Today</div>
+        <time-summary :tasks="tasks" />
         <clock />
         <Tasklist />
         <MenuButton />
@@ -31,6 +31,11 @@ export default {
     Daytab,
     Tasklist,
     Clock,
+  },
+  data() {
+    return {
+      tasks: this.$store.state.tasks.today,
+    }
   },
 }
 </script>

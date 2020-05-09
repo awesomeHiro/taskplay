@@ -9,6 +9,10 @@
           </v-col>
           <v-col><v-divider clsss="ma-2"/></v-col>
         </v-row>
+        <time-summary
+          v-if="getTasksBySectionId(s.id).length > 0"
+          :tasks="getTasksBySectionId(s.id)"
+        />
         <v-list-item
           v-for="(t, ti) in getTasksBySectionId(s.id)"
           :key="t.id"
@@ -77,7 +81,12 @@
   </v-list>
 </template>
 <script>
+import TimeSummary from '~/components/TimeSummary.vue'
+
 export default {
+  components: {
+    TimeSummary,
+  },
   data() {
     return {
       selected: [2],
