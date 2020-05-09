@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="pa-0">
     <v-row align="center" justify="center" class="caption" no-gutters>
       <v-col align="center" justify="center">
         <div class="text-center overline subtle--text">
@@ -28,6 +28,13 @@
 </template>
 <script>
 export default {
+  props: {
+    partOftasks: {
+      type: Object,
+      require: true,
+      default: () => ({}),
+    },
+  },
   data() {
     return {
       tasks: this.$store.state.tasks.today,
@@ -36,26 +43,35 @@ export default {
   computed: {
     estimate() {
       return min2string(
-        this.tasks.reduce((total, task) => (total += task.estimate), 0),
+        this.tasks.reduce(
+          (total, task) => (total += parseInt(task.estimate)),
+          0,
+        ),
       )
     },
     done() {
       return min2string(
-        this.tasks.reduce((total, task) => (total += task.result), 0),
+        this.tasks
+          .filter(x => x.result)
+          .reduce((total, task) => (total += parseInt(task.result)), 0),
       )
     },
     estGap() {
       return min2string(
         this.tasks
           .filter(task => task.result)
-          .reduce((total, task) => (total += task.result - task.estimate), 0),
+          .reduce(
+            (total, task) =>
+              (total += parseInt(task.result) - parseInt(task.estimate)),
+            0,
+          ),
       )
     },
     left() {
       return min2string(
         this.tasks
           .filter(task => task.result)
-          .reduce((total, task) => (total += task.estimate), 0),
+          .reduce((total, task) => (total += parseInt(task.estimate)), 0),
       )
     },
   },

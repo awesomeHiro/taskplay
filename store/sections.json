@@ -1,37 +1,8 @@
 [
-  {
-    "id": "6DD68EB6",
-    "name": "A",
-    "start": "00:00",
-    "description": "Night2"
-  },
-  {
-    "id": "E02254B0",
-    "name": "B",
-    "start": "04:00",
-    "description": "Morning1"
-  },
-  {
-    "id": "5D0DA5CD",
-    "name": "C",
-    "start": "08:00",
-    "description": "Morning2"
-  },
-  {
-    "id": "2E544A93",
-    "name": "D",
-    "start": "12:00",
-    "description": "Evening1"
-  },
-  {
-    "id": "028EACE2",
-    "name": "E",
-    "start": "16:00",
-    "description": "Evening2"
-  },
-  { "id": "DFE59BAA",
-    "name": "F",
-    "start": "20:00",
-    "description": "Night1"
-  }
+  { "id": "EFFCBC8F", "start": "0:00", "name": "A", "desc": "Night2" },
+  { "id": "8411B490", "start": "4:00", "name": "B", "desc": "Morning1" },
+  { "id": "B19D62C0", "start": "8:00", "name": "C", "desc": "Morning2" },
+  { "id": "4990F7EE", "start": "12:00", "name": "D", "desc": "Evening1" },
+  { "id": "58987B78", "start": "16:00", "name": "E", "desc": "Evening2" },
+  { "id": "FD2CC551", "start": "20:00", "name": "F", "desc": "Night1" }
 ]

@@ -1,12 +1,12 @@
 <template>
-  <v-container pa-1>
-    <div id="timer">
-      <div class="timer">
-        <div class="time subtle--text">
-          {{ time }}
-        </div>
-      </div>
-    </div>
+  <v-container class="pa-0 ma-0">
+    <v-row align="center" justify="center" class="caption" no-gutters>
+      <v-col><v-divider clsss="ma-1"/></v-col>
+      <v-col cols="auto">
+        <div class="time subtle--text">{{ time }}</div>
+      </v-col>
+      <v-col><v-divider clsss="ma-2"/></v-col>
+    </v-row>
   </v-container>
 </template>
 

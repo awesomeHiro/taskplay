@@ -1,17 +1,14 @@
 <template>
   <v-row align="center" justify="center" class="caption" no-gutters>
     <v-col align="center" justify="center">
-      <v-card max-width="600px">
+      <v-card id="main" max-width="600px">
         <v-divider></v-divider>
-
         <div class="text-center barely--text">April</div>
         <v-divider></v-divider>
         <daytab />
         <v-divider></v-divider>
         <time-summary></time-summary>
-        <v-divider></v-divider>
         <clock />
-        <v-divider></v-divider>
         <Tasklist />
         <MenuButton />
         <AddButton />
