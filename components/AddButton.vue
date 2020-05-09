@@ -2,25 +2,12 @@
   <div>
     <v-bottom-sheet v-model="sheet" max-width="600px">
       <template v-slot:activator="{ on }">
-        <!-- <v-btn color="pink" fab small right v-on="on">
+        <v-btn color="pink" fab small fixed right v-on="on">
           <v-icon>mdi-plus</v-icon>
-        </v-btn> -->
-        <v-text-field
-          hide-details
-          solo
-          flat
-          dense
-          type="text"
-          maxlength="40"
-          placeholder="Name ?"
-          :rules="nameRules"
-          v-on="on"
-          @focus="focusedRef = 'taskname'"
-        ></v-text-field>
+        </v-btn>
       </template>
       <v-card class="mx-auto">
-        <v-divider></v-divider>
-
+        <v-divider />
         <v-list-item class="pa2">
           <v-row align="center" justify="center" no-gutters>
             <v-col cols="6" class=" text-center">
@@ -36,7 +23,7 @@
                 maxlength="40"
                 placeholder="Name ?"
                 :rules="nameRules"
-                @focus="focusedRef = 'taskname'"
+                @focus="focused('taskname')"
                 @keydown.enter="$refs.estimate.focus()"
               ></v-text-field>
             </v-col>
@@ -52,7 +39,7 @@
                 maxlength="3"
                 placeholder="Estimate ?"
                 :rules="timeRules"
-                @focus="focusedRef = 'estimate'"
+                @focus="focused('estimate')"
                 @keydown.enter="addTask()"
               ></v-text-field>
             </v-col>
@@ -125,6 +112,7 @@ export default {
 
   data() {
     return {
+      showProjects: false,
       taskname: '',
       focusedRef: 'taskname',
       nameRules: [value => !!value],
@@ -151,8 +139,9 @@ export default {
     this.sectionSelect = this.sections.findIndex(x => x === this.currentSection)
   },
   methods: {
-    focusEstimate() {
-      this.focusedRef = 'estimate'
+    focused(ref) {
+      this.focusedRef = ref
+      this.showProjects = true
     },
     focusPrevInput() {
       if (this.focusedRef === 'estimate') {

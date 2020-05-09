@@ -31,7 +31,6 @@
           :rules="timeRules"
           @focus="focused('estimate')"
           @keydown.enter="addTask()"
-          @keydown.enter="addTask()"
         ></v-text-field>
       </v-col>
     </v-row>

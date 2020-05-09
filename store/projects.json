@@ -1,4 +1,5 @@
 [
+  { "id": "--------", "sortToken": "--------", "name": "-" },
   { "id": "FABB8135", "sortToken": "6F119673", "name": "Transport" },
   { "id": "CD0D5D31", "sortToken": "92A31C66", "name": "Grooming" },
   { "id": "8EF2D9EA", "sortToken": "9B78F455", "name": "Eating" },

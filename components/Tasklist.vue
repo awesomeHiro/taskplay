@@ -86,7 +86,7 @@
 </template>
 <script>
 import TimeSummary from '~/components/TimeSummary.vue'
-import AddButton from '~/components/AddButton.vue'
+import AddButton from '~/components/AddButton2.vue'
 
 export default {
   components: {
