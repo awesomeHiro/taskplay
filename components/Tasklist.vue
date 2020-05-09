@@ -69,6 +69,7 @@ export default {
     return {
       selected: [2],
       tasks: this.$store.state.tasks.today,
+      sections: this.$store.state.sections.sections,
       leftEsts: [],
     }
   },
@@ -82,7 +83,7 @@ export default {
           totalEsts.push(0)
           lastDone = i
         } else {
-          totalEst += x.estimate
+          totalEst += parseInt(x.estimate)
           totalEsts.push(
             min2string(string2min(this.tasks[lastDone].end) + totalEst),
           )
@@ -97,6 +98,9 @@ export default {
     },
     sortTasks() {
       this.tasks.sort((a, b) => (a.section >= b.section ? 1 : -1))
+    },
+    getTasksBySection(section) {
+      return this.tasks.filter(task => task.section === section)
     },
   },
 }

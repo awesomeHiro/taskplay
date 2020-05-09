@@ -105,7 +105,7 @@ export default {
       taskname: '',
       focusedRef: 'taskname',
       nameRules: [value => !!value],
-      sheet: true,
+      sheet: false,
       sections: this.$store.state.sections.sections,
       sectionSelect: 0,
       projects: this.$store.state.projects.projects,
