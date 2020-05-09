@@ -1,25 +1,41 @@
 <template>
   <v-container class="pa-0">
-    <v-row align="center" justify="center" class="caption" no-gutters>
-      <v-col align="center" justify="center">
-        <div class="text-center overline subtle--text">
-          Total<br /><v-divider class="mx-2" />{{ estimate }}
+    <v-row
+      align="center"
+      justify="center"
+      class="overline text-center subtle--text"
+      no-gutters
+    >
+      <v-col cols="2">
+        <div>
+          Total<br /><v-divider class="mx-2" />
+          <div
+            :class="tasks.every(x => x.end) ? 'success--text' : 'warning--text'"
+          >
+            {{ tasks.filter(x => x.end).length }}
+            / {{ tasks.length }}
+          </div>
         </div>
       </v-col>
-      <v-col>
-        <div class="text-center overline subtle--text">
-          Done<br /><v-divider class="mx-2" />{{ done }}
+      <v-col cols="2">
+        <div>Estimate<br /><v-divider class="mx-2" />{{ estimate }}</div>
+      </v-col>
+      <v-col cols="2">
+        <div v-if="tasks.some(x => x.end)">
+          Spent<br /><v-divider class="mx-2" />{{ done }}
         </div>
       </v-col>
-      <v-col>
-        <div class="text-center overline subtle--text">
+      <v-col cols="2">
+        <div v-if="tasks.some(x => x.end)">
           Est Gap<br /><v-divider class="mx-2" />
-          <div v-if="0 >= estGap" class="success--text">{{ estGap }}</div>
-          <div v-else class="error--text">+{{ estGap }}</div>
+          <div v-if="0 < estGap" class="error--text">
+            {{ min2string(estGap) }}
+          </div>
+          <div v-else class="success--text">{{ min2string(estGap) }}</div>
         </div>
       </v-col>
-      <v-col>
-        <div class="text-center overline subtle--text">
+      <v-col cols="2">
+        <div v-if="tasks.some(x => x.end)">
           Left<br /><v-divider class="mx-2" />{{ left }}
         </div>
       </v-col>
@@ -29,16 +45,11 @@
 <script>
 export default {
   props: {
-    partOftasks: {
-      type: Object,
+    tasks: {
+      type: Array,
       require: true,
-      default: () => ({}),
+      default: () => [],
     },
-  },
-  data() {
-    return {
-      tasks: this.$store.state.tasks.today,
-    }
   },
   computed: {
     estimate() {
@@ -52,27 +63,30 @@ export default {
     done() {
       return min2string(
         this.tasks
-          .filter(x => x.result)
+          .filter(x => x.end)
           .reduce((total, task) => (total += parseInt(task.result)), 0),
       )
     },
     estGap() {
-      return min2string(
-        this.tasks
-          .filter(task => task.result)
-          .reduce(
-            (total, task) =>
-              (total += parseInt(task.result) - parseInt(task.estimate)),
-            0,
-          ),
-      )
+      return this.tasks
+        .filter(task => task.end)
+        .reduce(
+          (total, task) =>
+            (total += parseInt(task.result) - parseInt(task.estimate)),
+          0,
+        )
     },
     left() {
       return min2string(
         this.tasks
-          .filter(task => task.result)
+          .filter(task => !task.end)
           .reduce((total, task) => (total += parseInt(task.estimate)), 0),
       )
+    },
+  },
+  methods: {
+    min2string(str) {
+      return `${pad(Math.floor(str / 60))}:${pad(str % 60)}`
     },
   },
 }
