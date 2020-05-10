@@ -80,7 +80,7 @@
             />
           </v-col>
           <v-col cols="2">
-            <add-button :section="s" :sectioned="true" :update="updateTasks" />
+            <add-button :section="s" :sectioned="true" />
           </v-col>
         </v-row>
       </div>
