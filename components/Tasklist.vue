@@ -5,9 +5,7 @@
         <v-row align="center" justify="center" class="caption" no-gutters>
           <v-col><v-divider clsss="ma-2"/></v-col>
           <v-col cols="auto">
-            <div class="subtle--text">
-              {{ s.name }} {{ s.start }} - {{ s.desc }}
-            </div>
+            <div class="body-1">{{ s.name }} {{ s.start }} - {{ s.desc }}</div>
           </v-col>
           <v-col><v-divider clsss="ma-2"/></v-col>
         </v-row>
@@ -27,7 +25,7 @@
           <v-col cols="1" class="pa-0 ma-0">
             <div class="drag-bar pa-0 ma-0 subtle--text">
               <span>
-                {{ t.section }}
+                {{ getSecionById(t.sectionId).name }}
               </span>
             </div>
           </v-col>
@@ -76,13 +74,13 @@
         </v-list-item>
         <v-row align="center" justify="center" no-gutters>
           <v-col cols="10">
-            <time-summary
+            <Summary
               v-if="getTasksBySectionId(s.id).length > 0"
               :tasks="getTasksBySectionId(s.id)"
             />
           </v-col>
           <v-col cols="2">
-            <add-button :section="s" :sectioned="true" />
+            <add-button :section="s" :sectioned="true" :update="updateTasks" />
           </v-col>
         </v-row>
       </div>
@@ -90,12 +88,12 @@
   </v-list>
 </template>
 <script>
-import TimeSummary from '~/components/TimeSummary.vue'
+import Summary from '~/components/Summary.vue'
 import AddButton from '~/components/AddButton.vue'
 
 export default {
   components: {
-    TimeSummary,
+    Summary,
     AddButton,
   },
   data() {
@@ -130,7 +128,6 @@ export default {
     getProjectById(id) {
       return this.projects.find(x => x.id === id) || { name: '' }
     },
-
     getSecionById(id) {
       return this.sections.find(x => x.id === id) || { name: '' }
     },

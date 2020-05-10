@@ -7,7 +7,7 @@
         <daytab />
         <v-divider />
         <div class="text-center subtle--text">Today</div>
-        <time-summary :tasks="tasks" />
+        <Summary :tasks="tasks" />
         <clock />
         <Tasklist />
         <v-list-item />
@@ -18,14 +18,14 @@
 </template>
 <script>
 import MenuButton from '~/components/MenuButton.vue'
-import TimeSummary from '~/components/TimeSummary.vue'
+import Summary from '~/components/Summary.vue'
 import Daytab from '~/components/Daytab.vue'
 import Tasklist from '~/components/Tasklist.vue'
 import Clock from '~/components/Clock.vue'
 export default {
   components: {
     MenuButton,
-    TimeSummary,
+    Summary,
     Daytab,
     Tasklist,
     Clock,

@@ -118,6 +118,7 @@ export default {
       nameRules: [value => !!value],
       sheet: false,
       sections: this.$store.state.sections.sections,
+      sectionSelect: 0,
       projects: this.$store.state.projects.projects,
       projectSelect: 0,
       estimate: '',
@@ -128,15 +129,16 @@ export default {
     time() {
       return this.raughTime + this.inputTime
     },
-    currentSection() {
-      const date = new Date()
-      return this.sections
-        .filter(x => x.start < date.getHours() + ':' + date.getMinutes())
-        .pop()
-    },
+    // currentSection() {
+    //   const date = new Date()
+    //   return this.sections
+    //     .filter(x => x.start < date.getHours() + ':' + date.getMinutes())
+    //     .pop()
+    // },
   },
   created() {
-    this.sectionSelect = this.sections.findIndex(x => x === this.currentSection)
+    // this.sectionSelect = this.sections.findIndex(x => x === this.currentSection)
+    this.sectionSelect = this.sections.findIndex(x => x === this.section)
   },
   methods: {
     focused(ref) {
@@ -153,10 +155,10 @@ export default {
     addTask() {
       const payload = {
         sortToken: genSortToken(),
-        estimate: this.estimate,
-        project: this.projects[this.projectSelect].id,
         name: this.taskname,
-        section: this.sections[this.sectionSelect].id,
+        estimate: this.estimate,
+        projectId: this.projects[this.projectSelect].id,
+        sectionId: this.sections[this.sectionSelect].id,
       }
       this.$store.dispatch('tasks/add', payload)
       this.sheet = false
