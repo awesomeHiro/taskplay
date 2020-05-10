@@ -5,9 +5,7 @@
         <v-row align="center" justify="center" class="caption" no-gutters>
           <v-col><v-divider clsss="ma-2"/></v-col>
           <v-col cols="auto">
-            <div class="subtle--text">
-              {{ s.name }} {{ s.start }} - {{ s.desc }}
-            </div>
+            <div class="body-1">{{ s.name }} {{ s.start }} - {{ s.desc }}</div>
           </v-col>
           <v-col><v-divider clsss="ma-2"/></v-col>
         </v-row>
