@@ -9,7 +9,6 @@
           </v-col>
           <v-col><v-divider clsss="ma-2"/></v-col>
         </v-row>
-
         <v-list-item
           v-for="(t, ti) in getTasksBySectionId(s.id)"
           :key="t.id"
