@@ -17,6 +17,7 @@
           </div>
         </div>
       </v-col>
+
       <v-col cols="2">
         <div>Est<br /><v-divider class="mx-2" />{{ estimate }}</div>
       </v-col>
