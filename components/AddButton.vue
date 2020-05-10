@@ -2,13 +2,12 @@
   <div>
     <v-bottom-sheet v-model="sheet" max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="pink" fab fixed bottom right v-on="on">
+        <v-btn color="barely" small right v-on="on">
           <v-icon>mdi-plus</v-icon>
         </v-btn>
       </template>
       <v-card class="mx-auto">
-        <v-divider></v-divider>
-
+        <v-divider />
         <v-list-item class="pa2">
           <v-row align="center" justify="center" no-gutters>
             <v-col cols="6" class=" text-center">
@@ -24,7 +23,7 @@
                 maxlength="40"
                 placeholder="Name ?"
                 :rules="nameRules"
-                @focus="focusedRef = 'taskname'"
+                @focus="focused('taskname')"
                 @keydown.enter="$refs.estimate.focus()"
               ></v-text-field>
             </v-col>
@@ -40,7 +39,7 @@
                 maxlength="3"
                 placeholder="Estimate ?"
                 :rules="timeRules"
-                @focus="focusedRef = 'estimate'"
+                @focus="focused('estimate')"
                 @keydown.enter="addTask()"
               ></v-text-field>
             </v-col>
@@ -71,7 +70,7 @@
           </v-row>
         </v-list-item>
 
-        <v-list-item>
+        <v-list-item v-if="!sectioned">
           <v-row class="pa-0 ma-0" align="center" justify="center" no-gutters>
             <v-col cols="auto" class="pa-0 ma-0 text-center">
               <v-chip-group
@@ -100,14 +99,25 @@
 <script>
 import { genSortToken } from '~/plugins/genSortToken'
 export default {
+  props: {
+    section: {
+      type: Object,
+      default: () => {},
+    },
+    sectioned: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
   data() {
     return {
+      showProjects: false,
       taskname: '',
       focusedRef: 'taskname',
       nameRules: [value => !!value],
       sheet: false,
       sections: this.$store.state.sections.sections,
-      sectionSelect: 0,
       projects: this.$store.state.projects.projects,
       projectSelect: 0,
       estimate: '',
@@ -129,8 +139,9 @@ export default {
     this.sectionSelect = this.sections.findIndex(x => x === this.currentSection)
   },
   methods: {
-    focusEstimate() {
-      this.focusedRef = 'estimate'
+    focused(ref) {
+      this.focusedRef = ref
+      this.showProjects = true
     },
     focusPrevInput() {
       if (this.focusedRef === 'estimate') {
