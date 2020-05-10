@@ -11,10 +11,7 @@
           </v-col>
           <v-col><v-divider clsss="ma-2"/></v-col>
         </v-row>
-        <time-summary
-          v-if="getTasksBySectionId(s.id).length > 0"
-          :tasks="getTasksBySectionId(s.id)"
-        />
+
         <v-list-item
           v-for="(t, ti) in getTasksBySectionId(s.id)"
           :key="t.id"
@@ -78,7 +75,15 @@
           </v-col>
         </v-list-item>
         <v-row align="center" justify="center" no-gutters>
-          <add-button :section="s" :sectioned="true" />
+          <v-col cols="10">
+            <time-summary
+              v-if="getTasksBySectionId(s.id).length > 0"
+              :tasks="getTasksBySectionId(s.id)"
+            />
+          </v-col>
+          <v-col cols="2">
+            <add-button :section="s" :sectioned="true" />
+          </v-col>
         </v-row>
       </div>
     </v-list-item-group>
@@ -86,7 +91,7 @@
 </template>
 <script>
 import TimeSummary from '~/components/TimeSummary.vue'
-import AddButton from '~/components/AddButton2.vue'
+import AddButton from '~/components/AddButton.vue'
 
 export default {
   components: {

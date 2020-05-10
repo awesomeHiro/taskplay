@@ -18,16 +18,21 @@
         </div>
       </v-col>
       <v-col cols="2">
-        <div>Estimate<br /><v-divider class="mx-2" />{{ estimate }}</div>
+        <div>Est<br /><v-divider class="mx-2" />{{ estimate }}</div>
       </v-col>
       <v-col cols="2">
         <div v-if="tasks.some(x => x.end)">
-          Spent<br /><v-divider class="mx-2" />{{ done }}
+          done<br /><v-divider class="mx-2" />{{ done }}
         </div>
       </v-col>
       <v-col cols="2">
         <div v-if="tasks.some(x => x.end)">
-          Est Gap<br /><v-divider class="mx-2" />
+          Spent<br /><v-divider class="mx-2" />{{ spent }}
+        </div>
+      </v-col>
+      <v-col cols="2">
+        <div v-if="tasks.some(x => x.end)">
+          Gap<br /><v-divider class="mx-2" />
           <div v-if="0 < estGap" class="error--text">
             {{ min2string(estGap) }}
           </div>
@@ -61,6 +66,13 @@ export default {
       )
     },
     done() {
+      return min2string(
+        this.tasks
+          .filter(x => x.end)
+          .reduce((total, task) => (total += parseInt(task.estimate)), 0),
+      )
+    },
+    spent() {
       return min2string(
         this.tasks
           .filter(x => x.end)
