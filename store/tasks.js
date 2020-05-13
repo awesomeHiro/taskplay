@@ -13,16 +13,6 @@ export const mutations = {
   add(state, payload) {
     state.today.push(payload)
   },
-  sort(state, _) {
-    // state.today
-    //   .sort((a, b) => (a.sortToken - b.sortToken ? 1 : -1))
-    //   .sort((a, b) =>
-    //     getSectionById(a.sectionId).start - getSectionById(b.sectionId).start
-    //       ? -1
-    //       : 1,
-    //   )
-    //   .sort((a, b) => (a.start - b.start ? 1 : -1))
-  },
   setEstFinishAt(state, payload) {
     state.today.find(x => x === payload.task).estFinishAt = payload.estFinishAt
   },
