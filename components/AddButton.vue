@@ -151,7 +151,7 @@ export default {
     addTask() {
       const payload = {
         sortToken: genSortToken({
-          prev: this.getTasksBySectionId(this.section.id).pop(),
+          prev: this.getTasksBySectionId(this.section.id).pop().sortToken || '',
         }),
         name: this.taskname,
         estimate: this.estimate,
