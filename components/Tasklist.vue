@@ -40,7 +40,7 @@
               ></v-list-item-subtitle>
               <v-list-item-subtitle
                 class="barely--text"
-                v-text="t.sortToken[0]"
+                v-text="t.sortToken.slice(0, 3)"
               ></v-list-item-subtitle>
             </v-list-item-content>
           </v-col>
