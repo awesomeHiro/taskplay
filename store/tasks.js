@@ -1,5 +1,8 @@
 import { nanoid } from 'nanoid'
+
 import today from './tasks.json'
+// import sections from './sections.json'
+
 import { genSortToken } from '~/plugins/genSortToken'
 
 export const state = () => ({
@@ -9,6 +12,19 @@ export const state = () => ({
 export const mutations = {
   add(state, payload) {
     state.today.push(payload)
+  },
+  sort(state, _) {
+    // state.today
+    //   .sort((a, b) => (a.sortToken - b.sortToken ? 1 : -1))
+    //   .sort((a, b) =>
+    //     getSectionById(a.sectionId).start - getSectionById(b.sectionId).start
+    //       ? -1
+    //       : 1,
+    //   )
+    //   .sort((a, b) => (a.start - b.start ? 1 : -1))
+  },
+  setEstFinishAt(state, payload) {
+    state.today.find(x => x === payload.task).estFinishAt = payload.estFinishAt
   },
 }
 
@@ -37,4 +53,25 @@ const taskTemplate = {
   date: '',
   created: '',
   updated: '',
+  estFinishAt: '',
 }
+
+// const getSectionById = id => {
+//   return sections.find(x => x.id === id) || { name: '' }
+// }
+
+// const filterKeyToStore = (task) => {
+//   return {
+//     id: task.id,
+//     name: task.name,
+//     repeat: task.repeat,
+//     sectionId: task.sectionId,
+//     projectId: task.projectId,
+//     estimate: task.estimate,
+//     start: task.start,
+//     end: task.end,
+//     date: task.date,
+//     created: task.created,
+//     updated: task.updated,
+//   }
+// }

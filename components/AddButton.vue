@@ -108,6 +108,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    updateCalc: {
+      type: Function,
+      default: () => {},
+    },
   },
 
   data() {
@@ -162,6 +166,7 @@ export default {
       }
       this.$store.dispatch('tasks/add', payload)
       this.sheet = false
+      this.updateCalc()
     },
   },
 }

@@ -24,7 +24,7 @@
           <v-col cols="1" class="pa-0 ma-0">
             <div class="drag-bar pa-0 ma-0 subtle--text">
               <span>
-                {{ getSecionById(t.sectionId).name }}
+                {{ getSectionById(t.sectionId).name }}
               </span>
             </div>
           </v-col>
@@ -37,6 +37,10 @@
               <v-list-item-subtitle
                 class="barely--text"
                 v-text="getProjectById(t.projectId).name"
+              ></v-list-item-subtitle>
+              <v-list-item-subtitle
+                class="barely--text"
+                v-text="t.sortToken[0]"
               ></v-list-item-subtitle>
             </v-list-item-content>
           </v-col>
@@ -67,7 +71,7 @@
               {{ t.end }}
             </div>
             <div v-if="!t.end" class="barely--text">
-              {{ totalEstToFinish[tasks.findIndex(x => x === t)] }}
+              {{ t.estFinishAt }}
             </div>
           </v-col>
         </v-list-item>
@@ -79,7 +83,11 @@
             />
           </v-col>
           <v-col cols="2">
-            <add-button :section="s" :sectioned="true" />
+            <add-button
+              :section="s"
+              :sectioned="true"
+              :update-calc="updateCalc"
+            />
           </v-col>
         </v-row>
       </div>
@@ -98,46 +106,66 @@ export default {
   data() {
     return {
       selected: [2],
-      tasks: this.$store.state.tasks.today,
       sections: this.$store.state.sections.sections,
       projects: this.$store.state.projects.projects,
-      leftEsts: [],
     }
   },
   computed: {
-    totalEstToFinish() {
-      const totalEsts = []
-      let totalEst = 0
-      let lastDone = 0
-      this.tasks.forEach((x, i) => {
-        if (x.end) {
-          totalEsts.push(0)
-          lastDone = i
-        } else {
-          totalEst += parseInt(x.estimate)
-          totalEsts.push(
-            min2string(string2min(this.tasks[lastDone].end) + totalEst),
-          )
-        }
-      })
-      return totalEsts
+    sortedTasks() {
+      return [...this.$store.state.tasks.today]
+        .sort((a, b) => (a.sortToken < b.sortToken ? -1 : 1))
+        .sort(
+          (a, b) =>
+            (a.end === '') - (b.end === '') ||
+            +(a.end > b.end) ||
+            -(a.end < b.end),
+        )
+        .sort((a, b) =>
+          this.getSectionById(a.sectionId).start <
+          this.getSectionById(b.sectionId).start
+            ? -1
+            : 1,
+        )
+    },
+    recentDone() {
+      if (this.sortedTasks.length === 0) return 0
+      return [...this.sortedTasks]
+        .filter(x => x.end)
+        .sort((a, b) => a.end - b.end)
+        .pop()
     },
   },
+  created() {
+    this.updateCalc()
+  },
   methods: {
+    updateCalc() {
+      this.$store.commit('tasks/sort')
+      this.updateEstFinishAt()
+    },
+    updateEstFinishAt() {
+      let totalEst = 0
+      this.sortedTasks.forEach(x => {
+        if (!x.end) {
+          totalEst += parseInt(x.estimate)
+          this.$store.commit('tasks/setEstFinishAt', {
+            task: x,
+            estFinishAt: min2string(string2min(this.recentDone.end) + totalEst),
+          })
+        }
+      })
+    },
     getProjectById(id) {
       return this.projects.find(x => x.id === id) || { name: '' }
     },
-    getSecionById(id) {
+    getSectionById(id) {
       return this.sections.find(x => x.id === id) || { name: '' }
     },
     alert(s) {
       alert(s)
     },
-    sortTasks() {
-      this.tasks.sort((a, b) => (a.section >= b.section ? 1 : -1))
-    },
     getTasksBySectionId(sectionId) {
-      return this.tasks.filter(x => x.sectionId === sectionId)
+      return this.sortedTasks.filter(x => x.sectionId === sectionId)
     },
   },
 }
