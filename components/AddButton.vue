@@ -108,6 +108,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    updateCalc: {
+      type: Function,
+      default: () => {},
+    },
+    getTasksBySectionId: {
+      type: Function,
+      default: () => {},
+    },
   },
 
   data() {
@@ -125,19 +133,7 @@ export default {
       timeRules: [value => value > 0 && value < 999],
     }
   },
-  computed: {
-    time() {
-      return this.raughTime + this.inputTime
-    },
-    // currentSection() {
-    //   const date = new Date()
-    //   return this.sections
-    //     .filter(x => x.start < date.getHours() + ':' + date.getMinutes())
-    //     .pop()
-    // },
-  },
   created() {
-    // this.sectionSelect = this.sections.findIndex(x => x === this.currentSection)
     this.sectionSelect = this.sections.findIndex(x => x === this.section)
   },
   methods: {
@@ -154,7 +150,10 @@ export default {
     },
     addTask() {
       const payload = {
-        sortToken: genSortToken(),
+        sortToken: genSortToken({
+          prev: this.getTasksBySectionId(this.section.id).pop().sortToken || '',
+          next: '',
+        }),
         name: this.taskname,
         estimate: this.estimate,
         projectId: this.projects[this.projectSelect].id,
@@ -162,6 +161,7 @@ export default {
       }
       this.$store.dispatch('tasks/add', payload)
       this.sheet = false
+      this.updateCalc()
     },
   },
 }

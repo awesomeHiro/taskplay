@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
+
 import today from './tasks.json'
-import { genSortToken } from '~/plugins/genSortToken'
 
 export const state = () => ({
   today,
@@ -10,13 +10,15 @@ export const mutations = {
   add(state, payload) {
     state.today.push(payload)
   },
+  setEstFinishAt(state, payload) {
+    state.today.find(x => x === payload.task).estFinishAt = payload.estFinishAt
+  },
 }
 
 export const actions = {
   add({ commit }, payload) {
     const initials = {
       id: nanoid(),
-      sortToken: genSortToken(),
       created: new Date(),
       updated: new Date(),
     }
@@ -37,4 +39,5 @@ const taskTemplate = {
   date: '',
   created: '',
   updated: '',
+  estFinishAt: '',
 }
