@@ -87,6 +87,7 @@
               :section="s"
               :sectioned="true"
               :update-calc="updateCalc"
+              :get-tasks-by-section-id="getTasksBySectionId"
             />
           </v-col>
         </v-row>
@@ -111,6 +112,12 @@ export default {
     }
   },
   computed: {
+    // currentSection() {
+    //   const date = new Date()
+    //   return this.sections
+    //     .filter(x => x.start < date.getHours() + ':' + date.getMinutes())
+    //     .pop()
+    // },
     sortedTasks() {
       return [...this.$store.state.tasks.today]
         .sort((a, b) => (a.sortToken < b.sortToken ? -1 : 1))

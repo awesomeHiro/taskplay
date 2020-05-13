@@ -13,6 +13,8 @@ export const genSortToken = (
     next: lastSortToken,
   },
 ) => {
+  prev = prev || firstSortToken
+  next = next || lastSortToken
   if (next <= prev) {
     throw new Error(`SortToken is broken at ${prev}  ${next}`)
   }
