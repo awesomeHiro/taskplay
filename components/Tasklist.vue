@@ -1,5 +1,6 @@
 <template>
   <v-list two-line dense>
+    {{}}
     <v-list-item-group v-model="selected" active-class="blue--text">
       <div v-for="s in sections" :key="s.id">
         <v-row align="center" justify="center" class="caption" no-gutters>
@@ -10,7 +11,7 @@
           <v-col><v-divider clsss="ma-2"/></v-col>
         </v-row>
         <v-list-item
-          v-for="(t, ti) in getTasksBySectionId(s.id)"
+          v-for="(t, ti) in $store.getters['tasks/bySectionId'](s.id)"
           :key="t.id"
           class="pl-0 pr-0"
         >
@@ -24,7 +25,7 @@
           <v-col cols="1" class="pa-0 ma-0">
             <div class="drag-bar pa-0 ma-0 subtle--text">
               <span>
-                {{ getSectionById(t.sectionId).name }}
+                {{ $store.getters['sections/byId'](t.sectionId).name }}
               </span>
             </div>
           </v-col>
@@ -78,8 +79,8 @@
         <v-row align="center" justify="center" no-gutters>
           <v-col cols="10">
             <Summary
-              v-if="getTasksBySectionId(s.id).length > 0"
-              :tasks="getTasksBySectionId(s.id)"
+              v-if="$store.getters['tasks/bySectionId'](s.id).length > 0"
+              :tasks="$store.getters['tasks/bySectionId'](s.id)"
             />
           </v-col>
           <v-col cols="2">
@@ -87,7 +88,6 @@
               :section="s"
               :sectioned="true"
               :update-calc="updateCalc"
-              :get-tasks-by-section-id="getTasksBySectionId"
             />
           </v-col>
         </v-row>
@@ -98,7 +98,6 @@
 <script>
 import Summary from '~/components/Summary.vue'
 import AddButton from '~/components/AddButton.vue'
-import { getSectionById } from '~/plugins/getSectionById'
 
 export default {
   components: {
@@ -140,15 +139,6 @@ export default {
           })
         }
       })
-    },
-    getProjectById(id) {
-      return this.projects.find(x => x.id === id) || { name: '' }
-    },
-    getSectionById(id) {
-      return getSectionById(id)
-    },
-    getTasksBySectionId(sectionId) {
-      return this.tasks.filter(x => x.sectionId === sectionId)
     },
   },
 }

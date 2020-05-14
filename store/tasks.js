@@ -21,6 +21,9 @@ export const getters = {
           : 1,
       )
   },
+  bySectionId: state => sectionId => {
+    return state.today.filter(x => x.sectionId === sectionId)
+  },
 }
 
 export const mutations = {
@@ -42,6 +45,18 @@ export const actions = {
     const newTask = { ...taskTemplate, ...initials, ...payload }
     commit('add', newTask)
   },
+  updateEstFinishAt() {
+    let totalEst = 0
+    this.getters.sorted.forEach(x => {
+      if (!x.end) {
+        totalEst += parseInt(x.estimate)
+        this.$store.commit('tasks/setEstFinishAt', {
+          task: x,
+          estFinishAt: min2string(string2min(this.recentDone.end) + totalEst),
+        })
+      }
+    })
+  },
 }
 
 const taskTemplate = {
@@ -58,3 +73,8 @@ const taskTemplate = {
   updated: '',
   estFinishAt: '',
 }
+
+const pad = n => n.toString().padStart(2, 0)
+const min2string = min => `${pad(Math.floor(min / 60))}:${pad(min % 60)}`
+const string2min = str =>
+  parseInt(str.split(':')[0]) * 60 + parseInt(str.split(':')[1])

@@ -112,10 +112,6 @@ export default {
       type: Function,
       default: () => {},
     },
-    getTasksBySectionId: {
-      type: Function,
-      default: () => {},
-    },
   },
 
   data() {
@@ -151,7 +147,9 @@ export default {
     addTask() {
       const payload = {
         sortToken: genSortToken({
-          prev: this.getTasksBySectionId(this.section.id).pop().sortToken || '',
+          prev:
+            this.$store.getters['tasks/bySectionId'](this.section.id).pop()
+              .sortToken || '',
           next: '',
         }),
         name: this.taskname,
