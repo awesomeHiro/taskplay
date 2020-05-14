@@ -31,7 +31,7 @@
           <v-col cols="7" class="text-left pa-0">
             <v-list-item-content class="pa-0">
               <v-list-item-title
-                class="subtitle-2"
+                class="subtitle-2 subtle--text"
                 v-text="t.repeat ? t.name + ' ↺' : t.name"
               ></v-list-item-title>
               <v-list-item-subtitle
@@ -48,7 +48,7 @@
             <div class="barely--text">
               {{ t.estimate }}
             </div>
-            <div v-if="t.result">
+            <div v-if="t.result" class="subtle--text">
               {{ t.result }}
             </div>
           </v-col>
@@ -64,10 +64,10 @@
             </div>
           </v-col>
           <v-col cols="1" class="ma-0 pa-0">
-            <div v-if="!ti">
+            <div v-if="!ti" class="subtle--text">
               {{ t.start }}
             </div>
-            <div v-if="t.end">
+            <div v-if="t.end" class="subtle--text">
               {{ t.end }}
             </div>
             <div v-if="!t.end" class="barely--text">
