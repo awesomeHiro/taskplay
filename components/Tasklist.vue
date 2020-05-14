@@ -1,5 +1,6 @@
 <template>
   <v-list two-line dense>
+    {{}} aaa
     <v-list-item-group v-model="selected" active-class="blue--text">
       <div v-for="s in sections" :key="s.id">
         <v-row align="center" justify="center" class="caption" no-gutters>
@@ -15,7 +16,7 @@
           class="pl-0 pr-0"
         >
           <v-col cols="1" class="pa-0 ma-0">
-            <div class="drag-bar pa-0 ma-0" @click="alert('drag')">
+            <div class="drag-bar pa-0 ma-0">
               <v-icon color="barely">
                 drag_handle
               </v-icon>
@@ -98,6 +99,7 @@
 <script>
 import Summary from '~/components/Summary.vue'
 import AddButton from '~/components/AddButton.vue'
+import { getSectionById } from '~/plugins/getSectionById'
 
 export default {
   components: {
@@ -109,34 +111,13 @@ export default {
       selected: [2],
       sections: this.$store.state.sections.sections,
       projects: this.$store.state.projects.projects,
+      tasks: this.$store.getters['tasks/sorted'],
     }
   },
   computed: {
-    // currentSection() {
-    //   const date = new Date()
-    //   return this.sections
-    //     .filter(x => x.start < date.getHours() + ':' + date.getMinutes())
-    //     .pop()
-    // },
-    sortedTasks() {
-      return [...this.$store.state.tasks.today]
-        .sort((a, b) => (a.sortToken < b.sortToken ? -1 : 1))
-        .sort(
-          (a, b) =>
-            (a.end === '') - (b.end === '') ||
-            +(a.end > b.end) ||
-            -(a.end < b.end),
-        )
-        .sort((a, b) =>
-          this.getSectionById(a.sectionId).start <
-          this.getSectionById(b.sectionId).start
-            ? -1
-            : 1,
-        )
-    },
     recentDone() {
-      if (this.sortedTasks.length === 0) return 0
-      return [...this.sortedTasks]
+      if (this.tasks.length === 0) return 0
+      return [...this.tasks]
         .filter(x => x.end)
         .sort((a, b) => a.end - b.end)
         .pop()
@@ -147,12 +128,11 @@ export default {
   },
   methods: {
     updateCalc() {
-      this.$store.commit('tasks/sort')
       this.updateEstFinishAt()
     },
     updateEstFinishAt() {
       let totalEst = 0
-      this.sortedTasks.forEach(x => {
+      this.tasks.forEach(x => {
         if (!x.end) {
           totalEst += parseInt(x.estimate)
           this.$store.commit('tasks/setEstFinishAt', {
@@ -166,13 +146,10 @@ export default {
       return this.projects.find(x => x.id === id) || { name: '' }
     },
     getSectionById(id) {
-      return this.sections.find(x => x.id === id) || { name: '' }
-    },
-    alert(s) {
-      alert(s)
+      return getSectionById(id)
     },
     getTasksBySectionId(sectionId) {
-      return this.sortedTasks.filter(x => x.sectionId === sectionId)
+      return this.tasks.filter(x => x.sectionId === sectionId)
     },
   },
 }
