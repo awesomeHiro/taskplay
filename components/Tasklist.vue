@@ -1,6 +1,5 @@
 <template>
   <v-list two-line dense>
-    {{}}
     <v-list-item-group v-model="selected" active-class="blue--text">
       <div v-for="s in sections" :key="s.id">
         <v-row align="center" justify="center" class="caption" no-gutters>
