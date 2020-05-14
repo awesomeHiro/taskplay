@@ -1,6 +1,5 @@
 <template>
   <v-list two-line dense>
-    {{}} aaa
     <v-list-item-group v-model="selected" active-class="blue--text">
       <div v-for="s in sections" :key="s.id">
         <v-row align="center" justify="center" class="caption" no-gutters>
@@ -37,7 +36,7 @@
               ></v-list-item-title>
               <v-list-item-subtitle
                 class="barely--text"
-                v-text="getProjectById(t.projectId).name"
+                v-text="$store.getters['projects/byId'](t.projectId).name"
               ></v-list-item-subtitle>
               <v-list-item-subtitle
                 class="barely--text"
