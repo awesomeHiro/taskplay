@@ -21,8 +21,15 @@ export const getters = {
           : 1,
       )
   },
-  bySectionId: state => sectionId => {
-    return state.today.filter(x => x.sectionId === sectionId)
+  bySectionId: (state, getters) => sectionId => {
+    return getters.sorted.filter(x => x.sectionId === sectionId)
+  },
+  recentDone: (state, getters) => {
+    if (getters.sorted.length === 0) return 0
+    return [...getters.sorted]
+      .filter(x => x.end)
+      .sort((a, b) => a.end - b.end)
+      .pop()
   },
 }
 
@@ -45,14 +52,18 @@ export const actions = {
     const newTask = { ...taskTemplate, ...initials, ...payload }
     commit('add', newTask)
   },
-  updateEstFinishAt() {
+  updateEstFinishAt({ commit }, payload) {
+    // console.log(this.getters['tasks/sorted'])
+    // console.log(this.getters['tasks/recentDone'])
     let totalEst = 0
-    this.getters.sorted.forEach(x => {
+    this.getters['tasks/sorted'].forEach(x => {
       if (!x.end) {
         totalEst += parseInt(x.estimate)
-        this.$store.commit('tasks/setEstFinishAt', {
+        this.commit('tasks/setEstFinishAt', {
           task: x,
-          estFinishAt: min2string(string2min(this.recentDone.end) + totalEst),
+          estFinishAt: min2string(
+            string2min(this.getters['tasks/recentDone'].end) + totalEst,
+          ),
         })
       }
     })

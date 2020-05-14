@@ -87,7 +87,7 @@
             <add-button
               :section="s"
               :sectioned="true"
-              :update-calc="updateCalc"
+              :calc-tasks="calcTasks"
             />
           </v-col>
         </v-row>
@@ -112,38 +112,13 @@ export default {
       tasks: this.$store.getters['tasks/sorted'],
     }
   },
-  computed: {
-    recentDone() {
-      if (this.tasks.length === 0) return 0
-      return [...this.tasks]
-        .filter(x => x.end)
-        .sort((a, b) => a.end - b.end)
-        .pop()
-    },
-  },
   created() {
-    this.updateCalc()
+    this.calcTasks()
   },
   methods: {
-    updateCalc() {
-      this.updateEstFinishAt()
-    },
-    updateEstFinishAt() {
-      let totalEst = 0
-      this.tasks.forEach(x => {
-        if (!x.end) {
-          totalEst += parseInt(x.estimate)
-          this.$store.commit('tasks/setEstFinishAt', {
-            task: x,
-            estFinishAt: min2string(string2min(this.recentDone.end) + totalEst),
-          })
-        }
-      })
+    calcTasks() {
+      this.$store.dispatch('tasks/updateEstFinishAt')
     },
   },
 }
-const pad = n => n.toString().padStart(2, 0)
-const min2string = min => `${pad(Math.floor(min / 60))}:${pad(min % 60)}`
-const string2min = str =>
-  parseInt(str.split(':')[0]) * 60 + parseInt(str.split(':')[1])
 </script>
