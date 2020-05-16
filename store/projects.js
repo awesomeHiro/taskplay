@@ -1,4 +1,4 @@
-import projects from './projects.json'
+import projects from './fire-store/projects.json'
 
 export const state = () => ({
   projects,

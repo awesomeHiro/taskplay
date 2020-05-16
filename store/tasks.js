@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid'
-import today from './tasks.json'
+import today from './fire-store/tasks.json'
 import { getSectionById } from '~/plugins/getSectionById'
 
 export const state = () => ({
@@ -30,6 +30,13 @@ export const getters = {
       .filter(x => x.end)
       .sort((a, b) => a.end - b.end)
       .pop()
+  },
+  sectionLastTasks: (state, getters, rootState) => {
+    return rootState.sections.sections.map(section =>
+      getters.sorted.reverse().find(task => {
+        return task.sectionId === section.id
+      }),
+    )
   },
 }
 
