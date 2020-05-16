@@ -5,7 +5,6 @@
 <script>
 // import Comp from '~/components/Progress.vue'
 import Comp from '~/pages/main.vue'
-// import Comp from '~/components/Temp.vue'
 
 export default {
   components: {

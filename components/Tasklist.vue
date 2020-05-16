@@ -1,5 +1,6 @@
 <template>
   <v-list two-line dense>
+    {{ tasks }}
     <v-list-item-group v-model="selected" active-class="blue--text">
       <div v-for="s in sections" :key="s.id">
         <v-row align="center" justify="center" class="caption" no-gutters>
@@ -9,6 +10,7 @@
           </v-col>
           <v-col><v-divider clsss="ma-2"/></v-col>
         </v-row>
+        <draggable />
         <v-list-item
           v-for="(t, ti) in $store.getters['tasks/bySectionId'](s.id)"
           :key="t.id"
@@ -95,6 +97,7 @@
   </v-list>
 </template>
 <script>
+import draggable from 'vuedraggable'
 import Summary from '~/components/Summary.vue'
 import AddButton from '~/components/AddButton.vue'
 
@@ -102,14 +105,24 @@ export default {
   components: {
     Summary,
     AddButton,
+    draggable,
   },
   data() {
     return {
       selected: [2],
       sections: this.$store.state.sections.sections,
       projects: this.$store.state.projects.projects,
-      tasks: this.$store.getters['tasks/sorted'],
     }
+  },
+  computed: {
+    tasks: {
+      get() {
+        return this.$store.getters['tasks/sorted']
+      },
+      set(payload) {
+        this.$store.dispatch('tasks/updateOrder', payload)
+      },
+    },
   },
   created() {
     this.calcTasks()
