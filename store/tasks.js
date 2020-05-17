@@ -44,6 +44,10 @@ export const mutations = {
   add(state, payload) {
     state.today.push(payload)
   },
+  edit(state, payload) {
+    const index = state.today.findIndex(x => x.id === payload.id)
+    state.today.splice(index, 1, { ...state.today[index], ...payload })
+  },
   setEstFinishAt(state, payload) {
     state.today.find(x => x === payload.task).estFinishAt = payload.estFinishAt
   },
