@@ -88,3 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# I don't wanna upload api key to a public git
+nuxt.config.js.withFirebase
