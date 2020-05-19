@@ -108,11 +108,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    updateCalc: {
-      type: Function,
-      default: () => {},
-    },
-    getTasksBySectionId: {
+    calcTasks: {
       type: Function,
       default: () => {},
     },
@@ -151,7 +147,9 @@ export default {
     addTask() {
       const payload = {
         sortToken: genSortToken({
-          prev: this.getTasksBySectionId(this.section.id).pop().sortToken || '',
+          prev:
+            this.$store.getters['tasks/bySectionId'](this.section.id).pop()
+              .sortToken || '',
           next: '',
         }),
         name: this.taskname,
@@ -161,7 +159,7 @@ export default {
       }
       this.$store.dispatch('tasks/add', payload)
       this.sheet = false
-      this.updateCalc()
+      this.calcTasks()
     },
   },
 }

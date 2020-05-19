@@ -1,4 +1,4 @@
-import config from './config.json'
+import config from './fire-store/config.json'
 
 export const state = () => ({
   config,

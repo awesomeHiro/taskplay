@@ -1,93 +1,128 @@
 <template>
   <v-list two-line dense>
     <v-list-item-group v-model="selected" active-class="blue--text">
-      <div v-for="s in sections" :key="s.id">
+      <div v-for="section in sections" :key="section.id">
         <v-row align="center" justify="center" class="caption" no-gutters>
           <v-col><v-divider clsss="ma-2"/></v-col>
           <v-col cols="auto">
-            <div class="body-1">{{ s.name }} {{ s.start }} - {{ s.desc }}</div>
+            <div class="body-1">
+              {{ section.name }} {{ section.start }} - {{ section.desc }}
+            </div>
           </v-col>
           <v-col><v-divider clsss="ma-2"/></v-col>
         </v-row>
-        <v-list-item
-          v-for="(t, ti) in getTasksBySectionId(s.id)"
-          :key="t.id"
-          class="pl-0 pr-0"
+        <drop-list
+          :items="tasksBySection(section)"
+          @reorder="changeOrder($event, tasksBySection(section))"
         >
-          <v-col cols="1" class="pa-0 ma-0">
-            <div class="drag-bar pa-0 ma-0" @click="alert('drag')">
-              <v-icon color="barely">
-                drag_handle
-              </v-icon>
-            </div>
-          </v-col>
-          <v-col cols="1" class="pa-0 ma-0">
-            <div class="drag-bar pa-0 ma-0 subtle--text">
-              <span>
-                {{ getSectionById(t.sectionId).name }}
-              </span>
-            </div>
-          </v-col>
-          <v-col cols="7" class="text-left pa-0">
-            <v-list-item-content class="pa-0">
-              <v-list-item-title
-                class="subtitle-2"
-                v-text="t.repeat ? t.name + ' ↺' : t.name"
-              ></v-list-item-title>
-              <v-list-item-subtitle
-                class="barely--text"
-                v-text="getProjectById(t.projectId).name"
-              ></v-list-item-subtitle>
-              <v-list-item-subtitle
-                class="barely--text"
-                v-text="t.sortToken.slice(0, 3)"
-              ></v-list-item-subtitle>
-            </v-list-item-content>
-          </v-col>
-          <v-col cols="1" class="pa-0 ma-0">
-            <div class="barely--text">
-              {{ t.estimate }}
-            </div>
-            <div v-if="t.result">
-              {{ t.result }}
-            </div>
-          </v-col>
-          <v-col cols="1" class="pa-0 ma-0">
-            <!-- eslint-disable-next-line prettier/prettier -->
-                <div  v-if="t.result" :class="0 >= t.result - t.estimate  ? 'success--text' : 'error--text'">
-              <!-- eslint-disable-next-line prettier/prettier -->
+          <template v-slot:item="{ item, reorder }">
+            <drag :key="item.id" :data="item">
+              <v-list-item
+                :disabled="Boolean(item.start)"
+                :style="
+                  reorder
+                    ? { borderLeft: '2px solid #1976D2', marginLeft: '-2px' }
+                    : {}
+                "
+                class="pl-0 pr-0"
+              >
+                <v-row>
+                  <v-col cols="1" class="pa-0 ma-0">
+                    <div class="drag-bar pa-0 ma-0">
+                      <v-icon color="barely">
+                        drag_handle
+                      </v-icon>
+                    </div>
+                  </v-col>
+                  <v-col cols="1" class="pa-0 ma-0">
+                    <div class="drag-bar pa-0 ma-0 subtle--text">
+                      <span>
+                        {{
+                          $store.getters['sections/byId'](item.sectionId).name
+                        }}
+                      </span>
+                    </div>
+                  </v-col>
+                  <v-col cols="7" class="text-left pa-0">
+                    <v-list-item-content class="pa-0">
+                      <v-list-item-title
+                        class="subtitle-2 subtle--text"
+                        v-text="item.repeat ? item.name + ' ↺' : item.name"
+                      ></v-list-item-title>
+                      <v-list-item-subtitle
+                        class="barely--text"
+                        v-text="
+                          $store.getters['projects/byId'](item.projectId).name
+                        "
+                      ></v-list-item-subtitle>
+                      <v-list-item-subtitle
+                        class="barely--text"
+                        v-text="item.sortToken.slice(0, 3)"
+                      ></v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-col>
+                  <v-col cols="1" class="pa-0 ma-0">
+                    <div class="barely--text">
+                      {{ item.estimate }}
+                    </div>
+                    <div v-if="item.result" class="subtle--text">
+                      {{ item.result }}
+                    </div>
+                  </v-col>
+                  <v-col cols="1" class="pa-0 ma-0">
+                    <!-- eslint-disable-next-line prettier/prettier -->
+                <div  v-if="item.result" :class="0 >= item.result - item.estimate  ? 'success--text' : 'error--text'">
+                      <!-- eslint-disable-next-line prettier/prettier -->
                   {{
-                0 >= t.result - t.estimate
-                  ? t.result - t.estimate
-                  : '+' + (t.result - t.estimate)
-              }}
-            </div>
-          </v-col>
-          <v-col cols="1" class="ma-0 pa-0">
-            <div v-if="!ti">
-              {{ t.start }}
-            </div>
-            <div v-if="t.end">
-              {{ t.end }}
-            </div>
-            <div v-if="!t.end" class="barely--text">
-              {{ t.estFinishAt }}
-            </div>
-          </v-col>
-        </v-list-item>
-        <v-row align="center" justify="center" no-gutters>
+                        0 >= item.result - item.estimate
+                          ? item.result - item.estimate
+                          : '+' + (item.result - item.estimate)
+                      }}
+                    </div>
+                  </v-col>
+                  <v-col cols="1" class="ma-0 pa-0">
+                    <div v-if="true" class="subtle--text">
+                      {{ item.start }}
+                    </div>
+                    <div v-if="item.end" class="subtle--text">
+                      {{ item.end }}
+                    </div>
+                    <div v-if="!item.end" class="barely--text">
+                      {{ item.estFinishAt }}
+                    </div>
+                  </v-col>
+                </v-row>
+              </v-list-item>
+            </drag>
+          </template>
+          <template v-slot:inserting-drag-image="{ data }">
+            <v-list-item-avatar
+              style="transform:translate(-50%, -50%) scale(1.5)"
+            >
+              <img :src="data.avatar" />
+            </v-list-item-avatar>
+          </template>
+          <template v-slot:reordering-drag-image />
+          <template v-slot:feedback="{ data }">
+            <v-skeleton-loader
+              :key="data.title"
+              type="list-item-avatar-three-line"
+              style="border-left: 2px solid #1976D2; margin-left: -2px;"
+            />
+          </template>
+        </drop-list>
+        <v-row>
           <v-col cols="10">
             <Summary
-              v-if="getTasksBySectionId(s.id).length > 0"
-              :tasks="getTasksBySectionId(s.id)"
+              v-if="$store.getters['tasks/bySectionId'](section.id).length > 0"
+              :tasks="$store.getters['tasks/bySectionId'](section.id)"
             />
           </v-col>
           <v-col cols="2">
             <add-button
-              :section="s"
+              :section="section"
               :sectioned="true"
-              :update-calc="updateCalc"
-              :get-tasks-by-section-id="getTasksBySectionId"
+              :calc-tasks="calcTasks"
             />
           </v-col>
         </v-row>
@@ -96,13 +131,17 @@
   </v-list>
 </template>
 <script>
+import { Drag, DropList } from 'vue-easy-dnd'
 import Summary from '~/components/Summary.vue'
 import AddButton from '~/components/AddButton.vue'
+// import { genSortToken } from '~/plugins/genSortToken'
 
 export default {
   components: {
     Summary,
     AddButton,
+    Drag,
+    DropList,
   },
   data() {
     return {
@@ -112,72 +151,36 @@ export default {
     }
   },
   computed: {
-    // currentSection() {
-    //   const date = new Date()
-    //   return this.sections
-    //     .filter(x => x.start < date.getHours() + ':' + date.getMinutes())
-    //     .pop()
-    // },
-    sortedTasks() {
-      return [...this.$store.state.tasks.today]
-        .sort((a, b) => (a.sortToken < b.sortToken ? -1 : 1))
-        .sort(
-          (a, b) =>
-            (a.end === '') - (b.end === '') ||
-            +(a.end > b.end) ||
-            -(a.end < b.end),
-        )
-        .sort((a, b) =>
-          this.getSectionById(a.sectionId).start <
-          this.getSectionById(b.sectionId).start
-            ? -1
-            : 1,
-        )
-    },
-    recentDone() {
-      if (this.sortedTasks.length === 0) return 0
-      return [...this.sortedTasks]
-        .filter(x => x.end)
-        .sort((a, b) => a.end - b.end)
-        .pop()
+    tasks() {
+      return this.$store.getters['tasks/sorted']
     },
   },
   created() {
-    this.updateCalc()
+    this.calcTasks()
   },
   methods: {
-    updateCalc() {
-      this.$store.commit('tasks/sort')
-      this.updateEstFinishAt()
+    changeOrder(event, tasks) {
+      if (tasks.length < 2) return
+      let prev = ''
+      let next = ''
+      if (event.to < tasks.length - 2) next = tasks[event.to + 1].sortToken
+      if (event.to > 1) prev = tasks[event.to - 1].sortToken
+      // const payload = {
+      //   sortToken: genSortToken({
+      //     prev,
+      //     next,
+      //   }),
+      // }
+      // console.log(payload.sortToken)
+
+      return [prev, next]
     },
-    updateEstFinishAt() {
-      let totalEst = 0
-      this.sortedTasks.forEach(x => {
-        if (!x.end) {
-          totalEst += parseInt(x.estimate)
-          this.$store.commit('tasks/setEstFinishAt', {
-            task: x,
-            estFinishAt: min2string(string2min(this.recentDone.end) + totalEst),
-          })
-        }
-      })
+    tasksBySection(section) {
+      return this.$store.getters['tasks/bySectionId'](section.id)
     },
-    getProjectById(id) {
-      return this.projects.find(x => x.id === id) || { name: '' }
-    },
-    getSectionById(id) {
-      return this.sections.find(x => x.id === id) || { name: '' }
-    },
-    alert(s) {
-      alert(s)
-    },
-    getTasksBySectionId(sectionId) {
-      return this.sortedTasks.filter(x => x.sectionId === sectionId)
+    calcTasks() {
+      this.$store.dispatch('tasks/updateEstFinishAt')
     },
   },
 }
-const pad = n => n.toString().padStart(2, 0)
-const min2string = min => `${pad(Math.floor(min / 60))}:${pad(min % 60)}`
-const string2min = str =>
-  parseInt(str.split(':')[0]) * 60 + parseInt(str.split(':')[1])
 </script>
