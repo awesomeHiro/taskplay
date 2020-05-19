@@ -1,0 +1,17 @@
+# backlog
+edit task
+execute task
+
+# todo
+
+# doing
+sortable task list
+cheapest data structure on fireStore
+
+# done
+store implement
+summary component
+addTask component
+clock component
+daytab component
+main page
