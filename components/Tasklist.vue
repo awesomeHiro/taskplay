@@ -13,11 +13,13 @@
           <v-list-item
             v-for="(t, ti) in $store.getters['tasks/bySectionId'](s.id)"
             :key="t.id"
+            v-model="selected"
             :disabled="Boolean(t.start)"
             class="pl-0 pr-0"
+            active-class="pink--text"
           >
-            <v-col cols="1" class="pa-0 ma-0">
-              <div class="handle pa-0 ma-0">
+            <v-col cols="1" class="handle px-0 mx-0" style="height: 100%">
+              <div>
                 <v-icon color="barely">
                   drag_handle
                 </v-icon>
