@@ -1,14 +1,19 @@
 # backlog--------------------------
+3 pain UI(maybe)
 fireStore implement
-edit task
 execute task
+edit task
 user auth
+define data structure
+space property to summary
 
 # todo-----------------------------
-sortable task list
+sortable task list with handle
+add Vue.Draggable
+3 pain UI(sections, todo tasks, done tasks)
 
 # doing----------------------------
-define data structure
+remove vue-easy-dnd
 
 # done-----------------------------
 try fireStore

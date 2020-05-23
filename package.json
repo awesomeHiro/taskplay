@@ -32,7 +32,7 @@
     "firebase": "^7.14.4",
     "nanoid": "^3.1.6",
     "nuxt": "^2.0.0",
-    "vue-easy-dnd": "^1.7.1"
+    "vuedraggable": "^2.23.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
