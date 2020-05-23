@@ -27,10 +27,12 @@
   },
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.0",
+    "@nuxtjs/firebase": "^5.2.0",
     "@nuxtjs/pwa": "^3.0.0-0",
+    "firebase": "^7.14.4",
     "nanoid": "^3.1.6",
     "nuxt": "^2.0.0",
-    "vue-easy-dnd": "^1.7.1"
+    "vuedraggable": "^2.23.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
