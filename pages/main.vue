@@ -4,7 +4,7 @@
       <v-card id="main" max-width="600px">
         <v-divider />
         <v-divider />
-        <Summary :tasks="tasks" />
+        <Summary :tasks="this.$store.state.tasks.today" />
         <clock />
         <Tasklist />
         <v-list-item />
@@ -24,23 +24,6 @@ export default {
     Summary,
     Tasklist,
     Clock,
-  },
-  data() {
-    return {
-      tasks: this.$store.state.tasks.today,
-      leftDrawer: false,
-      rightDrawer: false,
-      winodowHeight: window.innerHeight,
-      winodowWidth: window.innerWidth,
-    }
-  },
-  methods: {
-    toggleLeftDrawer(ref) {
-      this.leftDrawer = !this.leftDrawer
-    },
-    toggleRightDrawer(ref) {
-      this.rightDrawer = !this.rightDrawer
-    },
   },
 }
 </script>
