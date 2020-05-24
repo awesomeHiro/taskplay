@@ -3,17 +3,16 @@
     class="carousel"
     style="margin: 0px; padding: 0px; width: 100%; height: 100%"
   >
-    <v-carousel
+    <v-window
       v-model="currentCarousel"
       :continuous="false"
       :show-arrows="showArrows"
       hide-delimiters
-      style="margin: 0px; padding: 0px; width: 100%; height: 100%"
     >
-      <v-carousel-item><left /></v-carousel-item>
-      <v-carousel-item><center /></v-carousel-item>
-      <v-carousel-item><right /></v-carousel-item>
-    </v-carousel>
+      <v-window-item><left /></v-window-item>
+      <v-window-item><center /></v-window-item>
+      <v-window-item><right /></v-window-item>
+    </v-window>
   </div>
 </template>
 <script>
@@ -26,12 +25,15 @@ export default {
     center,
     right,
   },
-  data() {
-    return {
-      currentCarousel: 0,
-    }
-  },
   computed: {
+    currentCarousel: {
+      get() {
+        return this.$store.getters['meta/currentCarousel']
+      },
+      set(value) {
+        this.$store.commit('meta/setCurrentCarousel', value)
+      },
+    },
     showArrows() {
       if (this.currentCarousel === 1) return false
       return true
