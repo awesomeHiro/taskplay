@@ -8,14 +8,14 @@ define data structure
 space property to summary
 
 # todo-----------------------------
-sortable task list with handle
-add Vue.Draggable
 3 pain UI(sections, todo tasks, done tasks) by carousel
 
 # doing----------------------------
 remove vue-easy-dnd
 
 # done-----------------------------
+sortable task list with handle
+add Vue.Draggable
 try fireStore
 store implement
 summary component

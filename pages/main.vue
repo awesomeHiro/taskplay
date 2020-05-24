@@ -4,9 +4,10 @@
     style="margin: 0px; padding: 0px; width: 100%; height: 100%"
   >
     <v-carousel
-      value="currentCarousel"
+      v-model="currentCarousel"
       :continuous="false"
-      :show-arrows="false"
+      :show-arrows="showArrows"
+      hide-delimiters
       style="margin: 0px; padding: 0px; width: 100%; height: 100%"
     >
       <v-carousel-item><left /></v-carousel-item>
@@ -26,7 +27,15 @@ export default {
     right,
   },
   data() {
-    return {}
+    return {
+      currentCarousel: 0,
+    }
+  },
+  computed: {
+    showArrows() {
+      if (this.currentCarousel === 1) return false
+      return true
+    },
   },
 }
 </script>
