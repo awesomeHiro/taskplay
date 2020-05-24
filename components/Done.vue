@@ -13,7 +13,9 @@
             <v-col><v-divider clsss="ma-2"/></v-col>
           </v-row>
           <v-list-item
-            v-for="(t, ti) in $store.getters['tasks/bySectionId'](section.id)"
+            v-for="(t, ti) in $store.getters['tasks/bySectionId'](
+              section.id,
+            ).reverse()"
             :key="t.id"
             :disabled="Boolean(t.start)"
             class="pl-0 pr-0"
@@ -60,7 +62,6 @@
             <v-col cols="1" class="pa-0 ma-0">
               <!-- eslint-disable-next-line prettier/prettier -->
                 <div  v-if="t.result" :class="0 >= t.result - t.estimate  ? 'success--text' : 'error--text'">
-                >
                 <!-- eslint-disable-next-line prettier/prettier -->
                   {{
                   0 >= t.result - t.estimate
