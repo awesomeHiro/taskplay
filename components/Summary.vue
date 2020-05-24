@@ -45,6 +45,11 @@
           Left<br /><v-divider class="mx-2" />{{ left }}
         </div>
       </v-col>
+      <v-col cols="2">
+        <div v-if="tasks.some(x => x.end)">
+          Left<br /><v-divider class="mx-2" />{{ left }}
+        </div>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -56,6 +61,11 @@ export default {
       require: true,
       default: () => [],
     },
+  },
+  data() {
+    return {
+      sections: this.$store.state.sections.sections,
+    }
   },
   computed: {
     estimate() {
@@ -90,6 +100,13 @@ export default {
         )
     },
     left() {
+      return min2string(
+        this.tasks
+          .filter(task => !task.end)
+          .reduce((total, task) => (total += parseInt(task.estimate)), 0),
+      )
+    },
+    margin() {
       return min2string(
         this.tasks
           .filter(task => !task.end)

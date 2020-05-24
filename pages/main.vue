@@ -26,12 +26,15 @@ export default {
     center,
     right,
   },
-  data() {
-    return {
-      currentCarousel: 0,
-    }
-  },
   computed: {
+    currentCarousel: {
+      get() {
+        return this.$store.getters['meta/currentCarousel']
+      },
+      set(value) {
+        this.$store.commit('meta/setCurrentCarousel', value)
+      },
+    },
     showArrows() {
       if (this.currentCarousel === 1) return false
       return true
