@@ -1,11 +1,11 @@
 # backlog--------------------------
-3 pain UI(maybe)
 fireStore implement
 execute task
 edit task
 user auth
 define data structure
 space property to summary
+statistic
 
 # todo-----------------------------
 3 pain UI(sections, todo tasks, done tasks) by carousel

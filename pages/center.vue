@@ -6,7 +6,7 @@
         <v-divider />
         <Summary :tasks="this.$store.state.tasks.today" />
         <clock />
-        <Todo />
+        <Todo :section="selectedSection" />
         <v-list-item />
         <MenuButton />
       </v-card>
@@ -24,6 +24,16 @@ export default {
     Summary,
     Todo,
     Clock,
+  },
+  computed: {
+    selectedSection: {
+      get() {
+        return this.$store.getters['meta/selectedSection']
+      },
+      set(sectionId) {
+        this.$store.commit('meta/setSelectedSection', sectionId)
+      },
+    },
   },
 }
 </script>
