@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <v-content>
-      <v-container fluid style="margin: 0px; padding: 0px; width: 100%">
+      <v-container
+        class="align-stretch"
+        style="margin: 0px; padding: 0px; width: 100%; height: 100%"
+      >
         <nuxt />
       </v-container>
     </v-content>

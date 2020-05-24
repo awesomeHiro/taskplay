@@ -1,39 +1,32 @@
 <template>
-  <v-row align="center" justify="center" class="caption" no-gutters>
-    <v-col align="center" justify="center">
-      <v-card id="main" max-width="600px">
-        <v-divider />
-        <v-divider />
-        <daytab />
-        <v-divider />
-        <div class="text-center subtle--text">Today</div>
-        <Summary :tasks="tasks" />
-        <clock />
-        <Tasklist />
-        <v-list-item />
-        <MenuButton />
-      </v-card>
-    </v-col>
-  </v-row>
+  <div
+    class="carousel"
+    style="margin: 0px; padding: 0px; width: 100%; height: 100%"
+  >
+    <v-carousel
+      value="currentCarousel"
+      :continuous="false"
+      :show-arrows="false"
+      style="margin: 0px; padding: 0px; width: 100%; height: 100%"
+    >
+      <v-carousel-item><left /></v-carousel-item>
+      <v-carousel-item><center /></v-carousel-item>
+      <v-carousel-item><right /></v-carousel-item>
+    </v-carousel>
+  </div>
 </template>
 <script>
-import MenuButton from '~/components/MenuButton.vue'
-import Summary from '~/components/Summary.vue'
-import Daytab from '~/components/Daytab.vue'
-import Tasklist from '~/components/Tasklist.vue'
-import Clock from '~/components/Clock.vue'
+import left from '~/pages/left.vue'
+import center from '~/pages/center.vue'
+import right from '~/pages/right.vue'
 export default {
   components: {
-    MenuButton,
-    Summary,
-    Daytab,
-    Tasklist,
-    Clock,
+    left,
+    center,
+    right,
   },
   data() {
-    return {
-      tasks: this.$store.state.tasks.today,
-    }
+    return {}
   },
 }
 </script>
