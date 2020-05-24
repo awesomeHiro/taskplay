@@ -6,10 +6,14 @@ export const state = () => ({
 
 export const getters = {
   currentCarousel: state => [state.meta.currentCarousel][0],
+  selectedSection: state => [state.meta.selectedSection][0],
 }
 
 export const mutations = {
-  setCurrentCarousel(state, value) {
-    state.meta.currentCarousel = value
+  setCurrentCarousel(state, index) {
+    state.meta.currentCarousel = index
+  },
+  setSelectedSection(state, sectionId) {
+    state.meta.selectedSection = sectionId
   },
 }

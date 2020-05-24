@@ -1,4 +1,5 @@
 {
   "startTime": "05:00",
-  "currentCarousel": 1
+  "currentCarousel": 1,
+  "selectedSection": "--------"
 }
