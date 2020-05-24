@@ -4,8 +4,8 @@
     style="margin: 0px; padding: 0px; width: 100%; height: 100%"
   >
     <v-carousel
-      :show-arrows="false"
       :continuous="false"
+      :show-arrows="false"
       style="margin: 0px; padding: 0px; width: 100%; height: 100%"
     >
       <v-carousel-item><left /></v-carousel-item>
