@@ -4,6 +4,7 @@
     style="margin: 0px; padding: 0px; width: 100%; height: 100%"
   >
     <v-carousel
+      value="currentCarousel"
       :continuous="false"
       :show-arrows="false"
       style="margin: 0px; padding: 0px; width: 100%; height: 100%"
@@ -23,6 +24,9 @@ export default {
     left,
     center,
     right,
+  },
+  data() {
+    return {}
   },
 }
 </script>
