@@ -8,21 +8,11 @@
       </template>
       <v-list>
         <v-list-item
-          v-for="tile in tiles"
-          :key="tile.title"
+          v-for="section in sections"
+          :key="section.id"
           @click="sheet = false"
         >
-          <v-list-item-avatar>
-            <v-avatar size="32px" tile>
-              <img
-                :src="
-                  `https://cdn.vuetifyjs.com/images/bottom-sheets/${tile.img}`
-                "
-                :alt="tile.title"
-              />
-            </v-avatar>
-          </v-list-item-avatar>
-          <v-list-item-title>{{ tile.title }}</v-list-item-title>
+          <v-list-item-title>{{ section.name }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-bottom-sheet>
@@ -30,15 +20,11 @@
 </template>
 <script>
 export default {
-  data: () => ({
-    sheet: false,
-    tiles: [
-      { img: 'keep.png', title: 'Sections' },
-      { img: 'inbox.png', title: 'Sets' },
-      { img: 'hangouts.png', title: 'Routines' },
-      { img: 'messenger.png', title: 'Projects' },
-      { img: 'google.png', title: 'Settings' },
-    ],
-  }),
+  data() {
+    return {
+      sheet: false,
+      sections: this.$store.state.sections.sections,
+    }
+  },
 }
 </script>
