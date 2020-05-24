@@ -83,50 +83,16 @@
               </v-col>
             </v-list-item>
           </draggable>
-          <v-row align="center" justify="center" no-gutters>
-            <v-col cols="10">
-              <Summary
-                v-if="
-                  $store.getters['tasks/bySectionId'](section.id).length > 0
-                "
-                :tasks="$store.getters['tasks/bySectionId'](section.id)"
-              />
-            </v-col>
-            <v-col cols="2">
-              <add-button
-                :section="section"
-                :sectioned="true"
-                :calc-tasks="calcTasks"
-              />
-            </v-col>
-          </v-row>
         </div>
       </v-list-item-group>
     </v-list>
   </div>
 </template>
 <script>
-import draggable from 'vuedraggable'
-import Summary from '~/components/Summary.vue'
-import AddButton from '~/components/AddButton.vue'
-
 export default {
-  components: {
-    Summary,
-    AddButton,
-    draggable,
-  },
-  props: {
-    section: {
-      type: Object,
-      default: () => {},
-    },
-  },
   data() {
     return {
-      selected: [2],
       sections: this.$store.state.sections.sections,
-      projects: this.$store.state.projects.projects,
     }
   },
   computed: {
@@ -137,14 +103,6 @@ export default {
       set(payload) {
         this.$store.dispatch('tasks/updateOrder', payload)
       },
-    },
-  },
-  created() {
-    this.calcTasks()
-  },
-  methods: {
-    calcTasks() {
-      this.$store.dispatch('tasks/updateEstFinishAt')
     },
   },
 }
