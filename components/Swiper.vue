@@ -1,7 +1,7 @@
 <template>
   <swiper ref="swiper" class="swiper" :options="swiperOption">
-    <swiper-slide class="menu"><left /></swiper-slide>
-    <swiper-slide class="content">
+    <swiper-slide class="left"><left /></swiper-slide>
+    <swiper-slide class="center">
       <div
         class="menu-button"
         :class="{ opened: menuOpened }"
@@ -9,7 +9,7 @@
       ></div>
       <center />
     </swiper-slide>
-    <swiper-slide class="menu"><right /></swiper-slide>
+    <swiper-slide class="right"><right /></swiper-slide>
   </swiper>
 </template>
 
@@ -34,6 +34,7 @@ export default {
         initialSlide: 1,
         resistanceRatio: 0,
         slidesPerView: 'auto',
+        autoHeight: true,
         on: {
           slideChange: () => {
             // this.menuOpened = this.swiper.activeIndex === 0
@@ -58,15 +59,15 @@ export default {
 <style lang="scss" scoped>
 @import './base.scss';
 .swiper {
-  .menu {
+  .left .right {
     min-width: 100px;
-    width: 90%;
+    // width: 90%;
     // max-width: 320px;
     // background-color: #2c8dfb !important;
     color: #fff;
   }
 
-  .content {
+  .center {
     width: 100%;
   }
 

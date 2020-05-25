@@ -1,18 +1,20 @@
 <template>
   <div>
-    <v-list dense>
-      <v-list-item v-for="section in sections" :key="section.id" link>
-        <v-list-item-content>
-          <v-list-item-title>
-            <v-row>
-              <v-col> {{ section.start }} - </v-col>
-              <v-col> {{ section.name }}</v-col>
-              <v-col> {{ section.desc }}</v-col>
-            </v-row>
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
+    <v-row style="margin: 0px; padding: 0px; width: 100%; height: 100%">
+      <v-list dense>
+        <v-list-item v-for="section in sections" :key="section.id" link>
+          <v-list-item-content>
+            <v-list-item-title>
+              <v-row align="center" justify="center" class="caption" no-gutters>
+                <v-col> {{ section.start }} - </v-col>
+                <v-col> {{ section.name }}</v-col>
+                <v-col> {{ section.desc }}</v-col>
+              </v-row>
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-row>
   </div>
 </template>
 <script>
