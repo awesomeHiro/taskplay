@@ -32,6 +32,8 @@
     "firebase": "^7.14.4",
     "nanoid": "^3.1.6",
     "nuxt": "^2.0.0",
+    "swiper": "^5.4.1",
+    "vue-awesome-swiper": "^4.1.1",
     "vuedraggable": "^2.23.2"
   },
   "devDependencies": {

@@ -2,6 +2,14 @@
   <div>
     <v-list two-line dense>
       <v-list-item-group v-model="selected" active-class="blue--text">
+        <v-row style="margin: 0px; padding: 0px; width: 100%; height: 100%">
+          <v-col>
+            <Summary
+              v-if="$store.getters['tasks/bySectionId'](section.id).length > 0"
+              :tasks="$store.getters['tasks/bySectionId'](section.id)"
+            />
+          </v-col>
+        </v-row>
         <v-row align="center" justify="center" class="caption" no-gutters>
           <v-col><v-divider clsss="ma-2"/></v-col>
           <v-col cols="auto">
@@ -84,12 +92,6 @@
           </v-list-item>
         </draggable>
         <v-row align="center" justify="center" no-gutters>
-          <v-col cols="10">
-            <Summary
-              v-if="$store.getters['tasks/bySectionId'](section.id).length > 0"
-              :tasks="$store.getters['tasks/bySectionId'](section.id)"
-            />
-          </v-col>
           <v-col cols="2">
             <add-button
               :section="section"
