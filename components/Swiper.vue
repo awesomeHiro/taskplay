@@ -6,11 +6,7 @@
         class="menu-button"
         :class="{ opened: menuOpened }"
         @click="toggleMenu($event)"
-      >
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
+      ></div>
       <center />
     </swiper-slide>
     <swiper-slide class="menu"><right /></swiper-slide>
@@ -82,24 +78,6 @@ export default {
     cursor: pointer;
     transition: 0.3s;
     // background-color: #2c8dfb;
-
-    .bar {
-      position: relative;
-      display: block;
-      width: 50px;
-      height: 5px;
-      margin: 10px auto;
-      background-color: #fff;
-      border-radius: 10px;
-      transition: 0.3s;
-
-      &:nth-of-type(1) {
-        margin-top: 0px;
-      }
-      &:nth-of-type(3) {
-        margin-bottom: 0px;
-      }
-    }
 
     &:hover {
       .bar:nth-of-type(1) {
