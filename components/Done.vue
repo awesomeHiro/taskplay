@@ -21,13 +21,6 @@
             class="pl-0 pr-0"
             active-class="pink--text"
           >
-            <v-col cols="1" class="handle px-0 mx-0" style="height: 100%">
-              <div>
-                <v-icon color="barely">
-                  drag_handle
-                </v-icon>
-              </div>
-            </v-col>
             <v-col cols="1" class="pa-0 ma-0">
               <div class="pa-0 ma-0 subtle--text">
                 <span>
@@ -35,7 +28,7 @@
                 </span>
               </div>
             </v-col>
-            <v-col cols="7" class="text-left pa-0">
+            <v-col class="text-left pa-0">
               <v-list-item-content class="pa-0">
                 <v-list-item-title
                   class="subtitle-2 subtle--text"

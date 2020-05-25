@@ -45,11 +45,6 @@
           Left<br /><v-divider class="mx-2" />{{ left }}
         </div>
       </v-col>
-      <v-col cols="2">
-        <div v-if="tasks.some(x => x.end)">
-          Left<br /><v-divider class="mx-2" />{{ left }}
-        </div>
-      </v-col>
     </v-row>
   </v-container>
 </template>
