@@ -21,6 +21,7 @@ export default {
   data() {
     return {
       swiperOption: {
+        init: false,
         initialSlide: 1,
         resistanceRatio: 0,
         slidesPerView: 'auto',
@@ -28,13 +29,14 @@ export default {
         spaceBetween: 20,
         on: {
           slideChange: () => {
-            // this.menuOpened = this.swiper.activeIndex === 0
+            console.log(this.$refs.swiper.$swiper.activeIndex)
           },
         },
       },
     }
   },
   mounted() {
+    this.$refs.swiper.$swiper.init()
     console.log(this.$refs.swiper.$swiper.activeIndex)
   },
   methods: {
