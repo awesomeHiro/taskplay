@@ -4,7 +4,6 @@
       <v-card id="main" max-width="600px">
         <clock />
         <Doing :section="selectedSection" />
-        <v-list-item />
       </v-card>
     </v-col>
   </v-row>

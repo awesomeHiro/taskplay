@@ -9,7 +9,6 @@
         </v-row>
         <Summary :tasks="this.$store.state.tasks.today" />
         <Done />
-        <v-list-item />
       </v-card>
     </v-col>
   </v-row>
