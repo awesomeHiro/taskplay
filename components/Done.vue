@@ -5,7 +5,14 @@
         <div v-for="section in sections" :key="section.id">
           <v-row align="center" justify="center" class="caption" no-gutters>
             <v-col><v-divider clsss="ma-2"/></v-col>
-            <v-col cols="auto">
+            <v-col
+              v-if="
+                $store.getters['tasks/bySectionId'](section.id).filter(
+                  t => t.end !== '',
+                ).length !== 0
+              "
+              cols="auto"
+            >
               <div class="body-1">
                 {{ section.name }} {{ section.start }} - {{ section.desc }}
               </div>
@@ -15,7 +22,7 @@
           <v-list-item
             v-for="(t, ti) in $store.getters['tasks/bySectionId'](
               section.id,
-            ).reverse()"
+            ).filter(t => t.end !== '')"
             :key="t.id"
             :disabled="Boolean(t.start)"
             class="pl-0 pr-0"

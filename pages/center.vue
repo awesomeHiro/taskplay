@@ -3,18 +3,17 @@
     <v-col align="center" justify="center">
       <v-card id="main" max-width="600px">
         <clock />
-        <Todo :section="selectedSection" />
-        <v-list-item />
+        <Doing :section="selectedSection" />
       </v-card>
     </v-col>
   </v-row>
 </template>
 <script>
-import Todo from '~/components/Todo.vue'
+import Doing from '~/components/Doing.vue'
 import Clock from '~/components/Clock.vue'
 export default {
   components: {
-    Todo,
+    Doing,
     Clock,
   },
   computed: {
