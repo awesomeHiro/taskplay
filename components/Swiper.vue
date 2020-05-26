@@ -39,6 +39,7 @@ export default {
         on: {
           slideChange: () => {
             // this.menuOpened = this.swiper.activeIndex === 0
+            // console.log(this.swiper.activeIndex)
           },
         },
       },
