@@ -2,11 +2,6 @@
   <swiper ref="swiper" class="swiper" :options="swiperOption">
     <swiper-slide class="left"><left /></swiper-slide>
     <swiper-slide class="center">
-      <div
-        class="menu-button"
-        :class="{ opened: menuOpened }"
-        @click="toggleMenu($event)"
-      ></div>
       <center />
     </swiper-slide>
     <swiper-slide class="right"><right /></swiper-slide>
@@ -14,8 +9,6 @@
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import 'swiper/css/swiper.css'
 import left from '~/pages/left.vue'
 import center from '~/pages/center.vue'
 import right from '~/pages/right.vue'
@@ -24,12 +17,9 @@ export default {
     left,
     center,
     right,
-    Swiper,
-    SwiperSlide,
   },
   data() {
     return {
-      menuOpened: false,
       swiperOption: {
         initialSlide: 1,
         resistanceRatio: 0,
@@ -39,20 +29,20 @@ export default {
         on: {
           slideChange: () => {
             // this.menuOpened = this.swiper.activeIndex === 0
-            // console.log(this.swiper.activeIndex)
           },
         },
       },
     }
   },
-  computed: {
-    swiper() {
-      return this.$refs.swiper.$swiper
-    },
+  mounted() {
+    console.log(this.$refs.swiper.$swiper.activeIndex)
   },
   methods: {
     toggleMenu(event) {
       this.menuOpened ? this.swiper.slideNext() : this.swiper.slidePrev()
+    },
+    debug() {
+      return Object.getOwnPropertyNames(this.$children[0].$swiper)
     },
   },
 }
