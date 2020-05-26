@@ -35,6 +35,7 @@ export default {
         resistanceRatio: 0,
         slidesPerView: 'auto',
         autoHeight: true,
+        spaceBetween: 20,
         on: {
           slideChange: () => {
             // this.menuOpened = this.swiper.activeIndex === 0
