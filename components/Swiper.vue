@@ -5,6 +5,8 @@
       <center />
     </swiper-slide>
     <swiper-slide class="right"><right /></swiper-slide>
+    <!-- <div v-if="true" ref="swiperButtonNext" class="swiper-button-next"></div> -->
+    <div ref="swiperButtonPrev" class="swiper-button-prev"></div>
   </swiper>
 </template>
 
@@ -20,6 +22,9 @@ export default {
   },
   data() {
     return {
+      swiper: {
+        activeIndex: 1,
+      },
       swiperOption: {
         init: false,
         initialSlide: 1,
@@ -29,15 +34,19 @@ export default {
         spaceBetween: 20,
         on: {
           slideChange: () => {
-            console.log(this.$refs.swiper.$swiper.activeIndex)
+            console.log(this.swiper.activeIndex)
           },
         },
       },
     }
   },
   mounted() {
+    this.$refs.swiper.$swiper.params.navigation.nextEl = this.$refs.swiperButtonNext
+    this.$refs.swiper.$swiper.params.navigation.prevEl = this.$refs.swiperButtonPrev
     this.$refs.swiper.$swiper.init()
-    console.log(this.$refs.swiper.$swiper.activeIndex)
+    // console.log(this.$refs.swiper.$swiper.activeIndex)
+    this.swiper = this.$refs.swiper.$swiper
+    console.log(this.swiper)
   },
   methods: {
     toggleMenu(event) {
@@ -45,6 +54,9 @@ export default {
     },
     debug() {
       return Object.getOwnPropertyNames(this.$children[0].$swiper)
+    },
+    activeIndex() {
+      return this.$refs.swiper.$swiper.activeIndex
     },
   },
 }
