@@ -96,7 +96,7 @@
             </v-col>
           </v-list-item>
         </draggable>
-        <v-row align="center" justify="center" no-gutters>
+        <v-row>
           <v-col>
             <add-field
               :section="section"

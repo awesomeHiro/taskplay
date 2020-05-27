@@ -83,7 +83,7 @@ export default {
 .swiper {
   .left .right {
     min-width: 100px;
-    // width: 90%;
+    width: 90%;
     // max-width: 320px;
     // background-color: #2c8dfb !important;
     color: #fff;
