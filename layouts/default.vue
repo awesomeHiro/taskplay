@@ -1,10 +1,7 @@
 <template>
   <v-app>
     <v-content>
-      <v-container
-        class="align-stretch"
-        style="margin: 0px; padding: 0px; width: 100%; height: 100%"
-      >
+      <v-container class="pa-0">
         <nuxt />
       </v-container>
     </v-content>
@@ -15,24 +12,6 @@
 export default {
   data() {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/',
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Settings',
-          to: '/settings',
-        },
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
       title: 'Taskplay',
     }
   },

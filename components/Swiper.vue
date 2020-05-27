@@ -1,13 +1,24 @@
 <template>
-  <swiper ref="swiper" class="swiper" :options="swiperOption">
-    <swiper-slide class="left"><left /></swiper-slide>
-    <swiper-slide class="center">
-      <center />
-    </swiper-slide>
-    <swiper-slide class="right"><right /></swiper-slide>
-    <!-- <div v-if="true" ref="swiperButtonNext" class="swiper-button-next"></div> -->
-    <div ref="swiperButtonPrev" class="swiper-button-prev"></div>
-  </swiper>
+  <div>
+    <swiper ref="swiper" class="swiper" :options="swiperOption">
+      <swiper-slide class="left"><left /></swiper-slide>
+      <swiper-slide class="center">
+        <center />
+      </swiper-slide>
+      <swiper-slide class="right"><right /></swiper-slide>
+      <div
+        v-if="swiper.activeIndex === 0"
+        ref="swiperButtonNext"
+        class="swiper-button-next"
+      ></div>
+      <div
+        v-if="swiper.activeIndex === 2"
+        ref="swiperButtonPrev"
+        class="swiper-button-prev"
+      ></div>
+    </swiper>
+    <div class="swiper-scrollbar"></div>
+  </div>
 </template>
 
 <script>
@@ -26,6 +37,11 @@ export default {
         activeIndex: 1,
       },
       swiperOption: {
+        scrollbar: {
+          el: '.swiper-scrollbar',
+          // hide: true,
+        },
+
         init: false,
         initialSlide: 1,
         resistanceRatio: 0,
