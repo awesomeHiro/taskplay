@@ -96,9 +96,9 @@
             </v-col>
           </v-list-item>
         </draggable>
-        <v-row align="center" justify="center" no-gutters>
-          <v-col cols="2">
-            <add-button
+        <v-row>
+          <v-col>
+            <add-field
               :section="section"
               :sectioned="true"
               :calc-tasks="calcTasks"
@@ -106,18 +106,19 @@
           </v-col>
         </v-row>
       </v-list-item-group>
+      <v-list-item />
     </v-list>
   </div>
 </template>
 <script>
 import draggable from 'vuedraggable'
 import Summary from '~/components/Summary.vue'
-import AddButton from '~/components/AddButton.vue'
+import AddField from '~/components/AddButton.vue'
 
 export default {
   components: {
     Summary,
-    AddButton,
+    AddField,
     draggable,
   },
   props: {

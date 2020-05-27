@@ -11,6 +11,7 @@ statistic
 
 # doing----------------------------
 redefine sections for a lite user
+fixed filed add componnet like Slack
 
 
 # done-----------------------------

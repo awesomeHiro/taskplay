@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="index"
-    style="margin: 0px; padding: 0px; width: 100%; height: 100%"
-  >
+  <div>
     <comp />
   </div>
 </template>

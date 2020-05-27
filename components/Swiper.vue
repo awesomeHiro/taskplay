@@ -1,21 +1,27 @@
 <template>
-  <swiper ref="swiper" class="swiper" :options="swiperOption">
-    <swiper-slide class="left"><left /></swiper-slide>
-    <swiper-slide class="center">
+  <div>
+    <swiper ref="swiper" class="swiper" :options="swiperOption">
+      <swiper-slide class="left"><left /></swiper-slide>
+      <swiper-slide class="center">
+        <center />
+      </swiper-slide>
+      <swiper-slide class="right"><right /></swiper-slide>
       <div
-        class="menu-button"
-        :class="{ opened: menuOpened }"
-        @click="toggleMenu($event)"
+        v-if="swiper.activeIndex === 0"
+        ref="swiperButtonNext"
+        class="swiper-button-next"
       ></div>
-      <center />
-    </swiper-slide>
-    <swiper-slide class="right"><right /></swiper-slide>
-  </swiper>
+      <div
+        v-if="swiper.activeIndex === 2"
+        ref="swiperButtonPrev"
+        class="swiper-button-prev"
+      ></div>
+    </swiper>
+    <div class="swiper-scrollbar"></div>
+  </div>
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import 'swiper/css/swiper.css'
 import left from '~/pages/left.vue'
 import center from '~/pages/center.vue'
 import right from '~/pages/right.vue'
@@ -24,13 +30,19 @@ export default {
     left,
     center,
     right,
-    Swiper,
-    SwiperSlide,
   },
   data() {
     return {
-      menuOpened: false,
+      swiper: {
+        activeIndex: 1,
+      },
       swiperOption: {
+        scrollbar: {
+          el: '.swiper-scrollbar',
+          // hide: true,
+        },
+
+        init: false,
         initialSlide: 1,
         resistanceRatio: 0,
         slidesPerView: 'auto',
@@ -38,21 +50,29 @@ export default {
         spaceBetween: 20,
         on: {
           slideChange: () => {
-            // this.menuOpened = this.swiper.activeIndex === 0
-            // console.log(this.swiper.activeIndex)
+            console.log(this.swiper.activeIndex)
           },
         },
       },
     }
   },
-  computed: {
-    swiper() {
-      return this.$refs.swiper.$swiper
-    },
+  mounted() {
+    this.$refs.swiper.$swiper.params.navigation.nextEl = this.$refs.swiperButtonNext
+    this.$refs.swiper.$swiper.params.navigation.prevEl = this.$refs.swiperButtonPrev
+    this.$refs.swiper.$swiper.init()
+    // console.log(this.$refs.swiper.$swiper.activeIndex)
+    this.swiper = this.$refs.swiper.$swiper
+    console.log(this.swiper)
   },
   methods: {
     toggleMenu(event) {
       this.menuOpened ? this.swiper.slideNext() : this.swiper.slidePrev()
+    },
+    debug() {
+      return Object.getOwnPropertyNames(this.$children[0].$swiper)
+    },
+    activeIndex() {
+      return this.$refs.swiper.$swiper.activeIndex
     },
   },
 }
@@ -63,7 +83,7 @@ export default {
 .swiper {
   .left .right {
     min-width: 100px;
-    // width: 90%;
+    width: 90%;
     // max-width: 320px;
     // background-color: #2c8dfb !important;
     color: #fff;
