@@ -2,12 +2,8 @@
   <div>
     <v-bottom-sheet v-model="sheet" max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="pink" fixed fab v-on="on">
-          <v-row align="center" justify="center">
-            <v-col>
-              <v-icon>mdi-plus</v-icon>
-            </v-col>
-          </v-row>
+        <v-btn color="pink" fab right v-on="on">
+          <v-icon>mdi-plus</v-icon>
         </v-btn>
       </template>
       <v-card class="mx-auto">
@@ -28,7 +24,7 @@
               :rules="nameRules"
               @focus="focused('taskname')"
               @keydown.enter="$refs.estimate.focus()"
-            />
+            ></v-text-field>
           </v-col>
           <v-col cols="4" class=" text-center">
             <v-text-field
