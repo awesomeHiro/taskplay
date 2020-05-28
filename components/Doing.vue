@@ -98,7 +98,8 @@
         </draggable>
         <v-row>
           <v-col>
-            <add-field
+            <AddButton
+              style="position: sticky;"
               :section="section"
               :sectioned="true"
               :calc-tasks="calcTasks"
@@ -113,12 +114,12 @@
 <script>
 import draggable from 'vuedraggable'
 import Summary from '~/components/Summary.vue'
-import AddField from '~/components/AddButton.vue'
+import AddButton from '~/components/AddButton.vue'
 
 export default {
   components: {
     Summary,
-    AddField,
+    AddButton,
     draggable,
   },
   props: {
