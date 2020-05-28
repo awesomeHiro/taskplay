@@ -34,7 +34,7 @@ export default {
         init: false,
         initialSlide: 1,
         resistanceRatio: 0,
-        slidesPerView: 'auto',
+        slidesPerView: 1.1,
         autoHeight: true,
         spaceBetween: 10,
         on: {
