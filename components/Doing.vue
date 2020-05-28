@@ -7,7 +7,7 @@
     </v-row>
     <v-list two-line dense>
       <v-list-item-group v-model="selected" active-class="blue--text">
-        <v-row class="pa-0">
+        <v-row class="pa-0 ma-0">
           <v-col>
             <Summary
               v-if="$store.getters['tasks/bySectionId'](section.id).length > 0"
