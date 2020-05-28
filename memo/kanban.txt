@@ -10,9 +10,9 @@ statistic
 # todo-----------------------------
 
 # doing----------------------------
-redefine sections for a lite user
 fixed filed add componnet like Slack
-
+redefine sections for a lite user
+fix: swiper-wrapper height is bugged
 
 # done-----------------------------
 gap between pane

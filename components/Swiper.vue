@@ -1,12 +1,12 @@
 <template>
   <swiper ref="swiper" class="swiper" :options="swiperOption">
-    <swiper-slide class="menu">
+    <swiper-slide class="menu left">
       <left />
     </swiper-slide>
-    <swiper-slide class="content">
+    <swiper-slide class="content center">
       <center />
     </swiper-slide>
-    <swiper-slide class="menu">
+    <swiper-slide class="menu right">
       <right />
     </swiper-slide>
   </swiper>
@@ -26,7 +26,9 @@ export default {
     return {
       menuOpened: false,
       swiper: {
+        // defalut value to prevent error
         activeIndex: 1,
+        updateAutoHeight: () => {},
       },
       swiperOption: {
         init: false,
@@ -38,6 +40,7 @@ export default {
         on: {
           slideChange: () => {
             this.$store.commit('meta/setActiveIndex', this.swiper.activeIndex)
+            this.swiper.updateAutoHeight()
           },
         },
       },
@@ -62,10 +65,17 @@ export default {
     overflow: auto;
     width: 95%;
   }
+  .swiper-wrapper {
+    height: auto;
+  }
 
   .content {
     overflow: auto;
     width: 100%;
+  }
+  .swiper-container {
+    width: 100%;
+    height: auto;
   }
 }
 </style>
