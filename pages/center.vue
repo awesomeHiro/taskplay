@@ -2,7 +2,6 @@
   <v-row align="center" justify="center" class="caption" no-gutters>
     <v-col align="center" justify="center">
       <v-card id="main" max-width="600px">
-        <clock />
         <Doing :section="selectedSection" />
       </v-card>
     </v-col>
@@ -10,13 +9,16 @@
 </template>
 <script>
 import Doing from '~/components/Doing.vue'
-import Clock from '~/components/Clock.vue'
+// import AddButton from '~/components/AddButton.vue'
 export default {
   components: {
+    // AddButton,
     Doing,
-    Clock,
   },
   computed: {
+    activeIndex() {
+      return this.$store.getters['meta/activeIndex']
+    },
     selectedSection: {
       get() {
         return this.$store.getters['meta/selectedSection']
@@ -24,6 +26,11 @@ export default {
       set(sectionId) {
         this.$store.commit('meta/setSelectedSection', sectionId)
       },
+    },
+  },
+  methods: {
+    calcTasks() {
+      this.$store.dispatch('tasks/updateEstFinishAt')
     },
   },
 }

@@ -84,6 +84,7 @@
           </v-list-item>
         </div>
       </v-list-item-group>
+      <v-list-item />
     </v-list>
   </div>
 </template>

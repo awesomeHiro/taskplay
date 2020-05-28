@@ -73,7 +73,7 @@
                 }}
               </div>
             </v-col>
-            <v-col cols="1" class="ma-0 pa-0">
+            <v-col cols="2" class="ma-0 pa-0">
               <div v-if="!ti" class="subtle--text">
                 {{ t.start }}
               </div>

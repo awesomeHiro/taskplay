@@ -5,7 +5,7 @@ export const state = () => ({
 })
 
 export const getters = {
-  currentCarousel: state => [state.meta.currentCarousel][0],
+  activeIndex: state => [state.meta.activeIndex][0],
   selectedSectionId: state => [state.meta.selectedSectionId][0],
   selectedSection: (state, getters, rootState) => {
     return rootState.sections.sections.find(
@@ -15,8 +15,8 @@ export const getters = {
 }
 
 export const mutations = {
-  setCurrentCarousel(state, index) {
-    state.meta.currentCarousel = index
+  setActiveIndex(state, index) {
+    state.meta.activeIndex = index
   },
   setSelectedSectionId(state, sectionId) {
     state.meta.selectedSection = sectionId
