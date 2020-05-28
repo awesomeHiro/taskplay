@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row style="margin: 0px; padding: 0px; width: 100%; height: 100%">
+    <v-row class="pa-0">
       <v-list dense>
         <v-list-item v-for="section in sections" :key="section.id" link>
           <v-list-item-content>

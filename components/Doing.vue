@@ -7,7 +7,7 @@
     </v-row>
     <v-list two-line dense>
       <v-list-item-group v-model="selected" active-class="blue--text">
-        <v-row style="margin: 0px; padding: 0px; width: 100%; height: 100%">
+        <v-row class="pa-0">
           <v-col>
             <Summary
               v-if="$store.getters['tasks/bySectionId'](section.id).length > 0"
@@ -33,7 +33,7 @@
             class="pl-0 pr-0"
             active-class="pink--text"
           >
-            <v-col cols="1" class="handle px-0 mx-0" style="height: 100%">
+            <v-col cols="1" class="handle px-0 mx-0">
               <div>
                 <v-icon color="barely">
                   drag_handle
@@ -98,7 +98,8 @@
         </draggable>
         <v-row>
           <v-col>
-            <add-field
+            <AddButton
+              style="position: sticky;"
               :section="section"
               :sectioned="true"
               :calc-tasks="calcTasks"
@@ -113,12 +114,12 @@
 <script>
 import draggable from 'vuedraggable'
 import Summary from '~/components/Summary.vue'
-import AddField from '~/components/AddButton.vue'
+import AddButton from '~/components/AddButton.vue'
 
 export default {
   components: {
     Summary,
-    AddField,
+    AddButton,
     draggable,
   },
   props: {

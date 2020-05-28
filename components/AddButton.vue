@@ -2,7 +2,7 @@
   <div>
     <v-bottom-sheet v-model="sheet" max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="pink" fab right v-on="on">
+        <v-btn color="pink" small right v-on="on">
           <v-icon>mdi-plus</v-icon>
         </v-btn>
       </template>
