@@ -29,37 +29,28 @@ export default {
         activeIndex: 1,
       },
       swiperOption: {
-        scrollbar: {
-          el: '.swiper-scrollbar',
-          // hide: true,
-        },
-
         init: false,
         initialSlide: 1,
         resistanceRatio: 0,
         slidesPerView: 'auto',
         autoHeight: true,
-        spaceBetween: 20,
+        spaceBetween: 10,
         on: {
           slideChange: () => {
-            this.menuOpened = this.swiper.activeIndex === 0
+            this.$store.commit('meta/setActiveIndex', this.swiper.activeIndex)
           },
         },
       },
     }
   },
-
+  computed: {
+    activeIndex() {
+      return this.$store.getters['meta/activeIndex']
+    },
+  },
   mounted() {
-    this.$refs.swiper.$swiper.params.navigation.nextEl = this.$refs.swiperButtonNext
-    this.$refs.swiper.$swiper.params.navigation.prevEl = this.$refs.swiperButtonPrev
     this.$refs.swiper.$swiper.init()
     this.swiper = this.$refs.swiper.$swiper
-  },
-
-  methods: {
-    toggleMenu(event) {
-      this.menuOpened ? this.swiper.slideNext() : this.swiper.slidePrev()
-    },
   },
 }
 </script>
@@ -68,10 +59,12 @@ export default {
 @import './base.scss';
 .swiper {
   .menu {
-    width: 90%;
+    overflow: auto;
+    width: 95%;
   }
 
   .content {
+    overflow: auto;
     width: 100%;
   }
 }

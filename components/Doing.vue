@@ -7,7 +7,7 @@
     </v-row>
     <v-list two-line dense>
       <v-list-item-group v-model="selected" active-class="blue--text">
-        <v-row class="pa-0">
+        <v-row class="pa-0 ma-0">
           <v-col>
             <Summary
               v-if="$store.getters['tasks/bySectionId'](section.id).length > 0"
@@ -15,6 +15,7 @@
             />
           </v-col>
         </v-row>
+
         <v-row align="center" justify="center" class="caption" no-gutters>
           <v-col><v-divider clsss="ma-2"/></v-col>
           <v-col cols="auto">
@@ -24,6 +25,7 @@
           </v-col>
           <v-col><v-divider clsss="ma-2"/></v-col>
         </v-row>
+        <clock />
         <draggable handle=".handle">
           <v-list-item
             v-for="(t, ti) in $store.getters['tasks/bySectionId'](section.id)"
@@ -96,16 +98,6 @@
             </v-col>
           </v-list-item>
         </draggable>
-        <v-row>
-          <v-col>
-            <AddButton
-              style="position: sticky;"
-              :section="section"
-              :sectioned="true"
-              :calc-tasks="calcTasks"
-            />
-          </v-col>
-        </v-row>
       </v-list-item-group>
       <v-list-item />
     </v-list>
@@ -114,12 +106,12 @@
 <script>
 import draggable from 'vuedraggable'
 import Summary from '~/components/Summary.vue'
-import AddButton from '~/components/AddButton.vue'
+import Clock from '~/components/Clock.vue'
 
 export default {
   components: {
+    Clock,
     Summary,
-    AddButton,
     draggable,
   },
   props: {
@@ -155,3 +147,9 @@ export default {
   },
 }
 </script>
+<style scoped>
+.footer {
+  -webkit-transform: translateX(95%);
+  transform: translateX(95%);
+}
+</style>
