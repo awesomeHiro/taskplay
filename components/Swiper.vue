@@ -34,13 +34,12 @@ export default {
         init: false,
         initialSlide: 1,
         resistanceRatio: 0,
-        slidesPerView: 1.1,
+        slidesPerView: 1,
         autoHeight: true,
         spaceBetween: 10,
         on: {
           slideChange: () => {
             this.$store.commit('meta/setActiveIndex', this.swiper.activeIndex)
-            this.swiper.updateAutoHeight()
           },
         },
       },
@@ -61,21 +60,23 @@ export default {
 <style lang="scss" scoped>
 @import './base.scss';
 .swiper {
-  .menu {
-    overflow: auto;
-    width: 95%;
-  }
   .swiper-wrapper {
-    height: auto;
+  }
+  .swiper-container {
+  }
+  .menu {
+    width: 95%;
+    .left {
+    }
+    .right {
+      -webkit-transform: translateX(15%);
+      transform: translateX(15%);
+    }
   }
 
   .content {
-    overflow: auto;
-    width: 100%;
-  }
-  .swiper-container {
-    width: 100%;
-    height: auto;
+    .center {
+    }
   }
 }
 </style>
