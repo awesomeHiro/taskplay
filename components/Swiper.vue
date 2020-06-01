@@ -24,6 +24,7 @@ export default {
   },
   data() {
     return {
+      mySwiper: {},
       menuOpened: false,
       swiper: {
         // defalut value to prevent error
@@ -35,11 +36,18 @@ export default {
         initialSlide: 1,
         resistanceRatio: 0,
         slidesPerView: 1,
-        autoHeight: true,
+        // autoHeight: true,
         spaceBetween: 10,
         on: {
           slideChange: () => {
             this.$store.commit('meta/setActiveIndex', this.swiper.activeIndex)
+
+            setTimeout(() => {
+              // console.log(document.querySelector('.swiper-container'))
+              // console.log(this.swiper.height)
+              document.querySelector('.swiper-container').style.height =
+                this.swiper.slides[this.swiper.activeIndex].clientHeight + 'px'
+            }, 10)
           },
         },
       },
@@ -53,6 +61,21 @@ export default {
   mounted() {
     this.$refs.swiper.$swiper.init()
     this.swiper = this.$refs.swiper.$swiper
+    this.mySwiper = this.$refs.swiper
+    console.log(this.swiper)
+
+    this.$nextTick(function() {
+      window.setInterval(() => {
+        this.updateAutoHeight()
+        // console.log(this.$refs.swiper.height)
+      }, 4000)
+    })
+  },
+  methods: {
+    updateAutoHeight() {
+      // console.log('updateAutoHeight')
+      // this.swipe.updateAutoHeight()
+    },
   },
 }
 </script>
