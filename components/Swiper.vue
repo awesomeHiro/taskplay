@@ -35,8 +35,7 @@ export default {
         init: false,
         initialSlide: 1,
         resistanceRatio: 0,
-        slidesPerView: 1,
-        // autoHeight: true,
+        slidesPerView: 'auto',
         spaceBetween: 10,
         on: {
           slideChange: () => {
@@ -83,23 +82,14 @@ export default {
 <style lang="scss" scoped>
 @import './base.scss';
 .swiper {
-  .swiper-wrapper {
-  }
-  .swiper-container {
-  }
   .menu {
-    width: 95%;
-    .left {
-    }
-    .right {
-      -webkit-transform: translateX(15%);
-      transform: translateX(15%);
-    }
+    width: 90%;
+    height: 500px;
+    overflow: auto;
   }
 
   .content {
-    .center {
-    }
+    overflow: auto;
   }
 }
 </style>
