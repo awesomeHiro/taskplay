@@ -6,15 +6,21 @@ user auth
 define data structure
 space property to summary
 statistic
+sidebar like a Discord
+
 
 # todo-----------------------------
 
-# doing----------------------------
-redefine sections for a lite user
 fixed filed add componnet like Slack
+redefine sections for a lite user
+
+# doing----------------------------
+Try UI framework Ant Design
+
 
 
 # done-----------------------------
+fix: swiper-wrapper height is bugged
 gap between pane
 3 pain UI(sections, todo tasks, done tasks) by carousel
 shrink Todo

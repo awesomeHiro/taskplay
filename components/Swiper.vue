@@ -1,13 +1,13 @@
 <template>
   <swiper ref="swiper" class="swiper" :options="swiperOption">
     <swiper-slide class="menu">
-      <left />
+      <div class="windowsize"><left ref="left" class="left" /></div>
     </swiper-slide>
     <swiper-slide class="content">
-      <center />
+      <div class="windowsize"><center ref="center" class="center" /></div>
     </swiper-slide>
     <swiper-slide class="menu">
-      <right />
+      <div class="windowsize"><right ref="right" class="right" /></div>
     </swiper-slide>
   </swiper>
 </template>
@@ -24,20 +24,34 @@ export default {
   },
   data() {
     return {
+      mySwiper: {},
       menuOpened: false,
       swiper: {
+        // defalut value to prevent error
         activeIndex: 1,
+        updateAutoHeight: () => {},
       },
       swiperOption: {
         init: false,
         initialSlide: 1,
         resistanceRatio: 0,
         slidesPerView: 'auto',
-        autoHeight: true,
         spaceBetween: 10,
         on: {
           slideChange: () => {
             this.$store.commit('meta/setActiveIndex', this.swiper.activeIndex)
+            console.log(document.documentElement.clientHeight)
+
+            // setTimeout(() => {
+            // console.log(document.querySelector('.swiper-container'))
+            // console.log(this.swiper.height)
+            //   console.log(
+            //     this.swiper.slides[this.swiper.activeIndex].firstElementChild,
+            //   )
+            //   document.querySelector('.swiper-container').style.height =
+            //     this.swiper.slides[this.swiper.activeIndex].firstElementChild
+            //       .clientHeight + 'px'
+            // }, 10)
           },
         },
       },
@@ -49,23 +63,42 @@ export default {
     },
   },
   mounted() {
+    console.log(this.$refs.left.$el.clientHeight)
+    console.log(this.$refs)
+    // console.log(this.$refs.right)
     this.$refs.swiper.$swiper.init()
     this.swiper = this.$refs.swiper.$swiper
+    this.mySwiper = this.$refs.swiper
+
+    this.$nextTick(function() {
+      window.setInterval(() => {
+        this.updateAutoHeight()
+        // console.log(this.$refs.swiper.height)
+      }, 4000)
+    })
+  },
+  methods: {
+    updateAutoHeight() {
+      // console.log('updateAutoHeight')
+      // this.swipe.updateAutoHeight()
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
 @import './base.scss';
+.windowsize {
+  height: 100vh;
+  width: 100vw;
+}
 .swiper {
   .menu {
+    width: 90vw;
     overflow: auto;
-    width: 95%;
   }
-
   .content {
     overflow: auto;
-    width: 100%;
   }
 }
 </style>
