@@ -13,7 +13,6 @@ sidebar like a Discord
 
 
 # todo-----------------------------
-
 fixed filed add componnet like Slack
 redefine sections for a lite user
 
