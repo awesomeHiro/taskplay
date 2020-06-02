@@ -1,13 +1,13 @@
 <template>
   <swiper ref="swiper" class="swiper" :options="swiperOption">
-    <swiper-slide class="menu left">
-      <left />
+    <swiper-slide class="menu">
+      <left ref="left" />
     </swiper-slide>
     <swiper-slide class="content center">
-      <center />
+      <center ref="center" />
     </swiper-slide>
     <swiper-slide class="menu right">
-      <right />
+      <right ref="right" />
     </swiper-slide>
   </swiper>
 </template>
@@ -44,8 +44,12 @@ export default {
             setTimeout(() => {
               // console.log(document.querySelector('.swiper-container'))
               // console.log(this.swiper.height)
+              console.log(
+                this.swiper.slides[this.swiper.activeIndex].firstElementChild,
+              )
               document.querySelector('.swiper-container').style.height =
-                this.swiper.slides[this.swiper.activeIndex].clientHeight + 'px'
+                this.swiper.slides[this.swiper.activeIndex].firstElementChild
+                  .clientHeight + 'px'
             }, 10)
           },
         },
@@ -58,10 +62,12 @@ export default {
     },
   },
   mounted() {
+    console.log(this.$refs.left.$el.clientHeight)
+    console.log(this.$refs)
+    // console.log(this.$refs.right)
     this.$refs.swiper.$swiper.init()
     this.swiper = this.$refs.swiper.$swiper
     this.mySwiper = this.$refs.swiper
-    console.log(this.swiper)
 
     this.$nextTick(function() {
       window.setInterval(() => {
@@ -83,13 +89,14 @@ export default {
 @import './base.scss';
 .swiper {
   .menu {
-    width: 90%;
-    height: 500px;
-    overflow: auto;
+    // width: 90%;
+    // height: 100%;
+    // overflow: auto;
   }
 
   .content {
-    overflow: auto;
+    // overflow: auto;
+    // height: 100%;
   }
 }
 </style>
