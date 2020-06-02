@@ -1,13 +1,13 @@
 <template>
   <swiper ref="swiper" class="swiper" :options="swiperOption">
     <swiper-slide class="menu">
-      <left ref="left" />
+      <div class="windowsize"><left ref="left" class="left" /></div>
     </swiper-slide>
-    <swiper-slide class="content center">
-      <center ref="center" />
+    <swiper-slide class="content">
+      <div class="windowsize"><center ref="center" class="center" /></div>
     </swiper-slide>
-    <swiper-slide class="menu right">
-      <right ref="right" />
+    <swiper-slide class="menu">
+      <div class="windowsize"><right ref="right" class="right" /></div>
     </swiper-slide>
   </swiper>
 </template>
@@ -40,17 +40,18 @@ export default {
         on: {
           slideChange: () => {
             this.$store.commit('meta/setActiveIndex', this.swiper.activeIndex)
+            console.log(document.documentElement.clientHeight)
 
-            setTimeout(() => {
-              // console.log(document.querySelector('.swiper-container'))
-              // console.log(this.swiper.height)
-              console.log(
-                this.swiper.slides[this.swiper.activeIndex].firstElementChild,
-              )
-              document.querySelector('.swiper-container').style.height =
-                this.swiper.slides[this.swiper.activeIndex].firstElementChild
-                  .clientHeight + 'px'
-            }, 10)
+            // setTimeout(() => {
+            // console.log(document.querySelector('.swiper-container'))
+            // console.log(this.swiper.height)
+            //   console.log(
+            //     this.swiper.slides[this.swiper.activeIndex].firstElementChild,
+            //   )
+            //   document.querySelector('.swiper-container').style.height =
+            //     this.swiper.slides[this.swiper.activeIndex].firstElementChild
+            //       .clientHeight + 'px'
+            // }, 10)
           },
         },
       },
@@ -87,16 +88,17 @@ export default {
 
 <style lang="scss" scoped>
 @import './base.scss';
+.windowsize {
+  height: 100vh;
+  width: 100vw;
+}
 .swiper {
   .menu {
-    // width: 90%;
-    // height: 100%;
-    // overflow: auto;
+    width: 90vw;
+    overflow: auto;
   }
-
   .content {
-    // overflow: auto;
-    // height: 100%;
+    overflow: auto;
   }
 }
 </style>
