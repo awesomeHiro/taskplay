@@ -17,6 +17,7 @@ fixed filed add componnet like Slack
 redefine sections for a lite user
 
 # doing----------------------------
+refactor tasklist for 3 columns
 
 # done-----------------------------
 fix: swiper-wrapper height is bugged
