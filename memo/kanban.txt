@@ -1,3 +1,6 @@
+# not-todo-------------------------
+Try UI framework Ant Design( vuetify with Swiper is enough for now)
+
 # backlog--------------------------
 fireStore implement
 execute task
@@ -10,14 +13,10 @@ sidebar like a Discord
 
 
 # todo-----------------------------
-
 fixed filed add componnet like Slack
 redefine sections for a lite user
 
 # doing----------------------------
-Try UI framework Ant Design
-
-
 
 # done-----------------------------
 fix: swiper-wrapper height is bugged

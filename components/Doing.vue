@@ -76,7 +76,6 @@
             <v-col cols="1" class="pa-0 ma-0">
               <!-- eslint-disable-next-line prettier/prettier -->
                 <div  v-if="t.result" :class="0 >= t.result - t.estimate  ? 'success--text' : 'error--text'">
-                >
                 <!-- eslint-disable-next-line prettier/prettier -->
                   {{
                   0 >= t.result - t.estimate
@@ -122,7 +121,7 @@ export default {
   },
   data() {
     return {
-      selected: [2],
+      selected: [1],
       sections: this.$store.state.sections.sections,
       projects: this.$store.state.projects.projects,
     }

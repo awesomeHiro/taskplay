@@ -40,18 +40,6 @@ export default {
         on: {
           slideChange: () => {
             this.$store.commit('meta/setActiveIndex', this.swiper.activeIndex)
-            console.log(document.documentElement.clientHeight)
-
-            // setTimeout(() => {
-            // console.log(document.querySelector('.swiper-container'))
-            // console.log(this.swiper.height)
-            //   console.log(
-            //     this.swiper.slides[this.swiper.activeIndex].firstElementChild,
-            //   )
-            //   document.querySelector('.swiper-container').style.height =
-            //     this.swiper.slides[this.swiper.activeIndex].firstElementChild
-            //       .clientHeight + 'px'
-            // }, 10)
           },
         },
       },
@@ -63,19 +51,9 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$refs.left.$el.clientHeight)
-    console.log(this.$refs)
-    // console.log(this.$refs.right)
     this.$refs.swiper.$swiper.init()
     this.swiper = this.$refs.swiper.$swiper
     this.mySwiper = this.$refs.swiper
-
-    this.$nextTick(function() {
-      window.setInterval(() => {
-        this.updateAutoHeight()
-        // console.log(this.$refs.swiper.height)
-      }, 4000)
-    })
   },
   methods: {
     updateAutoHeight() {
