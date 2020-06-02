@@ -8,7 +8,7 @@
     >
       <v-col cols="2">
         <div>
-          Total<br /><v-divider class="mx-2" />
+          Task<br /><v-divider class="mx-2" />
           <div
             :class="tasks.every(x => x.end) ? 'success--text' : 'warning--text'"
           >
