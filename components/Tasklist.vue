@@ -99,16 +99,15 @@ export default {
     draggable,
   },
   props: {
-    // tasks: {
-    //   type: Object,
-    //   default: () => {},
-    // },
+    tasks: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
     return {
       selected: [0],
       sections: this.$store.state.sections.sections,
-      tasks: this.$store.state.tasks.today,
     }
   },
   methods: {

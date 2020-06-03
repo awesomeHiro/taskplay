@@ -21,17 +21,23 @@ export const getters = {
           : 1,
       )
   },
-  bySectionId: (state, getters) => sectionId => {
+  todo: (_state, getters) => {
+    return getters.sorted.filter(x => x.end === '')
+  },
+  done: (_state, getters) => {
+    return getters.sorted.filter(x => x.end !== '')
+  },
+  bySectionId: (_state, getters) => sectionId => {
     return getters.sorted.filter(x => x.sectionId === sectionId)
   },
-  recentDone: (state, getters) => {
+  recentDone: (_state, getters) => {
     if (getters.sorted.length === 0) return 0
     return [...getters.sorted]
       .filter(x => x.end)
       .sort((a, b) => a.end - b.end)
       .pop()
   },
-  sectionLastTasks: (state, getters, rootState) => {
+  sectionLastTasks: (_state, getters, rootState) => {
     return rootState.sections.sections.map(section =>
       getters.sorted.reverse().find(task => {
         return task.sectionId === section.id
