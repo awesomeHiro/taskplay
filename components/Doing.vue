@@ -7,12 +7,14 @@
   </div>
 </template>
 <script>
+import Title from '~/components/Title.vue'
 import Summary from '~/components/Summary.vue'
 import Clock from '~/components/Clock.vue'
 import Tasklist from '~/components/Tasklist.vue'
 
 export default {
   components: {
+    Title,
     Clock,
     Summary,
     Tasklist,
@@ -20,14 +22,8 @@ export default {
   data() {
     return {
       title: 'Doing',
-      todo: this.$store.getters['tasks/doing'],
+      doing: this.$store.getters['tasks/doing'],
     }
   },
 }
 </script>
-<style scoped>
-.footer {
-  -webkit-transform: translateX(95%);
-  transform: translateX(95%);
-}
-</style>

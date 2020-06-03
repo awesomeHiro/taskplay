@@ -26,8 +26,8 @@ export const getters = {
   },
   doing: (_state, getters, _rootSate, rootGetters) => {
     const sectionId = rootGetters['meta/selectedSectionId']
-    console.log(sectionId)
-    return getters.sorted.filter(x => x.sectionId === sectionId)
+    const doing = getters.sorted.filter(x => x.sectionId === sectionId)
+    return doing
   },
   done: (_state, getters) => {
     return getters.sorted.filter(x => x.end !== '')
