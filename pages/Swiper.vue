@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './base.scss';
+@import '~/assets/swiper.scss';
 .windowsize {
   height: 100vh;
   width: 100vw;
