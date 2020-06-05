@@ -3,7 +3,7 @@
     <Title :title="title" />
     <Summary :tasks="doing" />
     <Clock />
-    <Tasklist :tasks="doing" />
+    <Tasklist :tasks="doing" :executable="true" />
   </div>
 </template>
 <script>
@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      title: 'Doing',
+      title: 'NOW',
       doing: this.$store.getters['tasks/doing'],
     }
   },

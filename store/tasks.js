@@ -21,16 +21,21 @@ export const getters = {
           : 1,
       )
   },
-  todo: (_state, getters) => {
-    return getters.sorted.filter(x => x.end === '')
+  todo: (_state, getters, _rootSate, rootGetters) => {
+    return getters.sorted
+      .filter(x => x.end === '')
+      .filter(x => x.sectionId !== rootGetters['meta/selectedSectionId'])
   },
   doing: (_state, getters, _rootSate, rootGetters) => {
-    const sectionId = rootGetters['meta/selectedSectionId']
-    const doing = getters.sorted.filter(x => x.sectionId === sectionId)
+    const doing = getters.sorted.filter(
+      x => x.sectionId === rootGetters['meta/selectedSectionId'],
+    )
     return doing
   },
-  done: (_state, getters) => {
-    return getters.sorted.filter(x => x.end !== '')
+  done: (_state, getters, _rootSate, rootGetters) => {
+    return getters.sorted
+      .filter(x => x.end !== '')
+      .filter(x => x.sectionId !== rootGetters['meta/selectedSectionId'])
   },
   bySectionId: (_state, getters) => sectionId => {
     return getters.sorted.filter(x => x.sectionId === sectionId)

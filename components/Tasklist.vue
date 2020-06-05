@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-list two-line dense class="caption">
+    <v-list two-line dense class="caption" :flat="!executable">
       <div v-for="section in getSectionsFromTasks(tasks)" :key="section.id">
         <v-list-item-group v-model="selected" active-class="blue--text">
           <v-row align="center" justify="center" class="caption" no-gutters>
@@ -19,6 +19,7 @@
               v-model="selected"
               :disabled="Boolean(task.start)"
               class="pl-0 pr-0"
+              flat
               active-class="pink--text"
             >
               <v-col cols="1" class="handle px-0 mx-0">
@@ -99,6 +100,10 @@ export default {
     draggable,
   },
   props: {
+    executable: {
+      type: Boolean,
+      default: false,
+    },
     tasks: {
       type: Array,
       default: () => [],

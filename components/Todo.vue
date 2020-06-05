@@ -19,8 +19,9 @@ export default {
 
   data() {
     return {
-      title: 'TODO',
+      title: 'LATER',
       todo: this.$store.getters['tasks/todo'],
+      selectedSectionId: this.$store.getters['meta/selectedSectionId'],
     }
   },
 }

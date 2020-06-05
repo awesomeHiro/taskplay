@@ -13,7 +13,7 @@ sidebar like a Discord
 
 
 # todo-----------------------------
-fixed filed add componnet like Slack
+fixed filed add component like Slack
 redefine sections for a lite user
 
 # doing----------------------------
@@ -26,8 +26,7 @@ gap between pane
 shrink Todo
 remove vue-easy-dnd
 sortable task list with handle
-add Vue.Draggable
-try fireStore
+fireStore
 store implement
 summary component
 addTask component
