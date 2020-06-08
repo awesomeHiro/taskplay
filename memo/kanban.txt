@@ -14,9 +14,11 @@ sidebar like a Discord
 
 # todo-----------------------------
 fixed filed add component like Slack
+estStart as a placeholder
 
 # doing----------------------------
-edittable tasklist
+edittable tasklist (without dialog)
+
 
 # done-----------------------------
 refactor tasklist for 3 columns
