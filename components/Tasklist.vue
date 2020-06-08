@@ -17,7 +17,7 @@
               v-for="(task, tIndex) in filterTasksBySection(section)"
               :key="task.id"
               v-model="selected"
-              :disabled="Boolean(task.start)"
+              :disabled="Boolean(task.sectionId !== selectedSectionId)"
               class="pl-0 pr-0"
               flat
               active-class="pink--text"
@@ -113,6 +113,7 @@ export default {
     return {
       selected: [0],
       sections: this.$store.state.sections.sections,
+      selectedSectionId: this.$store.getters['meta/selectedSectionId'],
     }
   },
   methods: {
