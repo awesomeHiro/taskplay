@@ -94,16 +94,12 @@
                   ></v-text-field>
                 </div>
               </v-col>
-              <!-- <v-col cols="auto" class="ma-0 pa-1">
-                <div class="subtle--text">
-                  -
-                </div>
-              </v-col> -->
               <v-col cols="1" class="ma-0 pa-0">
                 <div class="subtle--text">
                   <v-text-field
                     style="font-size:12px;"
                     :value="task.end"
+                    :placeholder="temp_estimate"
                     hide-details
                     dense
                     class="pa-0 ma-0"
@@ -140,6 +136,7 @@ export default {
   },
   data() {
     return {
+      temp_estimate: '0',
       selected: [0],
       sections: this.$store.state.sections.sections,
       selectedSectionId: this.$store.getters['meta/selectedSectionId'],
