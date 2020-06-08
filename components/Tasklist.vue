@@ -3,15 +3,7 @@
     <v-list two-line dense class="caption" :flat="!executable">
       <div v-for="section in getSectionsFromTasks(tasks)" :key="section.id">
         <v-list-item-group v-model="selected" active-class="blue--text">
-          <v-row align="center" justify="center" class="caption" no-gutters>
-            <v-col><v-divider clsss="ma-2"/></v-col>
-            <v-col cols="auto">
-              <div class="body-1">
-                {{ section.name }} {{ section.start }} - {{ section.desc }}
-              </div>
-            </v-col>
-            <v-col><v-divider clsss="ma-2"/></v-col>
-          </v-row>
+          <SectionsTitle :section="section" />
           <draggable handle=".handle">
             <v-list-item
               v-for="(task, tIndex) in filterTasksBySection(section)"
@@ -94,10 +86,12 @@
 </template>
 <script>
 import draggable from 'vuedraggable'
+import SectionsTitle from '~/components/SectionsTitle.vue'
 
 export default {
   components: {
     draggable,
+    SectionsTitle,
   },
   props: {
     executable: {

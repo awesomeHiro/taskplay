@@ -14,12 +14,13 @@ sidebar like a Discord
 
 # todo-----------------------------
 fixed filed add component like Slack
-redefine sections for a lite user
 
 # doing----------------------------
-refactor tasklist for 3 columns
+edittable tasklist
 
 # done-----------------------------
+refactor tasklist for 3 columns
+redefine sections for a lite user
 fix: swiper-wrapper height is bugged
 gap between pane
 3 pain UI(sections, todo tasks, done tasks) by carousel
