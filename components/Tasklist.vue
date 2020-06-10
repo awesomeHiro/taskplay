@@ -9,7 +9,6 @@
               v-for="task in filterTasksBySection(section)"
               :key="task.id"
               v-model="selected"
-              :disabled="Boolean(task.sectionId !== selectedSectionId)"
               class="pl-0 pr-0"
               flat
               active-class="pink--text"
@@ -175,7 +174,7 @@ export default {
   margin: 0px !important;
 }
 .v-input__slot:before {
-  border-color: #333333 !important;
+  border-color: #444444 !important;
   width: 50%;
 }
 </style>
