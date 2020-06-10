@@ -23,7 +23,6 @@
               <v-col cols="1" class="pa-0">
                 <div class="pa-0 ma-0 subtle--text">
                   <v-text-field
-                    style="font-size:12px; text-align: right;"
                     :value="
                       $store.getters['sections/byId'](task.sectionId).name
                     "
@@ -36,10 +35,21 @@
               </v-col>
               <v-col cols="6" class="text-left pa-0">
                 <v-list-item-content class="pa-0">
-                  <v-list-item-title
-                    class="subtitle-2 subtle--text"
-                    v-text="task.repeat ? task.name + ' ↺' : task.name"
-                  ></v-list-item-title>
+                  <v-row align="center" no-gutters>
+                    <v-col>
+                      <v-text-field
+                        :value="task.name"
+                        hide-details
+                        dense
+                        class="pa-0 ma-0"
+                        type="tel"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="auto">
+                      <span v-if="task.repeat">↺</span>
+                    </v-col>
+                  </v-row>
+
                   <v-list-item-subtitle
                     class="barely--text"
                     v-text="
@@ -58,7 +68,6 @@
                 </div>
                 <div v-else class="barely--text">
                   <v-text-field
-                    style="font-size:12px;"
                     :value="task.estimate"
                     hide-details
                     dense
@@ -84,7 +93,6 @@
               <v-col cols="1" class="ma-0 pa-0">
                 <div class="subtle--text">
                   <v-text-field
-                    style="font-size:12px;"
                     :value="task.start"
                     hide-details
                     dense
@@ -96,7 +104,6 @@
               <v-col cols="1" class="ma-0 pa-0">
                 <div class="subtle--text">
                   <v-text-field
-                    style="font-size:12px;"
                     :value="task.end"
                     :placeholder="temp_estimate"
                     hide-details
@@ -156,17 +163,13 @@ export default {
 </script>
 <style>
 .v-text-field__slot input {
+  font-size: 12px;
   padding: 0px;
   text-align: center;
 }
 .v-input__slot input {
   min-height: 25px;
   padding: 0px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
 }
 .v-input__control div {
   min-height: 25px !important;
@@ -175,6 +178,10 @@ export default {
 }
 .v-input__slot:before {
   border-color: #444444 !important;
-  width: 50%;
+  width: 50% !important;
+  transform: translateX(50%);
+}
+input {
+  padding: 0px !important;
 }
 </style>
