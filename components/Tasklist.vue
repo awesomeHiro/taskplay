@@ -163,10 +163,19 @@ export default {
 .v-input__slot input {
   min-height: 25px;
   padding: 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 .v-input__control div {
   min-height: 25px !important;
   padding: 0px !important;
   margin: 0px !important;
+}
+.v-input__slot:before {
+  border-color: #333333 !important;
+  width: 50%;
 }
 </style>

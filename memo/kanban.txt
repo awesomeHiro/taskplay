@@ -11,7 +11,6 @@ space property to summary
 statistic
 sidebar like a Discord
 
-
 # todo-----------------------------
 fixed filed add component like Slack
 estStart as a placeholder
