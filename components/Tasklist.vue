@@ -2,8 +2,9 @@
   <div>
     <v-list two-line dense class="caption" :flat="!executable">
       <div v-for="section in getSectionsFromTasks(tasks)" :key="section.id">
+        <SectionsTitle :section="section" />
+
         <v-list-item-group v-model="selected" active-class="blue--text">
-          <SectionsTitle :section="section" />
           <draggable handle=".handle">
             <v-list-item
               v-for="task in filterTasksBySection(section)"
