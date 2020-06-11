@@ -21,7 +21,7 @@
                 </div>
               </v-col>
               <v-col cols="1" class="pa-0">
-                <div class="pa-0 ma-0 subtle--text">
+                <div class="pa-0 ma-0kk subtle--text">
                   <v-select
                     :items="sections"
                     item-text="name"
@@ -42,6 +42,7 @@
                         hide-details
                         dense
                         class="pa-0 ma-0"
+                        @click.native="selectText($event)"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="4">
@@ -72,7 +73,8 @@
                     dense
                     class="pa-0 ma-0"
                     type="tel"
-                  ></v-text-field>
+                    @click.native="selectText($event)"
+                  />
                 </div>
                 <div class="subtle--text">
                   <v-text-field
@@ -82,6 +84,7 @@
                     dense
                     class="pa-0 ma-0"
                     type="tel"
+                    @click.native="selectText($event)"
                   ></v-text-field>
                 </div>
               </v-col>
@@ -96,6 +99,7 @@
                     dense
                     class="pa-0 ma-0"
                     type="tel"
+                    @click.native="selectText($event)"
                   ></v-text-field>
                 </div>
                 <div v-if="task.result" class="subtle--text">
@@ -150,6 +154,9 @@ export default {
     }
   },
   methods: {
+    selectText(event) {
+      event.target.select()
+    },
     filterTasksBySection(section) {
       return this.tasks.filter(task => task.sectionId === section.id)
     },
@@ -190,7 +197,7 @@ input {
   font-size: 11px;
 }
 .v-input__append-inner {
-  display: none;
+  display: none !important;
 }
 .v-text-field__details {
   display: none;
