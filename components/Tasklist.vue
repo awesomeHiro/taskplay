@@ -200,6 +200,6 @@ input {
   display: none !important;
 }
 .v-text-field__details {
-  display: none;
+  display: none !important;
 }
 </style>
