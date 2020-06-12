@@ -32,17 +32,6 @@
                       class="pa-0 ma-0"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="4">
-                    <v-select
-                      :items="projects"
-                      item-text="name"
-                      item-value="id"
-                      :placeholder="
-                        $store.getters['projects/byId'](task.projectId).name
-                      "
-                      dense
-                    ></v-select>
-                  </v-col>
 
                   <v-col cols="auto">
                     <span v-if="task.repeat">↺</span>
@@ -51,27 +40,33 @@
                 <v-row align="center" no-gutters> </v-row>
               </v-list-item-content>
             </v-col>
-            <v-col cols="2" class="ma-0 pa-0" @click.stop>
-              <div class="subtle--text">
-                <v-text-field
-                  :value="task.start"
-                  hide-details
-                  placeholder="0"
-                  dense
-                  class="pa-0 ma-0"
-                  type="tel"
-                />
-              </div>
-              <div class="subtle--text">
-                <v-text-field
-                  :value="task.end"
-                  placeholder="0"
-                  hide-details
-                  dense
-                  class="pa-0 ma-0"
-                  type="tel"
-                ></v-text-field>
-              </div>
+            <v-col cols="3" class="ma-0 pa-0">
+              <v-row align="center" no-gutters>
+                <v-col class="ma-0 pa-0" @click.stop>
+                  <div class="subtle--text">
+                    <v-text-field
+                      :value="task.start"
+                      hide-details
+                      placeholder="0"
+                      dense
+                      class="pa-0 ma-0"
+                      type="tel"
+                    />
+                  </div>
+                </v-col>
+                <v-col class="ma-0 pa-0" @click.stop>
+                  <div class="subtle--text">
+                    <v-text-field
+                      :value="task.end"
+                      placeholder="0"
+                      hide-details
+                      dense
+                      class="pa-0 ma-0"
+                      type="tel"
+                    ></v-text-field>
+                  </div>
+                </v-col>
+              </v-row>
             </v-col>
             <v-col cols="1" class="pa-0 ma-0" @click.stop>
               <div v-if="task.start" class="barely--text">
@@ -115,6 +110,17 @@
                   dense
                 ></v-select>
               </div>
+            </v-col>
+            <v-col cols="4">
+              <v-select
+                :items="projects"
+                item-value="id"
+                :placeholder="
+                  $store.getters['projects/byId'](task.projectId).name
+                "
+                item-text="name"
+                dense
+              ></v-select>
             </v-col>
           </v-list-item>
         </v-list-group>
@@ -167,13 +173,14 @@ export default {
 </script>
 <style>
 .v-text-field__slot input {
-  font-size: 12px;
-  padding: 0px;
-  text-align: center;
+  font-size: 12px !important;
+  padding: 0px !important;
+  text-align: center !important;
 }
 .v-input__slot input {
-  min-height: 25px;
-  padding: 0px;
+  font-size: 12px !important;
+  min-height: 25px !important;
+  padding: 0px !important;
 }
 .v-input__control div {
   min-height: 25px !important;
@@ -185,12 +192,22 @@ export default {
   width: 50% !important;
   transform: translateX(50%);
 }
+.v-select__selection--comma {
+  font-size: 12px !important;
+  transform: translateX(-50%) !important;
+}
 input {
   padding: 0px !important;
   text-align: center !important;
 }
-.v-input {
-  font-size: 10px;
+
+.v-select__selection--comma {
+  color: #888888 !important;
+  transform: translateX(0%) !important;
+}
+
+.v-select__selection .v-input {
+  font-size: 10px !important;
 }
 .v-input__append-inner {
   display: none !important;
@@ -200,5 +217,8 @@ input {
 }
 .v-list-item__icon {
   min-width: 0px !important;
+}
+.v-list-item {
+  min-height: 36px !important;
 }
 </style>
