@@ -11,6 +11,7 @@ import Title from '~/components/Title.vue'
 import Summary from '~/components/Summary.vue'
 import Clock from '~/components/Clock.vue'
 import Tasklist from '~/components/Tasklist.vue'
+// import Tasklist from '~/components/tmp.vue'
 
 export default {
   components: {
