@@ -147,6 +147,7 @@ export default {
   },
   data() {
     return {
+      selectedInputElm: {},
       temp_estimate: '0',
       selected: [0],
       sections: this.$store.state.sections.sections,
@@ -156,7 +157,10 @@ export default {
   },
   methods: {
     selectText(event) {
-      event.target.select()
+      if (this.selectedInputElm === event.target) {
+        event.target.select()
+      }
+      this.selectedInputElm = event.target
     },
     filterTasksBySection(section) {
       return this.tasks.filter(task => task.sectionId === section.id)
@@ -195,7 +199,7 @@ input {
   text-align: center !important;
 }
 .v-input {
-  font-size: 11px;
+  font-size: 10px;
 }
 .v-input__append-inner {
   display: none !important;
