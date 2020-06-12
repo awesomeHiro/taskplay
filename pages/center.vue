@@ -9,6 +9,7 @@
 </template>
 <script>
 import Doing from '~/components/Doing.vue'
+// import Doing from '~/components/tmp.vue'
 // import AddButton from '~/components/AddButton.vue'
 export default {
   components: {
