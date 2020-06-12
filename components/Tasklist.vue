@@ -20,19 +20,7 @@
                 </v-icon>
               </div>
             </v-col>
-            <v-col cols="1" class="pa-0" @click.stop>
-              <div class="pa-0 ma-0kk subtle--text">
-                <v-select
-                  :items="sections"
-                  item-text="name"
-                  item-value="id"
-                  :placeholder="
-                    $store.getters['sections/byId'](task.sectionId).name
-                  "
-                  dense
-                ></v-select>
-              </div>
-            </v-col>
+
             <v-col class="text-left pa-0" @click.stop>
               <v-list-item-content class="pa-0">
                 <v-row align="center" no-gutters>
@@ -42,7 +30,6 @@
                       hide-details
                       dense
                       class="pa-0 ma-0"
-                      @click.native="selectText($event)"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="4">
@@ -73,7 +60,6 @@
                   dense
                   class="pa-0 ma-0"
                   type="tel"
-                  @click.native="selectText($event)"
                 />
               </div>
               <div class="subtle--text">
@@ -84,7 +70,6 @@
                   dense
                   class="pa-0 ma-0"
                   type="tel"
-                  @click.native="selectText($event)"
                 ></v-text-field>
               </div>
             </v-col>
@@ -99,7 +84,6 @@
                   dense
                   class="pa-0 ma-0"
                   type="tel"
-                  @click.native="selectText($event)"
                 ></v-text-field>
               </div>
               <div v-if="task.result" class="subtle--text">
@@ -119,7 +103,19 @@
             </v-col>
           </template>
           <v-list-item>
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            <v-col cols="1" class="pa-0" @click.stop>
+              <div class="pa-0 ma-0kk subtle--text">
+                <v-select
+                  :items="sections"
+                  :placeholder="
+                    $store.getters['sections/byId'](task.sectionId).name
+                  "
+                  item-text="name"
+                  item-value="id"
+                  dense
+                ></v-select>
+              </div>
+            </v-col>
           </v-list-item>
         </v-list-group>
       </draggable>
@@ -157,12 +153,6 @@ export default {
     }
   },
   methods: {
-    selectText(event) {
-      if (this.selectedInputElm === event.target) {
-        event.target.select()
-      }
-      this.selectedInputElm = event.target
-    },
     filterTasksBySection(section) {
       return this.tasks.filter(task => task.sectionId === section.id)
     },
