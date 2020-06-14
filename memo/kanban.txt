@@ -5,21 +5,21 @@ Try UI framework Ant Design( vuetify with Swiper is enough for now)
 fireStore implement
 execute task
 edit task
-user auth
+user authkj
 define data structure
 space property to summary
 statistic
 sidebar like a Discord
+implement plan func https://github.com/spckio/spck-embed
 
 # todo-----------------------------
 fixed filed add component like Slack
 estStart as a placeholder
 
 # doing----------------------------
-edittable tasklist (without dialog)
-
 
 # done-----------------------------
+edittable tasklist (without dialog)
 refactor tasklist for 3 columns
 redefine sections for a lite user
 fix: swiper-wrapper height is bugged

@@ -218,7 +218,7 @@ input {
 .v-list-item__icon {
   min-width: 0px !important;
 }
-.v-list-item {
+/* .v-list-item {
   min-height: 36px !important;
-}
+} */
 </style>

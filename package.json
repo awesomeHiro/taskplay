@@ -34,6 +34,7 @@
     "nuxt": "^2.0.0",
     "swiper": "^5.4.1",
     "vue-awesome-swiper": "^4.1.1",
+    "vue-codemirror": "^4.0.6",
     "vuedraggable": "^2.23.2"
   },
   "devDependencies": {
@@ -52,7 +53,7 @@
     "jest": "^24.1.0",
     "lint-staged": "^10.2.2",
     "prettier": "^1.19.1",
-    "stylelint": "^10.1.0",
-    "vue-jest": "^4.0.0-0"
+    "stylelint": "^13.6.0",
+    "vue-jest": "^4.0.0-beta.3"
   }
 }
