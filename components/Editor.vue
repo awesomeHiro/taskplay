@@ -15,7 +15,7 @@
 import { codemirror } from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/javascript/javascript.js'
-import 'codemirror/theme/base16-dark.css'
+import 'codemirror/theme/darcula.css'
 
 export default {
   components: {
@@ -25,9 +25,9 @@ export default {
     return {
       code: 'const a = 10',
       cmOptions: {
-        tabSize: 4,
+        tabSize: 2,
         mode: 'text/javascript',
-        theme: 'base16-dark',
+        theme: 'darcula',
         lineNumbers: true,
         line: true,
         // more CodeMirror options...
