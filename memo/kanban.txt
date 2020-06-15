@@ -10,7 +10,10 @@ define data structure
 space property to summary
 statistic
 sidebar like a Discord
-implement plan func https://github.com/spckio/spck-embed
+Masonry Layout for plan https://medium.com/@andybarefoot/a-masonry-style-layout-using-css-grid-8c663d355ebb
+https://github.com/callmecavs/bricks.js
+https://github.com/haltu/muuri
+https://github.com/jbaysolutions/vue-grid-layout
 
 # todo-----------------------------
 fixed filed add component like Slack
@@ -19,6 +22,7 @@ estStart as a placeholder
 # doing----------------------------
 
 # done-----------------------------
+implement plan func https://github.com/spckio/spck-embed
 edittable tasklist (without dialog)
 refactor tasklist for 3 columns
 redefine sections for a lite user

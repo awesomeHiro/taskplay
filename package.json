@@ -30,11 +30,13 @@
     "@nuxtjs/firebase": "^5.2.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "firebase": "^7.14.4",
+    "mobile-device-detect": "^0.3.3",
     "nanoid": "^3.1.6",
     "nuxt": "^2.0.0",
     "swiper": "^5.4.1",
     "vue-awesome-swiper": "^4.1.1",
     "vue-codemirror": "^4.0.6",
+    "vue-prism-editor": "^0.6.1",
     "vuedraggable": "^2.23.2"
   },
   "devDependencies": {
