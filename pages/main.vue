@@ -8,8 +8,8 @@
 // import Comp from '~/components/Progress.vue'
 // import Comp from '~/pages/main.vue'
 // import Comp from '~/components/leftDrawer.vue'
-// import Comp from '~/pages/Swiper.vue'
-import Comp from '~/components/Editor.vue'
+import Comp from '~/pages/Swiper.vue'
+// import Comp from '~/components/Editor.vue'
 
 // import Comp from '~/components/Tasklist.vue'
 // import Comp from '~/pages/left.vue'

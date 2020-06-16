@@ -33,13 +33,11 @@ Task2
 Task5
       `,
       cmOptions: {
-        // codemirror options
         tabSize: 2,
         mode: 'text/javascript',
         theme: 'base16-dark',
         lineNumbers: true,
         line: true,
-        // more codemirror options, 更多 codemirror 的高级配置...
       },
     }
   },
@@ -50,7 +48,6 @@ Task5
   },
   mounted() {
     console.log('this is current codemirror object', this.codemirror)
-    // you can use this.codemirror to do something...
   },
   methods: {
     onCmReady(cm) {

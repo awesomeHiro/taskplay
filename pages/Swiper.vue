@@ -1,7 +1,10 @@
 <template>
   <swiper ref="swiper" class="swiper" :options="swiperOption">
     <swiper-slide class="menu">
-      <div class="windowsize"><left ref="left" class="left" /></div>
+      <div class="windowsize"><centerl ref="left" class="left editor" /></div>
+    </swiper-slide>
+    <swiper-slide class="content">
+      <div class="windowsize"><centerl ref="centerl" class="editor" /></div>
     </swiper-slide>
     <swiper-slide class="content">
       <div class="windowsize"><center ref="center" class="center" /></div>
@@ -13,12 +16,14 @@
 </template>
 
 <script>
-import left from '~/pages/left.vue'
+// import left from '~/pages/left.vue'
+import centerl from '~/components/Editor.vue'
 import center from '~/pages/center.vue'
 import right from '~/pages/right.vue'
 export default {
   components: {
-    left,
+    // left,
+    centerl,
     center,
     right,
   },
@@ -77,6 +82,10 @@ export default {
   }
   .content {
     overflow: auto;
+  }
+  .editor {
+    font-size: 12px;
+    text-align: left;
   }
 }
 </style>

@@ -25,3 +25,9 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.swiper-slide {
+  font-size: 12px !important;
+}
+</style>
